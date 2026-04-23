@@ -1,0 +1,264 @@
+# Toldwell Brand System
+# Source of truth — generates both DESIGN.md (for agents) and docs/ site (for humans)
+# Last updated: 2026-04-22
+
+meta:
+  name: Toldwell
+  tagline: "A Video Studio Creating Films That Stick"
+  description: "We create videos for companies and individuals seeking a good story."
+  url: https://toldwell.com
+  favicon: https://framerusercontent.com/images/pdG7wnHWSIz40DFnecZAchvHusY.svg
+  og_image: https://framerusercontent.com/assets/kzLvQWEZM570OsVVa8vBvXqGCd0.gif
+
+# ─── 1. Visual Theme & Atmosphere ───────────────────────────────────────────────
+
+atmosphere:
+  mood: "Warm, cinematic, story-driven"
+  density: "Moderate — generous whitespace with purposeful density in portfolio sections"
+  shape_language: "Rounded and approachable — heavy use of pill shapes (100px radius) for buttons and tags, softer radii (9-25px) for cards"
+  depth: "Subtle inset shadows on cards, creating a pressed/etched feel rather than elevated"
+  philosophy: "The design reflects filmmaking craft — dark warm tones for the cinema, warm gold for the story, generous space for the visually-minded audience to breathe"
+
+# ─── 2. Color Palette ──────────────────────────────────────────────────────────
+
+colors:
+  primary:
+    name: "Toldwell Dark"
+    hex: "#191412"
+    role: "Primary text, dark backgrounds, footer, navigation — warm near-black"
+
+  accent:
+    name: "Toldwell Gold"
+    hex: "#F3CC92"
+    role: "Primary accent, CTAs, highlight backgrounds, warm storytelling tone"
+
+  surface:
+    name: "Light Gray"
+    hex: "#F2F2F2"
+    role: "Card backgrounds, section surfaces, content containers"
+
+  background:
+    name: "White"
+    hex: "#FFFFFF"
+    role: "Page canvas, light text on dark backgrounds"
+
+  selection:
+    text: "#FFFFFF"
+    background: "#191412"
+
+# ─── 3. Typography ─────────────────────────────────────────────────────────────
+
+typography:
+  fonts:
+    display:
+      family: "Belwe"
+      variants: ["Regular (400)", "Medium (500)", "Bold", "Italic"]
+      source: "Custom (uploaded to Framer)"
+      role: "Hero headlines, large display text — gives Toldwell its distinctive warm serif character"
+
+    body:
+      family: "Red Hat Display"
+      weights: [400, 500, 600, 700, 900]
+      source: "Google Fonts"
+      role: "Headings, subheadings, body text, UI elements — the workhorse font"
+
+  scale:
+    # Display sizes (Belwe)
+    - { name: "display-xxl", size: "215px", use: "Hero splash text", font: "Belwe" }
+    - { name: "display-xl", size: "120px", use: "Large hero headlines", font: "Belwe" }
+    - { name: "display-lg", size: "100px", use: "Section hero text", font: "Belwe" }
+    - { name: "display-md", size: "92px", use: "Feature headlines", font: "Belwe" }
+    - { name: "display-sm", size: "70px", use: "Secondary headlines", font: "Belwe" }
+    # Heading sizes (Red Hat Display)
+    - { name: "h1", size: "48px", use: "Page titles", font: "Red Hat Display" }
+    - { name: "h2", size: "32px", use: "Section titles", font: "Red Hat Display" }
+    - { name: "h3", size: "30px", use: "Subsection titles", font: "Red Hat Display" }
+    - { name: "h4", size: "26px", use: "Card titles, feature headers", font: "Red Hat Display" }
+    - { name: "h5", size: "24px", use: "Small section headers", font: "Red Hat Display" }
+    # Body sizes (Red Hat Display)
+    - { name: "body-lg", size: "22px", use: "Lead paragraphs", font: "Red Hat Display" }
+    - { name: "body-md", size: "20px", use: "Standard body text", font: "Red Hat Display" }
+    - { name: "body-sm", size: "18px", use: "Compact body text", font: "Red Hat Display" }
+    # Small sizes (Red Hat Display)
+    - { name: "caption", size: "12px", use: "Captions, labels, tags, buttons", font: "Red Hat Display" }
+    - { name: "micro", size: "11px", use: "Fine print, metadata", font: "Red Hat Display" }
+
+  letter_spacing:
+    tight: "-1.5px"       # Large display text
+    medium_tight: "-1px"  # Display text
+    snug: "-0.8px"        # Headings
+    normal: "-0.5px"      # Default body
+    reading: "-0.4px"     # Body text
+    wide: "0.4px"         # Labels, uppercase text
+
+# ─── 4. Components ─────────────────────────────────────────────────────────────
+
+components:
+  buttons:
+    primary:
+      background: "#191412"
+      text_color: "#FFFFFF"
+      radius: "100px"
+      padding: "12px 24px"
+      font_family: "Red Hat Display"
+      font_size: "12px"
+      font_weight: 500
+      letter_spacing: "0.4px"
+      text_transform: "uppercase"
+      hover:
+        background: "#3a3230"
+
+    accent:
+      background: "#F3CC92"
+      text_color: "#191412"
+      radius: "100px"
+      padding: "12px 24px"
+      font_size: "12px"
+      font_weight: 500
+
+    ghost:
+      background: "transparent"
+      text_color: "#191412"
+      border: "1px solid #191412"
+      radius: "100px"
+      padding: "12px 24px"
+
+  cards:
+    default:
+      background: "#F2F2F2"
+      radius: "9px"
+      shadow: "rgba(0, 0, 0, 0.18) 0.3px 0.6px 0.67px -1.25px inset, rgba(0, 0, 0, 0.16) 1.14px 2.29px 2.56px -2.5px inset, rgba(0, 0, 0, 0.063) 5px 10px 11.18px -3.75px inset"
+      padding: "20px"
+
+    portfolio:
+      radius: "20px"
+      overflow: "hidden"
+
+  tags:
+    radius: "100px"
+    padding: "5px 15px"
+    font_size: "12px"
+    background: "#F2F2F2"
+    text_color: "#191412"
+
+# ─── 5. Layout ──────────────────────────────────────────────────────────────────
+
+layout:
+  spacing_scale: [2, 5, 10, 15, 20, 25, 32, 40, 50, 80, 96]
+  base_unit: "5px"
+  max_width: "1200px"
+
+  radii:
+    sm: "9px"
+    md: "20px"
+    lg: "25px"
+    xl: "40px"
+    pill: "100px"
+
+# ─── 6. Depth & Elevation ──────────────────────────────────────────────────────
+
+depth:
+  shadows:
+    inset_card: "rgba(0, 0, 0, 0.18) 0.3px 0.6px 0.67px -1.25px inset, rgba(0, 0, 0, 0.16) 1.14px 2.29px 2.56px -2.5px inset, rgba(0, 0, 0, 0.063) 5px 10px 11.18px -3.75px inset"
+  notes: "Toldwell uses inset shadows exclusively — pressed/etched aesthetic, not floating cards. This is distinctive."
+
+# ─── 7. Do's and Don'ts ────────────────────────────────────────────────────────
+
+guidelines:
+  do:
+    - "Use Belwe for hero/display text — it defines the Toldwell look"
+    - "Use Red Hat Display for everything else — headings, body, UI"
+    - "Use the warm gold (#F3CC92) for CTAs and accent backgrounds"
+    - "Use Toldwell Dark (#191412) instead of pure black — it's warmer"
+    - "Maintain generous whitespace — the design breathes"
+    - "Use pill-shaped buttons (100px radius) consistently"
+    - "Use inset shadows on cards, not drop shadows"
+    - "Pair serif display (Belwe) with Red Hat Display for body"
+
+  dont:
+    - "Don't use pure black (#000000) — use Toldwell Dark (#191412)"
+    - "Don't use drop shadows — Toldwell cards are pressed in, not floating"
+    - "Don't introduce colors outside the palette"
+    - "Don't use Belwe for body text — it's display only"
+    - "Don't use fonts other than Belwe and Red Hat Display"
+    - "Don't use sharp corners — minimum radius is 9px"
+    - "Don't make buttons rectangular — always pill-shaped"
+
+# ─── 8. Responsive ─────────────────────────────────────────────────────────────
+
+responsive:
+  breakpoints:
+    mobile: "390px"
+    tablet: "768px"
+    desktop: "1200px"
+    wide: "1440px"
+  notes: "Framer-built — uses fluid responsive scaling. Display text scales dramatically between breakpoints."
+
+# ─── 9. Agent Prompt Guide ──────────────────────────────────────────────────────
+
+agent:
+  quick_reference:
+    primary: "#191412"
+    accent: "#F3CC92"
+    surface: "#F2F2F2"
+    background: "#FFFFFF"
+    display_font: "Belwe"
+    body_font: "Red Hat Display"
+    button_radius: "100px"
+    card_radius: "9px"
+
+  prompts:
+    - "Build a landing page with dark (#191412) hero section, warm gold (#F3CC92) accent, Belwe serif headlines, Red Hat Display body text, pill-shaped buttons"
+    - "Create a portfolio card grid with light gray (#F2F2F2) cards, inset shadows, 9px radius, generous spacing"
+    - "Design a dark footer with white text, Red Hat Display typography, pill-shaped CTA button in gold"
+
+# ─── 10. Voice & Tone (OmD v0.1) ───────────────────────────────────────────────
+
+voice:
+  personality: ["Warm", "Confident", "Story-driven", "Crafted"]
+  tone_spectrum:
+    formal: 6
+    playful: 4
+    technical: 3
+    emotional: 7
+  microcopy:
+    cta_style: "Action-oriented, concise — 'Start your story', 'See our work', 'Let's talk'"
+    error_style: "Friendly, direct — avoid technical jargon"
+  avoid:
+    - "Corporate buzzwords"
+    - "Overly casual/slang"
+    - "Technical filmmaking jargon in client-facing copy"
+    - "Passive voice"
+
+# ─── 11. Brand Narrative (OmD v0.1) ────────────────────────────────────────────
+
+narrative:
+  what_we_are: "A video studio that creates films that stick — memorable, emotional, purposeful"
+  what_we_reject: "Generic corporate videos, stock-footage-driven content, style without substance"
+  belief: "Every company and individual has a story worth telling well"
+
+# ─── 12. Principles (OmD v0.1) ─────────────────────────────────────────────────
+
+principles:
+  - name: "Story First"
+    description: "Every design decision serves the narrative. If it doesn't help tell the story, remove it."
+  - name: "Cinematic Craft"
+    description: "Treat the screen like a frame. Composition, contrast, and timing matter."
+  - name: "Warm Professionalism"
+    description: "Approachable but not casual. The gold accent warms the dark foundation."
+  - name: "Breathe"
+    description: "Generous whitespace. Let content and visuals command attention without clutter."
+  - name: "Show, Don't Tell"
+    description: "Lead with work. Portfolio pieces speak louder than copy."
+
+# ─── Logo ───────────────────────────────────────────────────────────────────────
+
+logo:
+  primary_svg: null  # TODO: Extract from Framer
+  favicon: "https://framerusercontent.com/images/pdG7wnHWSIz40DFnecZAchvHusY.svg"
+  clear_space: "1x height of logomark minimum"
+  min_size: "32px"
+  donts:
+    - "Don't stretch or distort"
+    - "Don't place on busy backgrounds without contrast"
+    - "Don't change the logo colors outside approved palette"

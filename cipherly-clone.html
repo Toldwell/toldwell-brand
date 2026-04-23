@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cipherly — Visual Identity Guidelines</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#000;
+  --white:#fff;
+  --accent:#0040ff;
+  --gray:#7f7f7f;
+  --light:#f8f8f8;
+  --border:#f0f0f0;
+  --border2:#dfdfdf;
+  --sidebar:240px;
+  --accent-7:rgba(0,64,255,.07);
+  --accent-20:rgba(0,64,255,.20);
+  --dark:#262626;
+  --white-5:rgba(255,255,255,.05);
+  --white-15:rgba(255,255,255,.15);
+  --white-50:rgba(255,255,255,.50);
+}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:16px;font-weight:500;
+  line-height:150%;color:var(--black);
+  background:var(--white);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ═══ Layout ═══ */
+.page{display:flex;min-height:100vh}
+
+/* ═══ Sidebar ═══ */
+.sidebar{
+  width:var(--sidebar);
+  position:fixed;top:0;left:0;bottom:0;
+  background:var(--dark);
+  display:flex;flex-direction:column;
+  z-index:100;
+  border-right:1px solid rgba(255,255,255,.06);
+}
+.sb-brand{
+  padding:24px 20px;
+  border-bottom:1px solid var(--white-15);
+}
+.sb-name{
+  font-size:16px;font-weight:700;color:var(--white);
+  letter-spacing:-.3px;
+}
+.sb-tag{
+  font-size:10px;font-weight:600;color:var(--white-50);
+  text-transform:uppercase;letter-spacing:.5px;
+  margin-top:3px;
+}
+.sb-nav{
+  flex:1;overflow-y:auto;padding:10px 0;
+  scrollbar-width:none;
+}
+.sb-nav::-webkit-scrollbar{display:none}
+
+.sb-link{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 20px;
+  color:rgba(255,255,255,.45);
+  text-decoration:none;
+  font-size:14px;font-weight:500;
+  letter-spacing:-.1px;
+  transition:all .15s;
+  border-left:2px solid transparent;
+}
+.sb-link:hover{color:rgba(255,255,255,.8);background:var(--white-5)}
+.sb-link.active{
+  color:var(--accent);
+  border-left-color:var(--accent);
+  background:rgba(0,64,255,.06);
+}
+.sb-link .num{
+  font-family:'DM Mono',monospace;
+  font-size:10px;opacity:.5;min-width:18px;
+}
+.sb-link.active .num{opacity:1;color:var(--accent)}
+
+.sb-subs{display:none;padding:2px 0}
+.sb-subs.show{display:block}
+.sb-sub{
+  display:block;padding:5px 20px 5px 50px;
+  color:rgba(255,255,255,.28);text-decoration:none;
+  font-size:13px;font-weight:400;
+  transition:color .15s;
+}
+.sb-sub:hover{color:rgba(255,255,255,.6)}
+.sb-sub.active{color:var(--accent)}
+
+.sb-bottom{
+  padding:14px 20px;
+  border-top:1px solid var(--white-15);
+}
+.sb-bottom a{
+  display:block;padding:5px 0;
+  color:var(--white-50);text-decoration:none;
+  font-size:13px;font-weight:500;
+  transition:color .15s;
+}
+.sb-bottom a:hover{color:var(--accent)}
+
+/* ═══ Content ═══ */
+.content{
+  flex:1;margin-left:var(--sidebar);
+}
+
+/* ═══ Sections ═══ */
+.sec{
+  padding:72px 56px 88px;
+  border-bottom:1px solid var(--border);
+}
+.sec:last-child{border-bottom:none}
+.sec-body{max-width:720px}
+
+/* Section header block — the big number + title + intro */
+.sec-header{margin-bottom:56px}
+.sec-num{
+  font-family:'DM Mono',monospace;
+  font-size:36px;font-weight:500;
+  color:var(--accent);
+  opacity:.18;
+  line-height:1;
+  margin-bottom:0;
+}
+.sec-title{
+  font-size:42px;font-weight:700;
+  letter-spacing:-.5px;
+  line-height:110%;
+  margin-bottom:16px;
+}
+.sec-desc{
+  font-size:18px;font-weight:400;
+  line-height:160%;
+  color:var(--gray);
+  max-width:600px;
+}
+
+/* ═══ Sub-section heading ═══ */
+.sub-title{
+  font-size:20px;font-weight:600;
+  letter-spacing:-.3px;
+  margin:48px 0 20px;
+  padding-bottom:0;
+}
+.sub-title:first-of-type{margin-top:0}
+
+/* Small uppercase label */
+.label{
+  font-size:10px;font-weight:600;
+  letter-spacing:.5px;text-transform:uppercase;
+  color:var(--gray);
+  margin-bottom:12px;
+}
+
+/* ═══ Info cards ═══ */
+.card{
+  background:var(--light);
+  border-radius:12px;
+  padding:24px 28px;
+  margin-bottom:10px;
+}
+.card h4{
+  font-size:16px;font-weight:600;
+  letter-spacing:-.2px;margin-bottom:6px;
+}
+.card p{
+  font-size:15px;font-weight:400;
+  color:var(--gray);line-height:155%;
+}
+
+/* ═══ Two-column card grid ═══ */
+.card-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+/* ═══ Color swatches ═══ */
+.swatch-row{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:12px;
+}
+.swatch{border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+.swatch-fill{height:110px;display:flex;align-items:flex-end;padding:12px}
+.swatch-fill span{font-family:'DM Mono',monospace;font-size:11px;opacity:.75}
+.swatch-info{padding:12px;background:var(--white)}
+.swatch-info strong{display:block;font-size:13px;font-weight:600;margin-bottom:2px}
+.swatch-info em{font-style:normal;font-size:12px;color:var(--gray)}
+
+/* ═══ Typography specimens ═══ */
+.type-box{
+  background:var(--light);border-radius:12px;
+  padding:36px;margin-bottom:12px;
+}
+.type-box .label{margin-bottom:10px}
+.type-box .big{font-size:48px;font-weight:700;letter-spacing:-.5px;line-height:110%}
+.type-box .med{font-size:18px;font-weight:400;line-height:160%;max-width:480px}
+
+/* ═══ Tables ═══ */
+table{width:100%;border-collapse:collapse;margin-top:8px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);font-size:14px}
+th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--gray)}
+code{font-family:'DM Mono',monospace;font-size:12px;background:var(--light);padding:2px 6px;border-radius:3px}
+
+/* ═══ Buttons ═══ */
+.btn-row{display:flex;gap:10px;flex-wrap:wrap}
+.b{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:10px;font-weight:600;
+  letter-spacing:.4px;text-transform:uppercase;
+  padding:11px 22px;border-radius:8px;
+  border:none;cursor:pointer;transition:all .15s;
+}
+.b-primary{background:var(--accent);color:var(--white)}
+.b-dark{background:var(--black);color:var(--white)}
+.b-ghost{background:transparent;color:var(--black);border:1.5px solid var(--border2)}
+.b:hover{opacity:.85}
+.btn-meta{font-family:'DM Mono',monospace;font-size:11px;color:var(--gray);margin-top:10px}
+
+/* ═══ Guidelines ═══ */
+.gl-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.gl-grid h4{font-size:16px;font-weight:600;margin-bottom:12px;letter-spacing:-.2px}
+.gl-grid ul{list-style:none}
+.gl-grid li{
+  padding:9px 0 9px 22px;position:relative;
+  font-size:14px;line-height:150%;
+  border-bottom:1px solid var(--border);
+}
+.gl-grid li:last-child{border-bottom:none}
+.do-col h4{color:#22a855}
+.dont-col h4{color:#e53935}
+.do-col li::before{content:"✓";position:absolute;left:0;color:#22a855;font-weight:700}
+.dont-col li::before{content:"✗";position:absolute;left:0;color:#e53935;font-weight:700}
+
+/* ═══ Tone bars ═══ */
+.tone{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.tone-name{font-size:14px;font-weight:500;width:75px;text-transform:capitalize}
+.tone-track{flex:1;height:4px;background:var(--light);border-radius:99px}
+.tone-fill{height:100%;background:var(--accent);border-radius:99px}
+.tone-val{font-family:'DM Mono',monospace;font-size:11px;color:var(--gray);width:32px;text-align:right}
+
+/* ═══ Spacing bars ═══ */
+.sp{display:flex;align-items:center;gap:12px;margin-bottom:5px}
+.sp-bar{height:18px;background:var(--accent);border-radius:3px;min-width:3px;opacity:.6}
+.sp code{font-size:11px;color:var(--gray);background:none;padding:0}
+
+/* ═══ Radii ═══ */
+.rad-row{display:flex;gap:18px;flex-wrap:wrap}
+.rad-item{text-align:center}
+.rad-box{width:64px;height:64px;background:var(--light);border:1.5px solid var(--border2);margin-bottom:5px}
+.rad-item strong{display:block;font-size:11px}
+.rad-item code{font-size:10px;background:none;padding:0}
+
+/* ═══ Tags ═══ */
+.tag{display:inline-block;background:var(--light);border-radius:100px;padding:5px 14px;font-size:12px;font-weight:500;margin:3px}
+
+/* ═══ Principles ═══ */
+.pr-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* ═══ Prev/Next nav at section bottom ═══ */
+.sec-nav{
+  display:flex;justify-content:space-between;
+  margin-top:56px;padding-top:24px;
+  border-top:1px solid var(--border);
+}
+.sec-nav a{
+  font-size:14px;font-weight:600;
+  color:var(--accent);text-decoration:none;
+  letter-spacing:-.1px;
+  transition:opacity .15s;
+}
+.sec-nav a:hover{opacity:.7}
+
+/* ═══ Mobile ═══ */
+.mob-btn{
+  display:none;position:fixed;top:12px;left:12px;z-index:200;
+  width:38px;height:38px;background:var(--dark);color:var(--white);
+  border:none;border-radius:8px;font-size:16px;cursor:pointer;
+  align-items:center;justify-content:center;
+}
+.mob-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:99}
+@media(max-width:1023px){
+  .mob-btn{display:flex}
+  .sidebar{transform:translateX(-100%);transition:transform .25s}
+  .sidebar.open{transform:translateX(0)}
+  .mob-bg.open{display:block}
+  .content{margin-left:0}
+  .sec{padding:48px 24px 64px}
+  .sec-title{font-size:32px}
+  .card-grid,.gl-grid,.pr-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<button class="mob-btn" onclick="tog()">&#9776;</button>
+<div class="mob-bg" onclick="tog()"></div>
+
+<div class="page">
+
+<!-- ═══ Sidebar ═══ -->
+<aside class="sidebar">
+  <div class="sb-brand">
+    <div class="sb-name">Cipherly</div>
+    <div class="sb-tag">Visual Identity Guidelines</div>
+  </div>
+  <nav class="sb-nav">
+    <a href="#introduction" class="sb-link" data-s="introduction"><span class="num">01</span>Introduction</a>
+    <a href="#strategy" class="sb-link" data-s="strategy"><span class="num">02</span>Strategy</a>
+    <div class="sb-subs" data-p="strategy">
+      <a href="#strategy-mission" class="sb-sub">Mission</a>
+      <a href="#strategy-idea" class="sb-sub">Brand Idea</a>
+      <a href="#strategy-values" class="sb-sub">Our Values</a>
+    </div>
+    <a href="#logo" class="sb-link" data-s="logo"><span class="num">03</span>Logo</a>
+    <div class="sb-subs" data-p="logo">
+      <a href="#logo-lookup" class="sb-sub">Lookup</a>
+      <a href="#logo-safezone" class="sb-sub">Safe Zones</a>
+      <a href="#logo-color" class="sb-sub">Color</a>
+    </div>
+    <a href="#typography" class="sb-link" data-s="typography"><span class="num">04</span>Typography</a>
+    <div class="sb-subs" data-p="typography">
+      <a href="#type-font" class="sb-sub">Font</a>
+      <a href="#type-weights" class="sb-sub">Weights & Styles</a>
+      <a href="#type-usage" class="sb-sub">Usage Chart</a>
+    </div>
+    <a href="#color" class="sb-link" data-s="color"><span class="num">05</span>Color</a>
+    <div class="sb-subs" data-p="color">
+      <a href="#color-basics" class="sb-sub">The Basics</a>
+      <a href="#color-accent" class="sb-sub">Accent & Tones</a>
+    </div>
+    <a href="#images" class="sb-link" data-s="images"><span class="num">06</span>Images</a>
+    <a href="#icons" class="sb-link" data-s="icons"><span class="num">07</span>Icons</a>
+    <a href="#resources" class="sb-link" data-s="resources"><span class="num">08</span>Resources</a>
+  </nav>
+  <div class="sb-bottom">
+    <a href="https://www.google.com" target="_blank">Go to Website →</a>
+  </div>
+</aside>
+
+<!-- ═══ Content ═══ -->
+<main class="content">
+
+<!-- 01 Introduction -->
+<div class="sec" id="introduction">
+<div class="sec-body">
+  <div class="sec-header">
+    <div class="sec-num">01</div>
+    <h1 class="sec-title">Introduction</h1>
+    <p class="sec-desc">Cipherly is a full-stack development studio dedicated to delivering comprehensive digital solutions. From conceptualization and design to development and deployment, we leverage our expertise to bring your ideas to life.</p>
+  </div>
+  <h3 class="sub-title">Our Story</h3>
+  <p style="font-size:15px;color:var(--gray);line-height:160%;margin-bottom:24px">At Cipherly, our story is one of passion, innovation, and dedication to excellence. Founded with a vision to revolutionize the digital landscape, we embarked on a journey fueled by creativity and technical expertise. From humble beginnings to becoming a leading full-stack development studio, our commitment to pushing boundaries and delivering exceptional solutions remains unwavering.</p>
+
+  <h3 class="sub-title">Services</h3>
+  <p style="font-size:15px;color:var(--gray);line-height:155%;margin-bottom:16px">From web development and mobile apps to e-commerce solutions and digital strategy, we're here to elevate your online presence and drive success.</p>
+  <div class="card-grid">
+    <div class="card"><h4>Web Development</h4><p>Engaging websites for business growth.</p></div>
+    <div class="card"><h4>Mobile App Development</h4><p>Custom apps with intuitive designs.</p></div>
+    <div class="card"><h4>UI/UX Design</h4><p>Stunning interfaces for user engagement.</p></div>
+    <div class="card"><h4>Digital Strategy</h4><p>Goal-oriented digital strategies.</p></div>
+  </div>
+
+  <div class="sec-nav">
+    <a href="#">Home</a>
+    <a href="#strategy">02 Strategy →</a>
+  </div>
+</div></div>
+
+<!-- 02 Strategy -->
+<div class="sec" id="strategy">
+<div class="sec-body">
+  <div class="sec-header">
+    <div class="sec-num">02</div>
+    <h1 class="sec-title">Strategy</h1>
+    <p class="sec-desc">Explore our strategic approach at Cipherly, where we blend innovation with expertise to craft tailored solutions designed to drive growth and propel businesses forward.</p>
+  </div>
+  <h3 class="sub-title" id="strategy-mission">Mission</h3>
+  <div class="card"><p>Our mission is to facilitate the creation of customer-centric companies by fostering direct connections between developers and customers. Cipherly aims to streamline the value chain, bringing developers closer to their end-users.</p></div>
+
+  <h3 class="sub-title" id="strategy-idea">Brand Idea</h3>
+  <div class="card"><p>We believe in "Transforming ideas into reality" by integrating people, processes, and products on a unified platform. This approach transcends traditional departmental boundaries and unites makers with customers.</p></div>
+
+  <h3 class="sub-title" id="strategy-values">Our Values</h3>
+  <div class="card-grid">
+    <div class="card"><h4>Transforming</h4><p>Captivating, simple, and engaging approaches.</p></div>
+    <div class="card"><h4>Ideas</h4><p>Engineered, elegant, and systematic solutions.</p></div>
+    <div class="card"><h4>Reality</h4><p>Purposeful, intentional, and empowering choices.</p></div>
+  </div>
+
+  <div class="sec-nav">
+    <a href="#introduction">← 01 Introduction</a>
+    <a href="#logo">03 Logo →</a>
+  </div>
+</div></div>
+
+<!-- 03 Logo -->
+<div class="sec" id="logo">
+<div class="sec-body">
+  <div class="sec-header">
+    <div class="sec-num">03</div>
+    <h1 class="sec-title">Logo</h1>
+    <p class="sec-desc">The Cipherly logo embodies trust, quality, and serves as a vital identifier. We provide clear guidelines for consistent and precise usage across all platforms.</p>
+  </div>
+  <h3 class="sub-title" id="logo-lookup">Lookup</h3>
+  <div class="card"><p>The logo encapsulates our brand essence, acting as a succinct and memorable symbol that resonates across diverse scales and mediums.</p></div>
+
+  <h3 class="sub-title" id="logo-safezone">Safe Zones</h3>
+  <div class="card"><p>The exclusion zone safeguards the legibility and impact of the logo by isolating it from other visual elements like text, graphics, and imagery.</p></div>
+
+  <h3 class="sub-title" id="logo-color">Color Variations</h3>
+  <div class="card"><p>Understanding these color choices empowers you to effectively represent Cipherly across various mediums while staying true to our brand's identity.</p></div>
+
+  <div class="sec-nav">
+    <a href="#strategy">← 02 Strategy</a>
+    <a href="#typography">04 Typography →</a>
+  </div>
+</div></div>
+
+<!-- 04 Typography -->
+<div class="sec" id="typography">
+<div class="sec-body">
+  <div class="sec-header">
+    <div class="sec-num">04</div>
+    <h1 class="sec-title">Typography</h1>
+    <p class="sec-desc">Typography is a cornerstone of the Cipherly identity system. We employ the versatile Plus Jakarta Sans font family to create emotional connections and communicate effectively.</p>
+  </div>
+  <h3 class="sub-title" id="type-font">Font</h3>
+  <div class="type-box">
+    <div class="label">PRIMARY — PLUS JAKARTA SANS</div>
+    <div class="big">Plus Jakarta Sans</div>
+  </div>
+
+  <h3 class="sub-title" id="type-weights">Weights & Styles</h3>
+  <div class="type-box">
+    <div class="label">SEMIBOLD</div>
+    <div class="med" style="font-weight:600">The quick brown fox jumps over the lazy dog. 0123456789</div>
+  </div>
+  <div class="type-box">
+    <div class="label">MEDIUM</div>
+    <div class="med">The quick brown fox jumps over the lazy dog. 0123456789</div>
+  </div>
+
+  <h3 class="sub-title" id="type-usage">Usage Chart</h3>
+  <div class="card"><p>The usage chart provides guidelines for legible type setting across different contexts. Designers should exercise discretion based on mediums, scales, and production techniques.</p></div>
+
+  <div class="sec-nav">
+    <a href="#logo">← 03 Logo</a>
+    <a href="#color">05 Color →</a>
+  </div>
+</div></div>
+
+<!-- 05 Color -->
+<div class="sec" id="color">
+<div class="sec-body">
+  <div class="sec-header">
+    <div class="sec-num">05</div>
+    <h1 class="sec-title">Color</h1>
+    <p class="sec-desc">Color adds impact, excitement, and delight to any identity system. We leverage color to set ourselves apart, enhance our content, and guide our users effectively.</p>
+  </div>
+  <h3 class="sub-title" id="color-basics">The Basics</h3>
+  <p style="font-size:15px;color:var(--gray);line-height:155%;margin-bottom:16px">Our color palette features vibrant, digitally-native hues complemented by a refined selection of greys and neutrals.</p>
+  <div class="card-grid" style="margin-bottom:16px">
+    <div class="card"><h4>HEX</h4><p>A hexadecimal way of representing screen colors.</p></div>
+    <div class="card"><h4>RGB</h4><p>Red, green and blue — the component colors of screens.</p></div>
+    <div class="card"><h4>CMYK</h4><p>The four colors used in offset and digital printing.</p></div>
+    <div class="card"><h4>PMS</h4><p>Pantone Matching System for precise color selection.</p></div>
+  </div>
+
+  <h3 class="sub-title" id="color-accent">Accent & Tones</h3>
+  <div class="swatch-row">
+    <div class="swatch">
+      <div class="swatch-fill" style="background:#0040ff;color:#fff"><span>#0040FF</span></div>
+      <div class="swatch-info"><strong>Primary Blue</strong><em>Accent, CTAs, links</em></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-fill" style="background:#000;color:#fff"><span>#000000</span></div>
+      <div class="swatch-info"><strong>Black</strong><em>Text, backgrounds</em></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-fill" style="background:#262626;color:#fff"><span>#262626</span></div>
+      <div class="swatch-info"><strong>Dark</strong><em>Sidebar, dark surfaces</em></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-fill" style="background:#f8f8f8;color:#000"><span>#F8F8F8</span></div>
+      <div class="swatch-info"><strong>Light</strong><em>Cards, surfaces</em></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-fill" style="background:#fff;color:#000;border-bottom:1px solid #eee"><span>#FFFFFF</span></div>
+      <div class="swatch-info"><strong>White</strong><em>Background, canvas</em></div>
+    </div>
+  </div>
+
+  <div class="sec-nav">
+    <a href="#typography">← 04 Typography</a>
+    <a href="#images">06 Images →</a>
+  </div>
+</div></div>
+
+<!-- 06 Images -->
+<div class="sec" id="images">
+<div class="sec-body">
+  <div class="sec-header">
+    <div class="sec-num">06</div>
+    <h1 class="sec-title">Images</h1>
+    <p class="sec-desc">Imagery plays a key role in communicating the Cipherly brand. Consistent photographic style reinforces our identity across all touchpoints.</p>
+  </div>
+  <div class="card"><p>Our imagery style emphasizes clean, professional settings with natural lighting. Focus on real people, authentic moments, and modern workspaces.</p></div>
+  <div class="sec-nav">
+    <a href="#color">← 05 Color</a>
+    <a href="#icons">07 Icons →</a>
+  </div>
+</div></div>
+
+<!-- 07 Icons -->
+<div class="sec" id="icons">
+<div class="sec-body">
+  <div class="sec-header">
+    <div class="sec-num">07</div>
+    <h1 class="sec-title">Icons</h1>
+    <p class="sec-desc">Icons should be simple, consistent, and aligned with the overall brand aesthetic. Use outlined stroke icons at 1.5px weight.</p>
+  </div>
+  <div class="card"><p>Maintain a consistent stroke width and style across all icon sets. Avoid filled icons unless specifically required for active states.</p></div>
+  <div class="sec-nav">
+    <a href="#images">← 06 Images</a>
+    <a href="#resources">08 Resources →</a>
+  </div>
+</div></div>
+
+<!-- 08 Resources -->
+<div class="sec" id="resources">
+<div class="sec-body">
+  <div class="sec-header">
+    <div class="sec-num">08</div>
+    <h1 class="sec-title">Resources</h1>
+    <p class="sec-desc">Download brand assets, templates, and guidelines to ensure consistency across all communications.</p>
+  </div>
+  <div class="card"><h4>Brand Kit</h4><p>Complete logo suite, color palette, and typography files.</p></div>
+  <div class="card"><h4>Templates</h4><p>Presentation, social media, and document templates.</p></div>
+  <div class="sec-nav">
+    <a href="#icons">← 07 Icons</a>
+    <a href="#introduction">Back to top ↑</a>
+  </div>
+</div></div>
+
+</main>
+</div>
+
+<script>
+function tog(){
+  document.querySelector('.sidebar').classList.toggle('open');
+  document.querySelector('.mob-bg').classList.toggle('open');
+}
+const links=document.querySelectorAll('.sb-link');
+const subs=document.querySelectorAll('.sb-sub');
+const groups=document.querySelectorAll('.sb-subs');
+const secs=document.querySelectorAll('.sec');
+function upd(){
+  let cur='';const y=window.scrollY+100;
+  secs.forEach(s=>{if(s.offsetTop<=y)cur=s.id});
+  links.forEach(l=>{l.classList.toggle('active',l.dataset.s===cur)});
+  groups.forEach(g=>{g.classList.toggle('show',g.dataset.p===cur)});
+  let a='';
+  document.querySelectorAll('[id]').forEach(e=>{if(e.offsetTop<=y)a=e.id});
+  subs.forEach(s=>{s.classList.toggle('active',s.getAttribute('href')==='#'+a)});
+}
+window.addEventListener('scroll',upd,{passive:true});
+upd();
+document.querySelectorAll('.sidebar a').forEach(a=>{
+  a.addEventListener('click',()=>{if(innerWidth<=1023)tog()});
+});
+</script>
+</body>
+</html>

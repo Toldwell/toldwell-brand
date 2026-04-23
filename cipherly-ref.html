@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Brand Guide: Cipherly — Introduction</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#111;color:#ddd;font-family:system-ui,sans-serif;padding:40px;max-width:960px;margin:0 auto}
+h1{font-size:28px;margin-bottom:4px}
+h2{font-size:20px;margin:36px 0 16px;color:#fff;border-bottom:1px solid #333;padding-bottom:8px}
+h3{font-size:16px;color:#ccc;margin-bottom:4px}
+p.sub{color:#888;font-size:14px;margin-bottom:32px}
+code{font-size:12px;color:#aaa;background:#1a1a1a;padding:2px 6px;border-radius:3px}
+.grid{display:flex;flex-wrap:wrap;gap:16px}
+.swatch{display:flex;flex-direction:column;gap:4px;width:120px}
+.swatch-color{width:120px;height:72px;border-radius:8px;background:var(--c);border:1px solid #333}
+.swatch span{font-size:12px;color:#888}
+.font-specimen{background:#1a1a1a;padding:16px;border-radius:8px;margin-bottom:12px}
+.font-specimen p{color:#ccc;margin-top:8px}
+.space-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+.space-box{background:#5E6AD2;border-radius:2px;min-width:4px;min-height:4px}
+.radius-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+.radius-box{width:60px;height:60px;background:transparent;border:2px solid #5E6AD2}
+.shadow-item{margin-bottom:12px}
+.shadow-box{width:200px;height:60px;background:#1a1a1a;border-radius:8px}
+.shadow-item code{display:block;margin-top:6px;max-width:400px;word-break:break-all}
+</style>
+</head>
+<body>
+  <h1>Cipherly — Introduction</h1>
+  <p class="sub">https://cipherly.framer.website/introduction</p>
+
+  <h2>Colors</h2>
+  <div class="grid">
+    <div class="swatch" style="--c:#FFFFFF"><div class="swatch-color"></div><code>#FFFFFF</code><span>Page background</span></div>
+        <div class="swatch" style="--c:#000000"><div class="swatch-color"></div><code>#000000</code><span>Dark background / footer</span></div>
+        <div class="swatch" style="--c:#0040FF"><div class="swatch-color"></div><code>#0040FF</code><span>Accent background</span></div>
+        <div class="swatch" style="--c:#0000EE"><div class="swatch-color"></div><code>#0000EE</code><span>Primary text</span></div>
+        <div class="swatch" style="--c:#7F7F7F"><div class="swatch-color"></div><code>#7F7F7F</code><span>Secondary text</span></div>
+        <div class="swatch" style="--c:#FFFFFF80"><div class="swatch-color"></div><code>#FFFFFF80</code><span>Light text (on dark)</span></div>
+  </div>
+
+  <h2>Typography</h2>
+  <div>
+    <div class="font-specimen"><h3 style="font-family:'sans-serif',system-ui">sans-serif</h3><p style="font-family:'sans-serif',system-ui;font-size:14px">The quick brown fox jumps over the lazy dog</p><p style="font-family:'sans-serif',system-ui;font-size:20px">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</p></div>
+        <div class="font-specimen"><h3 style="font-family:'Plus Jakarta Sans',system-ui">Plus Jakarta Sans</h3><p style="font-family:'Plus Jakarta Sans',system-ui;font-size:14px">The quick brown fox jumps over the lazy dog</p><p style="font-family:'Plus Jakarta Sans',system-ui;font-size:20px">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</p></div>
+  </div>
+
+  <h2>Spacing</h2>
+  <div class="grid">
+    <div class="space-item"><div class="space-box" style="width:4px;height:4px"></div><code>4px</code></div>
+        <div class="space-item"><div class="space-box" style="width:6px;height:6px"></div><code>6px</code></div>
+        <div class="space-item"><div class="space-box" style="width:8px;height:8px"></div><code>8px</code></div>
+        <div class="space-item"><div class="space-box" style="width:10px;height:10px"></div><code>10px</code></div>
+        <div class="space-item"><div class="space-box" style="width:12px;height:12px"></div><code>12px</code></div>
+        <div class="space-item"><div class="space-box" style="width:16px;height:16px"></div><code>16px</code></div>
+        <div class="space-item"><div class="space-box" style="width:24px;height:24px"></div><code>24px</code></div>
+        <div class="space-item"><div class="space-box" style="width:40px;height:40px"></div><code>40px</code></div>
+  </div>
+
+  <h2>Border Radii</h2>
+  <div class="grid">
+    <div class="radius-item"><div class="radius-box" style="border-radius:8px"></div><code>8px</code></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:10px"></div><code>10px</code></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:50%"></div><code>50%</code></div>
+  </div>
+
+  <h2>Shadows</h2>
+  <div>
+    <div class="shadow-item"><div class="shadow-box" style="box-shadow:rgba(0, 0, 0, 0.26) 0px 0.636953px 1.14652px -1.125px, rgba(0, 0, 0, 0.24) 0px 1.9316px 3.47689px -2.25px, rgba(0, 0, 0, 0.192) 0px 5.10612px 9.19102px -3.375px, rgba(0, 0, 0, 0.03) 0px 16px 28.8px -4.5px"></div><code>rgba(0, 0, 0, 0.26) 0px 0.636953px 1.14652px -1.125px, rgba(0, 0, 0, 0.24) 0px 1.9316px 3.47689px -2.25px, rgba(0, 0, 0, 0.192) 0px 5.10612px 9.19102px -3.375px, rgba(0, 0, 0, 0.03) 0px 16px 28.8px -4.5px</code></div>
+  </div>
+</body>
+</html>
