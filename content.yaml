@@ -40,38 +40,367 @@ global:
   - from: "UPDATED: May 6, 2024"
     to: "UPDATED: May 7, 2026"
 
+  # Doc title fragments
+  - from: "VISUAL IDENTITY GUIDELINES"
+    to: "BRAND GUIDELINES"
+  - from: "Visual Identity Guidelines"
+    to: "Brand Guidelines"
+
+  # Cipherly's brand blue baked into inline logo SVG fills → Toldwell Gold
+  - from: "#0040FF"
+    to: "#F3CC92"
+  - from: "#0040ff"
+    to: "#F3CC92"
+  - from: "#0048FF"
+    to: "#F3CC92"
+  - from: "#0048ff"
+    to: "#F3CC92"
+
+  # CTA used in sidebar / footer
+  - from: "Connect With Us"
+    to: "Work With Us"
+
 # ─── Per-page swaps ───────────────────────────────────────────────────────────
 
 pages:
 
   index:
-    text: []
+    text:
+      - from: "Welcome to the Toldwell Development Studio Visual Identity Guidelines. Here, you'll find everything you need to know about our logo, colors, fonts, and more. Mastering these guidelines is crucial for crafting a memorable Toldwell brand encounter."
+        to: "Welcome to the Toldwell Brand Guidelines. Inside, you'll find everything that shapes how Toldwell looks, sounds, and feels — our logo, our palette, our type, and the principles behind every choice. Use these to keep the work consistent, the story clear, and every touchpoint true to the brand."
+
+      - from: "If you have any questions regarding the content of this guide or need assistance ensuring your communication aligns with the Toldwell brand, please reach out to our brand team."
+        to: "Questions, edge cases, or need a one-off asset? Reach out to the brand team using the contact below. We'd rather help you get it right than see the brand misused."
 
   introduction:
-    text: []
+    text:
+      - from: "Toldwell is a full-stack development studio dedicated to delivering comprehensive digital solutions. From conceptualization and design to development and deployment, we leverage our expertise to bring your ideas to life, ensuring a seamless and engaging user experience every step of the way."
+        to: "Toldwell is a video studio partnering with agencies, brands, and leaders to create films and narratives that stick. From the first conversation through final delivery, we are storytellers and filmmakers crafting videos that go beyond the noise — work that holds meaning, creates impact, and stands the test of time."
+
+      - from: "From web development and mobile apps to e-commerce solutions and digital strategy, we're here to elevate your online presence and drive success."
+        to: "From brand films and commercials to campaigns, instructional content, and testimonials, we partner with mission-driven organizations to tell stories worth telling well."
+
+      # Service H4 labels — Cipherly listed 5 development services. We list our 5 video service categories.
+      - from: "Web Development"
+        to: "Brand Films"
+      - from: "Engaging websites for business growth."
+        to: "Anthem films and brand stories that define who you are."
+
+      - from: "Mobile App Development"
+        to: "Commercials"
+      - from: "Custom apps with intuitive designs."
+        to: "Polished narrative spots for product, place, and platform."
+
+      - from: "UI/UX Design"
+        to: "Campaigns"
+      - from: "Stunning interfaces for user engagement."
+        to: "Multi-piece initiatives that move audiences toward action."
+
+      - from: "Digital Strategy &amp; Consulting"
+        to: "Instructional"
+      - from: "Goal-oriented digital strategies."
+        to: "Training, curriculum, and educational video that engages."
+
+      - from: "Cloud Services &amp; Integration"
+        to: "Testimonials &amp; Collateral"
+      - from: "Scalable cloud solutions for efficiency."
+        to: "Personal stories and supporting video that earns trust."
+
+      # Section H3 labels
+      - from: "Services"
+        to: "What We Do"
+      - from: "Feature Clients"
+        to: "Selected Partners"
+
+      - from: "Our collaborative process involves a thorough exploration of each client's needs and objectives. Through active listening and open dialogue, we gain a deep understanding of their challenges and desired outcomes."
+        to: "Our process starts with listening. Before we decide how to make a video, we work to identify the right video to make. Through development, pre-production, production, post, and distribution, we shape every project around your audience, your story, and your goals."
+
+      # Story block — two paragraphs separated by <br><br> in the template
+      - from: "At Toldwell, our story is one of passion, innovation, and dedication to excellence. Founded with a vision to revolutionize the digital landscape, we embarked on a journey fueled by creativity and technical expertise."
+        to: "Toldwell is led by Jon Bouvier, Director, and William Vest, Producer — co-owners working out of Chattanooga, Tennessee. We've spent years crafting videos that go beyond the noise."
+
+      - from: "becoming a leading full-stack development studio, our commitment to pushing boundaries and delivering exceptional solutions remains unwavering. Join us as we continue to shape the future of digital experiences"
+        to: "becoming a leading video studio for mission-driven brands, our commitment has stayed the same — make work that lasts. Stories that inspire. Stories that matter"
 
   strategy:
-    text: []
+    text:
+      - from: "Explore our strategic approach at Toldwell, where we blend innovation with expertise to craft tailored solutions. Discover how our strategies are designed to drive growth, enhance user experiences, and propel businesses forward in the digital landscape."
+        to: "Toldwell's strategy is simple: tell good stories, and tell them well. We make work that holds meaning, creates impact, and stands the test of time — partnering with agencies, brands, and leaders pursuing something bigger than the next quarter."
+
+      - from: "Our mission is to facilitate the creation of customer-centric companies by fostering direct connections between developers and customers. In the software industry, unnecessary intermediaries often hinder efficiency and waste resources. Toldwell aims to streamline the value chain, bringing developers closer to their end-users, and maximizing revenue potential."
+        to: "Our mission is to create meaningful work that outlasts the moment that prompted it. In a world of fast churn — content produced for the demands of social media and fast marketing — Toldwell partners with mission-driven organizations to make video that lasts. Stories that inspire. Stories that matter."
+
+      - from: 'We believe in "Transforming ideas into reality" by integrating people, processes, and products on a unified platform. This approach transcends traditional departmental boundaries and unites makers with customers, fostering an environment where work flourishes. This ethos is the foundation of our entire design system.'
+        to: "We believe every brand and leader has a story worth telling well. Our brand idea — good stories, told well — is the foundation of every project we take on. It shapes how we listen at the start, how we shoot in the middle, and how we deliver at the end."
+
+      - from: 'We are guided by the principle of "Transforming ideas into reality," anchoring our design philosophy to drive our actions and unite our creative teams.'
+        to: "Three principles guide every Toldwell project. They shape how we collaborate, what we say yes and no to, and what makes the work feel like ours."
+
+      # H4 value names — Cipherly's "Transforming / Ideas / Reality"
+      - from: "Transforming"
+        to: "Story First"
+      - from: "Captivating, simple, and engaging approaches."
+        to: "Every design and creative decision serves the narrative. If it doesn't help tell the story, remove it."
+
+      - from: "Ideas"
+        to: "Make It Last"
+      - from: "Engineered, elegant, and systematic solutions."
+        to: "We craft work meant to outlive the moment that prompted it. Durability over disposability, always."
+
+      - from: "Reality"
+        to: "Substance First"
+      - from: "Purposeful, intentional, and empowering choices."
+        to: "Beautiful work that isn't true to the brief is a failure. Truth first, then polish."
+
+      # Section H3 labels
+      - from: "Brand Idea"
+        to: "What We Believe"
+      - from: "Our Values"
+        to: "Principles"
 
   color:
-    text: []
+    text:
+      - from: "Color adds impact, excitement, and delight to any identity system. We leverage color to set ourselves apart in the market, enhance our content, and guide our users effectively through our communications."
+        to: "Color does the most work when there's the least of it. Toldwell's palette is intentionally restrained — nearly achromatic, anchored by a single warm gold held in reserve. The gold sings because it's rare."
+
+      - from: "Our color palette features vibrant, digitally-native hues complemented by a refined selection of greys and neutrals."
+        to: "Our palette is built around five values: Toldwell Dark, pure black, mid-gray, surface light, and white — with Toldwell Gold reserved for moments that earn it."
+
+      # Color swatch labels (Cipherly's blues become our golds + neutrals)
+      - from: "Blue 700"
+        to: "Toldwell Gold"
+      - from: "#0040FF"
+        to: "#F3CC92"
+      - from: "0/64/255"
+        to: "243/204/146"
+      - from: "84/62/0/0"
+        to: "0/16/40/5"
+      - from: "2935 C"
+        to: "PMS 7507 C"
+
+      - from: "Blue 600"
+        to: "Toldwell Dark"
+      - from: "#5982FF"
+        to: "#1B1B1C"
+      - from: "89/130/255"
+        to: "27/27/28"
+      - from: "64/38/0/0"
+        to: "0/0/0/89"
+      - from: "660 C"
+        to: "PMS Black 6 C"
+
+      - from: "Blue 500"
+        to: "Pure Black"
+      - from: "153/178/255"
+        to: "0/0/0"
+      - from: "29/11/0/0"
+        to: "0/0/0/100"
+      - from: "659 C"
+        to: "PMS Black C"
+
+      - from: "Blue 350"
+        to: "Mid-Gray"
+      - from: "#BFCFFF"
+        to: "#6B6B6B"
+      - from: "191/207/255"
+        to: "107/107/107"
+      - from: "19/8/1/0"
+        to: "0/0/0/58"
+      - from: "658 C"
+        to: "PMS Cool Gray 9 C"
+
+      - from: "Grey 800"
+        to: "Surface Dark"
+      - from: "#333333"
+        to: "#1B1B1C"
+      - from: "51/51/51"
+        to: "27/27/28"
+      - from: "0/0/0/90"
+        to: "0/0/0/89"
+      - from: "446 C"
+        to: "PMS Black 6 C"
+
+      - from: "Grey 600"
+        to: "Mid-Gray Tone"
+      - from: "#666666"
+        to: "#6B6B6B"
+      - from: "102/102/102"
+        to: "107/107/107"
+      - from: "0/0/0/70"
+        to: "0/0/0/58"
+      - from: "424 C"
+        to: "PMS Cool Gray 9 C"
+
+      - from: "Grey 100"
+        to: "Surface Light"
+      - from: "#E6E6E6"
+        to: "#F2F2F2"
+      - from: "230/230/230"
+        to: "242/242/242"
+      - from: "0/0/0/20"
+        to: "0/0/0/5"
+      - from: "420 C"
+        to: "PMS Cool Gray 1 C"
+
+      # Section H3 labels
+      - from: "The Basics"
+        to: "Toldwell Palette"
+      - from: "Color values"
+        to: "Token reference"
 
   typography:
-    text: []
+    text:
+      - from: "Typography is a cornerstone of the Toldwell identity system. We employ the versatile and precise Plus Jakarta Sans font family to create emotional connections and communicate effectively with our diverse audience."
+        to: "Typography is a cornerstone of the Toldwell identity. Two fonts do all the work: Belwe — a warm serif that gives the brand its editorial weight in display moments — paired with Red Hat Display, the clean, modern sans-serif that handles everything else."
+
+      - from: "We use Plus Jakarta Sans in our brand identity. This versatile font family allows us to maintain consistency across all our communications while ensuring clarity and readability."
+        to: "Belwe carries the brand voice in display headlines. Red Hat Display does the rest — headings, body, and UI. Together they create a pairing that feels both crafted and clear, editorial and unfussy."
+
+      - from: "To ensure coherence, we adhere to a restrained approach in selecting font weights and styles. Within the Plus Jakarta Sans family, we primarily utilize Semibold and Medium variants for our brand identity."
+        to: "We use a restrained set of weights to keep things consistent. Belwe lives in Regular, Medium, Bold, and Italic for display moments. Red Hat Display covers Regular through Black (400/500/600/700/900) for UI, body copy, and supporting text."
+
+      - from: "Plus Jakarta Sans"
+        to: "Belwe & Red Hat Display"
+
+      # Section H3 labels
+      - from: "Weights &amp; Styles"
+        to: "Weights & Variants"
+      - from: "Typeface Settings"
+        to: "Spacing & Tracking"
+      - from: "Usage Chart"
+        to: "Sizing Reference"
+      - from: "Download Font"
+        to: "Get the Fonts"
+      - from: "Toldwell typefaces"
+        to: "Belwe + Red Hat Display"
 
   logo:
-    text: []
+    text:
+      - from: "Toldwell logo embodies trust, quality, and serves as a vital identifier for our clients. To maintain its integrity across diverse platforms, we provide clear guidelines for consistent and precise usage, reinforcing our commitment to clarity and coherence."
+        to: "The Toldwell wordmark is the primary identity mark — used at the top of every page, on every artifact, on every signature. To keep its integrity across platforms, follow the spacing, sizing, and color rules below."
+
+      - from: "The Toldwell logo encapsulates our brand essence, acting as a succinct and memorable symbol that resonates across diverse scales and mediums."
+        to: "The Toldwell wordmark balances legibility at small scales with editorial weight at large ones. It works on light backgrounds, dark backgrounds, and over the gold accent surface."
+
+      - from: "The exclusion zone safeguards the legibility and impact of the logo by isolating it from other visual elements like text, graphics, and imagery."
+        to: "The clear space around the wordmark protects its legibility. Maintain at least 1x the height of the wordmark on all sides, free of competing text, graphics, or imagery."
+
+      - from: "The safe zone for the logo equals the width of the small circle within the logo."
+        to: "The clear space around the wordmark equals 1x the height of the wordmark itself."
+
+      - from: "The safe zone for the wordmark equals the width of the small circle within the logo."
+        to: "Minimum safe size is 32px in digital, 0.5in in print. Below that, legibility breaks down."
+
+      - from: "Understanding these color choices empowers you to effectively represent Toldwell across various mediums while staying true to our brand's identity."
+        to: "The wordmark works in three approved configurations: black on light surfaces, white on dark surfaces, and black on the Toldwell Gold accent surface. Don't introduce other colorways."
+
+      - from: "Toldwell logo suite"
+        to: "Toldwell wordmark"
+
+      # Section H3 labels
+      - from: "Lookup"
+        to: "Lockup"
+      - from: "Safe Zones"
+        to: "Clear Space"
 
   icons:
-    text: []
+    text:
+      - from: "Toldwell's brand identity is defined by our comprehensive iconography, comprising product symbols and functional icons. Reflecting our commitment to user experience and brand consistency, these elements play a vital role in guiding users."
+        to: "Toldwell partners with agencies, brands, and leaders across industries — from mission-driven nonprofits to global enterprises. The marks below represent some of the organizations we've had the privilege to work with."
+
+      - from: "Our product symbols guide customers through our offerings, available in original, black, and white. They provide flexibility while maintaining consistency across our brand."
+        to: "Each engagement is approached with care for the partner's identity. We respect every brand mark we work alongside and represent them faithfully in our work."
+
+      - from: "We utilize the \u201CIBM Carbon Icon Library\u201D in our brand identity, ensuring consistency across communications. These functional icons aid customers in navigating dense copy or complex choices within our products and brand materials."
+        to: "For Toldwell's own UI iconography needs — when something requires a functional icon for navigation, status, or controls — we recommend Lucide (lucide.dev) or Feather (feathericons.com). Both are 24px, stroke-based, and pair well with Red Hat Display."
+
+      - from: "Toldwell icon library"
+        to: "Selected partners"
+
+      # Section H3 labels
+      - from: "Product Symbol"
+        to: "Selected Partners"
+      - from: "Icon Library"
+        to: "Partner Engagements"
+      - from: "Download Icons"
+        to: "Partner Spotlight"
+      - from: "DOWNLOAD ICONS"
+        to: "VIEW WORK"
 
   images:
-    text: []
+    text:
+      - from: "Photography serves as a vital component within the Toldwell visual identity system. When utilized effectively, it enables us to craft communications that deeply resonate with our audience, both on a personal and professional level."
+        to: "Photography is the brand. Real sets, real crews, real moments — never composite or staged stock. The work is the brand, and the brand is the work."
+
+      - from: "Strive for true-to-life photography in all our visuals. Remember the following style principles:"
+        to: "Toldwell photography follows three style principles:"
+
+      - from: "With carefully controlled lighting and shadow play, these images convey depth and emotion, adding an element of drama to any narrative."
+        to: "Cinematic light. Natural when possible. Cinematic side-light, godrays, and haze when working. Subjects in motion or in thought, never posed."
+
+      - from: "Capture snapshots of real-life work experiences, showcasing the essence of Toldwell's context and its impact across industries."
+        to: "Real moments. Behind-the-scenes from actual Toldwell sets. Equipment-forward shots are encouraged — the craft is part of the brand."
+
+      - from: "Opt for candid photography over staged shots to convey genuine moments and minimize a forced feel."
+        to: "Candid over staged. Editorial weight over corporate gloss. Black-and-white treatment is welcome; saturation should never feel artificial."
+
+      - from: "Our workplace imagery showcases people in action within Toldwell's vibrant environment, whether in dimly lit offices or bustling workspaces. Devices play a central role, symbolizing the seamless integration of technology into our workflow."
+        to: "On-set imagery shows the people doing the work — directors, producers, operators, and crew in real production environments. Cinema cameras, jibs, dollies, and lighting setups frame the human subjects, never the other way around."
+
+      - from: "Device-focused imagery highlights the seamless integration of technology into Toldwell's workflow. Devices play a central role, symbolizing productivity and innovation."
+        to: "Equipment imagery treats the gear as evidence of craft. Cinema cameras, gimbals, monitors, dollies — shot in their working context, never as glossy product photography."
+
+      - from: "Toldwell images set"
+        to: "Toldwell photography set"
 
   resources:
-    text: []
+    text:
+      - from: "Explore our repository of current resources, templates, guides, and insights from all corners of Toldwell. Updated regularly, be sure to revisit for valuable support in kickstarting your projects."
+        to: "Everything you need to work with Toldwell's brand, in one place. Design system files, machine-readable tokens, the wordmark SVG, and links to the live site and capabilities deck."
+
+      - from: "Toldwell logo suite"
+        to: "Toldwell wordmark (SVG)"
+
+      - from: "Toldwell typefaces"
+        to: "Belwe & Red Hat Display"
+
+      - from: "Toldwell images set"
+        to: "Toldwell photography set"
+
+      - from: "Toldwell icon library"
+        to: "Design tokens (CSS / Tailwind / JSON)"
+
+      - from: "Toldwell Resources"
+        to: "Brand Resources"
 
 # ─── Image swaps (Cipherly CDN URLs → Toldwell local assets) ──────────────────
+# Reuses Toldwell BTS photos previously pulled from Emmett's tw photos folder
+# (kept in assets/photos/web/) and client logo SVGs from toldwell.com (kept in
+# assets/client-logos/). They get copied into site/template/ alongside this
+# config so the swap targets resolve.
 
 images:
-  swaps: []
+  swaps:
+    # ─── Hero / decoration photos (random Toldwell BTS) ───────────────────
+    - from: "https://framerusercontent.com/images/Pqe2xl85kUFpoCbDKOMJdklVM.jpg"
+      to: "/photo-04-court-jib.jpg"
+    - from: "https://framerusercontent.com/images/m61VTkwnnyDNXKfVHIXsXcVDlM.jpg"
+      to: "/photo-01-camera-crew.jpg"
+    - from: "https://framerusercontent.com/images/NgHIvauvH5wuJQ324fRjaFMmOM.png"
+      to: "/photo-07-dolly-lights.jpg"
+
+    # ─── Icons page: 7 of Cipherly's product icons → Toldwell client logos ─
+    - from: "https://framerusercontent.com/images/2xucd45XwsTVXw8VkVs60jWTBM.svg"
+      to: "/client-logos/spotify-icon.svg"
+    - from: "https://framerusercontent.com/images/7iIFLw0Jec9fMZkWsRmqA3oHD4.svg"
+      to: "/client-logos/cfgc.svg"
+    - from: "https://framerusercontent.com/images/HGx4WzZ7syEXls723KXf0u27B0.svg"
+      to: "/client-logos/ncf.svg"
+    - from: "https://framerusercontent.com/images/Lec9yTkjJs9JAeb7v56FQeFCov8.svg"
+      to: "/client-logos/emerson.svg"
+    - from: "https://framerusercontent.com/images/MZF6zgJNK7AphRcWvNfkkt3kTTg.svg"
+      to: "/client-logos/addo-logo.svg"
+    - from: "https://framerusercontent.com/images/PiOXKxAdxA3OCLSfg1otBkgfb4.svg"
+      to: "/client-logos/intellicheck.svg"
+    - from: "https://framerusercontent.com/images/QX2SH4rUzM7KS2aUPdhZ6g5TCE.svg"
+      to: "/client-logos/in-the-black.svg"
