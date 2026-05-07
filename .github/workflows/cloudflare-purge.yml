@@ -1,0 +1,35 @@
+name: Cloudflare cache purge
+
+# Purges the brand.toldwell.com Cloudflare cache after a push to main, so
+# changes are visible without waiting for the CDN edge to expire stale assets.
+#
+# Note: GitHub Pages also has its own cache layer (separate from Cloudflare).
+# This workflow only purges Cloudflare's edge — Pages cache typically clears
+# within ~30s of a successful build.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for GitHub Pages build
+        run: sleep 45
+
+      - name: Purge brand.toldwell.com Cloudflare cache
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_TOLDWELL_API_TOKEN }}
+          CF_ZONE: ${{ secrets.CLOUDFLARE_TOLDWELL_ZONE_ID }}
+        run: |
+          # Purge by hostname — only clears brand.toldwell.com, leaves the
+          # main toldwell.com cache and all other subdomains untouched.
+          response=$(curl -s -X POST \
+            "https://api.cloudflare.com/client/v4/zones/$CF_ZONE/purge_cache" \
+            -H "Authorization: Bearer $CF_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data '{"hosts":["brand.toldwell.com"]}')
+          echo "$response" | jq .
+          echo "$response" | jq -e '.success == true' > /dev/null
