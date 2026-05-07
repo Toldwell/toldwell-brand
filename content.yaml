@@ -16,6 +16,8 @@ global:
     to: "Brand Guidelines"
   - from: "UPDATED: May 6, 2024"
     to: "UPDATED: May 7, 2026"
+  - from: "Connect With Us"
+    to: "Work With Us"
 
 # ─── Per-page swaps ───────────────────────────────────────────────────────────
 
@@ -70,6 +72,12 @@ pages:
       - from: "Our collaborative process involves a thorough exploration of each client's needs and objectives. Through active listening and open dialogue, we gain a deep understanding of their challenges and desired outcomes."
         to: "Our process starts with listening. Before we decide how to make a video, we work to identify the right video to make. Through development, pre-production, production, post, and distribution, we shape every project around your audience, your story, and your goals."
 
+      # Section headings on intro page
+      - from: "Services"
+        to: "What We Do"
+      - from: "Feature Clients"
+        to: "Selected Partners"
+
       # Story block — two paragraphs separated by <br><br> in the template
       - from: "At Toldwell, our story is one of passion, innovation, and dedication to excellence. Founded with a vision to revolutionize the digital landscape, we embarked on a journey fueled by creativity and technical expertise."
         to: "Toldwell is led by Jon Bouvier, Director, and William Vest, Producer — co-owners working out of Chattanooga, Tennessee. We've spent years crafting videos that go beyond the noise."
@@ -109,6 +117,12 @@ pages:
         to: "Substance First"
       - from: "Purposeful, intentional, and empowering choices."
         to: "Beautiful work that isn't true to the brief is a failure. Truth first, then polish."
+
+      # Strategy section labels
+      - from: "Brand Idea"
+        to: "What We Believe"
+      - from: "Our Values"
+        to: "Principles"
 
   # ═══ Color ════════════════════════════════════════════════════════════════════
 
@@ -203,6 +217,12 @@ pages:
       - from: "420 C"
         to: "PMS Cool Gray 1 C"
 
+      # Section labels on color page
+      - from: "The Basics"
+        to: "Toldwell Palette"
+      - from: "Color values"
+        to: "Token reference"
+
   # ═══ Typography ═══════════════════════════════════════════════════════════════
 
   typography:
@@ -218,6 +238,18 @@ pages:
 
       - from: "Plus Jakarta Sans"
         to: "Belwe & Red Hat Display"
+
+      # Typography page section headings
+      - from: "Weights & Styles"
+        to: "Weights & Variants"
+      - from: "Typeface Settings"
+        to: "Spacing & Tracking"
+      - from: "Usage Chart"
+        to: "Sizing Reference"
+      - from: "Download Font"
+        to: "Get the Fonts"
+      - from: "Toldwell typefaces"
+        to: "Belwe + Red Hat Display"
 
   # ═══ Logo ═════════════════════════════════════════════════════════════════════
 
@@ -244,6 +276,12 @@ pages:
       - from: "Toldwell logo suite"
         to: "Toldwell wordmark"
 
+      # Logo page section headings
+      - from: "Lookup"
+        to: "Lockup"
+      - from: "Safe Zones"
+        to: "Clear Space"
+
   # ═══ Icons ════════════════════════════════════════════════════════════════════
 
   icons:
@@ -259,6 +297,16 @@ pages:
 
       - from: "Toldwell icon library"
         to: "Selected partners"
+
+      # Icons page section headings (now repurposed as partner showcase)
+      - from: "Product Symbol"
+        to: "Selected Partners"
+      - from: "Icon Library"
+        to: "Partner Engagements"
+      - from: "Download Icons"
+        to: "Partner Spotlight"
+      - from: "DOWNLOAD ICONS"
+        to: "VIEW WORK"
 
   # ═══ Images ═══════════════════════════════════════════════════════════════════
 
@@ -306,6 +354,10 @@ pages:
 
       - from: "Toldwell icon library"
         to: "Design tokens (CSS / Tailwind / JSON)"
+
+      # Resources section heading
+      - from: "Toldwell Resources"
+        to: "Brand Resources"
 
 # ─── Image swaps ──────────────────────────────────────────────────────────────
 # Cipherly CDN URL → Toldwell local photo. Applied globally so the same image
