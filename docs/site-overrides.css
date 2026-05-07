@@ -1,41 +1,16 @@
 /**
  * site-overrides.css — Toldwell brand site overrides
  *
- * Hand-edited supplement to tokens.css. Patches the Framer-rip templates with
- * Toldwell-specific visual fixes: hides the Framer badge, swaps the header
- * logo, hides unused social links.
+ * Minimal hand-edited CSS for things sed/yaml swaps cannot fix.
+ * Loaded after tokens.css on every page.
  *
- * All actual content swaps (Cipherly text → Toldwell text, Cipherly photos →
- * Toldwell photos) live in content.yaml and are applied by build.js during
- * the template→docs copy step. This file only handles things CSS can fix.
- *
- * Loaded after tokens.css on every page in the brand site.
+ * RULE (see RULES.md): keep this file SMALL. Anything here that isn't a hide
+ * or asset overlay should probably be a content swap or token change instead.
  */
 
-/* ─── Hide Framer leftovers ────────────────────────────────────────────────── */
-
+/* Hide the "Made in Framer" badge */
 #__framer-badge-container,
 .__framer-badge,
 [class*="framer-badge"] {
   display: none !important;
-}
-
-/* Hide unused social links: Twitter/X and Medium */
-a[href*="twitter.com"],
-a[href*="medium.com"] {
-  display: none !important;
-}
-
-/* ─── Header logo: hide Cipherly wordmark, overlay Toldwell ────────────────── */
-
-a[data-framer-name="Logo"] {
-  background-image: url("/toldwell-wordmark.svg");
-  background-repeat: no-repeat;
-  background-position: left center;
-  background-size: contain;
-}
-
-a[data-framer-name="Logo"] > div,
-a[data-framer-name="Logo"] svg {
-  visibility: hidden;
 }
