@@ -6,6 +6,13 @@
  * Loaded after tokens.css on every page in the brand site.
  */
 
+/* ─── Hide the "Made in Framer" badge ──────────────────────────────────────── */
+#__framer-badge-container,
+.__framer-badge,
+[class*="framer-badge"] {
+  display: none !important;
+}
+
 /* ─── Header logo: hide Cipherly wordmark, overlay Toldwell ──────────────────
    The Framer header logo is an <a data-framer-name="Logo"> wrapping an inline
    SVG with a <use href="#svg..."> reference to the cursive Cipherly wordmark.

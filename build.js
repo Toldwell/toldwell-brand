@@ -762,6 +762,65 @@ function emitTokensJson(brand) {
   return JSON.stringify(out, null, 2) + '\n';
 }
 
+// ─── Color panel HTML (injected into /color/) ────────────────────────────────
+// Generated from yaml so swatches stay in sync with brand.yaml.
+
+function generateColorPanel(brand) {
+  const groups = ['brand', 'accent', 'neutrals', 'semantic'];
+  const groupLabels = {
+    brand: 'Brand',
+    accent: 'Accent',
+    neutrals: 'Neutrals',
+    semantic: 'Semantic',
+  };
+
+  const sections = groups.map(group => {
+    if (!brand.colors[group]) return '';
+    const swatches = Object.entries(brand.colors[group]).map(([name, def]) => {
+      const isLight = (() => {
+        const r = parseInt(def.hex.slice(1, 3), 16);
+        const g = parseInt(def.hex.slice(3, 5), 16);
+        const b = parseInt(def.hex.slice(5, 7), 16);
+        return (r * 299 + g * 587 + b * 114) / 1000 > 140;
+      })();
+      const textColor = isLight ? '#191412' : '#FFFFFF';
+      const displayName = name.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      return `      <div class="tw-swatch">
+        <div class="tw-swatch-color" style="background:${def.hex};color:${textColor}">
+          <span class="tw-swatch-hex">${def.hex.toUpperCase()}</span>
+        </div>
+        <div class="tw-swatch-meta">
+          <strong class="tw-swatch-name">${displayName}</strong>
+          <code class="tw-swatch-token">--color-${group}-${name}</code>
+          <p class="tw-swatch-role">${def.role}</p>
+        </div>
+      </div>`;
+    }).join('\n');
+
+    return `  <section class="tw-color-group">
+    <h3 class="tw-color-group-label">${groupLabels[group]}</h3>
+    <div class="tw-color-grid">
+${swatches}
+    </div>
+  </section>`;
+  }).filter(Boolean).join('\n\n');
+
+  return `<!-- Toldwell color panel — generated from brand.yaml -->
+<aside id="tw-color-panel">
+  <header class="tw-color-panel-head">
+    <h2>Color Palette</h2>
+    <p>The Toldwell palette is intentionally restrained. Warm dark tones anchored by a distinctive gold accent, structured into four roles: brand, accent, neutrals, and semantic. Every color reads to its purpose.</p>
+  </header>
+
+${sections}
+
+  <footer class="tw-color-panel-foot">
+    <p>All colors are exposed as CSS variables in <a href="/tokens.css"><code>tokens.css</code></a>, Tailwind v4 theme in <a href="/tailwind.css"><code>tailwind.css</code></a>, and W3C Design Tokens spec in <a href="/tokens.json"><code>tokens.json</code></a>.</p>
+  </footer>
+</aside>
+`;
+}
+
 // ─── Site build: copy site/template/* → site/docs/* with token injection ──────
 //
 // We don't blow away the docs folder entirely (must preserve CNAME + generated
@@ -772,7 +831,7 @@ function emitTokensJson(brand) {
 const TOKENS_LINK = '<link rel="stylesheet" href="/tokens.css">';
 const OVERRIDES_LINK = '<link rel="stylesheet" href="/site-overrides.css">';
 
-function transformHtml(filePath, buf) {
+function transformHtml(filePath, buf, brand) {
   let html = buf.toString();
   // Insert tokens.css link if not present
   if (!html.includes('href="/tokens.css"')) {
@@ -784,6 +843,13 @@ function transformHtml(filePath, buf) {
   if (!html.includes('href="/site-overrides.css"')) {
     if (html.includes('</head>')) {
       html = html.replace('</head>', `  ${OVERRIDES_LINK}\n</head>`);
+    }
+  }
+  // Page-specific injections
+  if (filePath.endsWith('/color/index.html') || filePath.endsWith('\\color\\index.html')) {
+    if (!html.includes('id="tw-color-panel"')) {
+      const panel = generateColorPanel(brand);
+      html = html.replace('</body>', `${panel}\n</body>`);
     }
   }
   return html;
@@ -808,7 +874,7 @@ function buildSite(brand) {
 
   // Copy template → docs with HTML transform
   copyDir(TEMPLATE_DIR, DOCS_DIR, (filePath, buf) => {
-    if (filePath.endsWith('.html')) return transformHtml(filePath, buf);
+    if (filePath.endsWith('.html')) return transformHtml(filePath, buf, brand);
     return buf;
   });
 
