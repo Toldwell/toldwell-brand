@@ -60,3 +60,154 @@ a[data-framer-name="Logo"] svg {
   text-transform: uppercase;
   pointer-events: none;
 }
+
+/* ─── Color page: hide Framer's color grid, show our injected panel ────────── */
+/* Hides the entire "Color" section content area on /color/ so our generated
+   panel takes its place. The hero, sidebar, and footer remain. */
+body[data-framer-page-id] [data-framer-name="Content"] > section[id="color"],
+[data-framer-name="Color Blocks Grid"] {
+  display: none !important;
+}
+
+#tw-color-panel {
+  font-family: 'Red Hat Display', system-ui, sans-serif;
+  color: var(--color-neutrals-toldwell-dark, #191412);
+  background: var(--surface-canvas-warm, #FAF8F4);
+  padding: 80px 60px 100px;
+  border-bottom: 1px solid var(--color-neutrals-driftwood, #D6CFC9);
+}
+
+#tw-color-panel .tw-color-panel-head {
+  max-width: 720px;
+  margin-bottom: 64px;
+}
+
+#tw-color-panel .tw-color-panel-head h2 {
+  font-family: 'Belwe', Georgia, serif;
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.8px;
+  margin: 0 0 20px;
+  color: var(--color-neutrals-toldwell-dark, #191412);
+}
+
+#tw-color-panel .tw-color-panel-head p {
+  font-size: 20px;
+  line-height: 1.55;
+  letter-spacing: -0.4px;
+  color: var(--color-neutrals-graphite, #5C504C);
+  margin: 0;
+}
+
+#tw-color-panel .tw-color-group {
+  margin-bottom: 64px;
+}
+
+#tw-color-panel .tw-color-group-label {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--color-neutrals-graphite, #5C504C);
+  margin: 0 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-neutrals-driftwood, #D6CFC9);
+}
+
+#tw-color-panel .tw-color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+#tw-color-panel .tw-swatch {
+  border-radius: 9px;
+  overflow: hidden;
+  background: var(--surface-card-elevated, #FFFFFF);
+  box-shadow:
+    rgba(0, 0, 0, 0.18) 0.3px 0.6px 0.67px -1.25px inset,
+    rgba(0, 0, 0, 0.16) 1.14px 2.29px 2.56px -2.5px inset,
+    rgba(0, 0, 0, 0.063) 5px 10px 11.18px -3.75px inset;
+}
+
+#tw-color-panel .tw-swatch-color {
+  height: 140px;
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+}
+
+#tw-color-panel .tw-swatch-hex {
+  font-family: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+#tw-color-panel .tw-swatch-meta {
+  padding: 16px 18px 18px;
+  background: var(--surface-card-elevated, #FFFFFF);
+}
+
+#tw-color-panel .tw-swatch-name {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.14px;
+  color: var(--color-neutrals-toldwell-dark, #191412);
+  margin-bottom: 4px;
+}
+
+#tw-color-panel .tw-swatch-token {
+  display: inline-block;
+  font-family: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  background: var(--color-neutrals-surface-light, #F2F2F2);
+  color: var(--color-neutrals-graphite, #5C504C);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+#tw-color-panel .tw-swatch-role {
+  font-size: 13px;
+  line-height: 1.45;
+  letter-spacing: -0.13px;
+  color: var(--color-neutrals-graphite, #5C504C);
+  margin: 0;
+}
+
+#tw-color-panel .tw-color-panel-foot {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--color-neutrals-driftwood, #D6CFC9);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--color-neutrals-graphite, #5C504C);
+  max-width: 720px;
+}
+
+#tw-color-panel .tw-color-panel-foot a {
+  color: var(--color-neutrals-toldwell-dark, #191412);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-brand-toldwell-gold, #F3CC92);
+  text-decoration-thickness: 2px;
+}
+
+#tw-color-panel .tw-color-panel-foot code {
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 12px;
+  background: var(--color-neutrals-surface-light, #F2F2F2);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  #tw-color-panel { padding: 48px 24px 64px; }
+  #tw-color-panel .tw-color-panel-head h2 { font-size: 36px; }
+  #tw-color-panel .tw-color-grid { grid-template-columns: 1fr; }
+}
