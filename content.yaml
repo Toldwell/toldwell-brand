@@ -3,19 +3,14 @@
 # Drives the find-and-replace swap pass over the Cipherly templates.
 # Layout, components, structure all stay Cipherly's. Only text + images swap.
 #
-# RULE (see RULES.md): every `from` value must match the EXACT source string
+# RULE (see RULES.md): every `from` value matches the EXACT source string
 # in site/template/. We are SUBSTITUTING content in place — not creating new
 # components, layouts, or behaviors.
-#
-# Currently empty (clean baseline). Add swaps below as needed, one at a time,
-# verifying each renders correctly before adding the next.
 
 # ─── Global swaps (applied to every page) ─────────────────────────────────────
 
 global:
-  # Brand name substitution — Cipherly's templates literally use "Cipherly"
-  # in titles, meta tags, body copy, asset labels. This is the foundational
-  # substitution everything else builds on.
+  # Brand name
   - from: "Cipherly"
     to: "Toldwell"
   - from: "cipherly.framer.website"
@@ -25,25 +20,54 @@ global:
   - from: "cipherly"
     to: "toldwell"
 
+  # Contact email
+  - from: "brand@toldwell.com"
+    to: "hello@toldwell.com"
+
+  # External "Go to Website" button → main Toldwell site
+  - from: "https://www.google.com/"
+    to: "https://toldwell.com/"
+
+  # Social links — bare slugs → toldwellstudios handles
+  - from: 'href="https://www.linkedin.com/"'
+    to: 'href="https://www.linkedin.com/company/toldwellstudios/"'
+  - from: 'href="https://www.instagram.com/"'
+    to: 'href="https://www.instagram.com/toldwellstudios/"'
+
+  # Copyright + version meta
+  - from: "© 2024 Toldwell"
+    to: "© 2025 Toldwell"
+  - from: "UPDATED: May 6, 2024"
+    to: "UPDATED: May 7, 2026"
+
 # ─── Per-page swaps ───────────────────────────────────────────────────────────
 
 pages:
+
   index:
     text: []
+
   introduction:
     text: []
+
   strategy:
     text: []
+
   color:
     text: []
+
   typography:
     text: []
+
   logo:
     text: []
+
   icons:
     text: []
+
   images:
     text: []
+
   resources:
     text: []
 
