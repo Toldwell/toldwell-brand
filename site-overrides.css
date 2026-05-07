@@ -13,6 +13,12 @@
   display: none !important;
 }
 
+/* ─── Hide unused social links: Twitter/X and Medium ───────────────────────── */
+a[href*="twitter.com"],
+a[href*="medium.com"] {
+  display: none !important;
+}
+
 /* ─── Header logo: hide Cipherly wordmark, overlay Toldwell ──────────────────
    The Framer header logo is an <a data-framer-name="Logo"> wrapping an inline
    SVG with a <use href="#svg..."> reference to the cursive Cipherly wordmark.
