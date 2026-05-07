@@ -1,0 +1,55 @@
+/**
+ * site-overrides.css — Toldwell brand site overrides
+ * Hand-edited supplement to tokens.css. Used to patch the Framer-rip
+ * templates with Toldwell-specific replacements (logos, hide demos, etc).
+ *
+ * Loaded after tokens.css on every page in the brand site.
+ */
+
+/* ─── Header logo: hide Cipherly wordmark, overlay Toldwell ──────────────────
+   The Framer header logo is an <a data-framer-name="Logo"> wrapping an inline
+   SVG with a <use href="#svg..."> reference to the cursive Cipherly wordmark.
+   We hide the inner SVG and apply a background-image of the Toldwell wordmark.
+*/
+a[data-framer-name="Logo"] {
+  background-image: url("/toldwell-wordmark.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: contain;
+}
+
+a[data-framer-name="Logo"] > div,
+a[data-framer-name="Logo"] svg {
+  visibility: hidden;
+}
+
+/* ─── Logo page demos: temporary placeholder while we extract Toldwell assets ─
+   The logo guidelines page shows Cipherly's emblem + wordmark in multiple
+   color variations. Until we have Toldwell SVG variants, fade them out so
+   they don't claim to be Toldwell's logo system.
+*/
+[data-framer-name="Lookup Logo Block"],
+[data-framer-name="Logo Color Block"],
+[data-framer-name="Color Logo Grid"],
+[data-framer-name="Safe Zone Emblem Block"],
+[data-framer-name="Safe Zone Wordmark Block"] {
+  position: relative;
+}
+
+[data-framer-name="Lookup Logo Block"]::after,
+[data-framer-name="Logo Color Block"]::after {
+  content: "Toldwell logo SVG — coming soon";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(250, 248, 244, 0.9);
+  color: #5C504C;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  pointer-events: none;
+}

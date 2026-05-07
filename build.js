@@ -24,6 +24,7 @@ const DESIGN_MD = path.join(ROOT, 'DESIGN.md');
 const TOKENS_CSS = path.join(ROOT, 'tokens.css');
 const TAILWIND_CSS = path.join(ROOT, 'tailwind.css');
 const TOKENS_JSON = path.join(ROOT, 'tokens.json');
+const OVERRIDES_CSS = path.join(ROOT, 'site-overrides.css');
 const SITE_DIR = path.join(ROOT, 'site');
 const TEMPLATE_DIR = path.join(SITE_DIR, 'template');
 const DOCS_DIR = path.join(ROOT, 'docs');
@@ -769,14 +770,21 @@ function emitTokensJson(brand) {
 // brand tokens via CSS custom properties.
 
 const TOKENS_LINK = '<link rel="stylesheet" href="/tokens.css">';
+const OVERRIDES_LINK = '<link rel="stylesheet" href="/site-overrides.css">';
 
 function transformHtml(filePath, buf) {
   let html = buf.toString();
-  // Idempotent: only insert if not already present
-  if (html.includes('href="/tokens.css"')) return html;
-  // Insert just before </head>
-  if (html.includes('</head>')) {
-    html = html.replace('</head>', `  ${TOKENS_LINK}\n</head>`);
+  // Insert tokens.css link if not present
+  if (!html.includes('href="/tokens.css"')) {
+    if (html.includes('</head>')) {
+      html = html.replace('</head>', `  ${TOKENS_LINK}\n</head>`);
+    }
+  }
+  // Insert site-overrides.css link if not present (after tokens.css)
+  if (!html.includes('href="/site-overrides.css"')) {
+    if (html.includes('</head>')) {
+      html = html.replace('</head>', `  ${OVERRIDES_LINK}\n</head>`);
+    }
   }
   return html;
 }
@@ -809,10 +817,11 @@ function buildSite(brand) {
   else fs.writeFileSync(cnamePath, 'brand.toldwell.com\n');
 }
 
-// Drop the four design files into site/docs/ too so they're served by Pages
+// Drop the design files (and the hand-edited overrides) into docs/ so they're
+// served by Pages alongside the site.
 function copyDesignFilesToSite() {
   ensureDir(DOCS_DIR);
-  for (const f of [DESIGN_MD, TOKENS_CSS, TAILWIND_CSS, TOKENS_JSON]) {
+  for (const f of [DESIGN_MD, TOKENS_CSS, TAILWIND_CSS, TOKENS_JSON, OVERRIDES_CSS]) {
     if (fs.existsSync(f)) {
       fs.copyFileSync(f, path.join(DOCS_DIR, path.basename(f)));
     }
