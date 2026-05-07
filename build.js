@@ -1,898 +1,852 @@
 #!/usr/bin/env node
 /**
  * Toldwell Brand Build Pipeline
- * Reads brand.yaml → generates DESIGN.md + docs/ static site
- * Site layout modeled on Cipherly brand guidelines (cipherly.framer.website)
  *
- * Usage: node build.js
+ *   brand.yaml ──┬──>  DESIGN.md           (root — for LLMs / GitHub viewing)
+ *                ├──>  tokens.css           (CSS custom properties)
+ *                ├──>  tailwind.css         (Tailwind v4 @theme block)
+ *                ├──>  tokens.json          (W3C Design Tokens spec)
+ *                └──>  site/template/* → site/docs/*   (Cipherly rip with token injection)
+ *
+ * Edit brand.yaml. Run `npm run build`. Both design files and site update.
+ *
+ * Usage:
+ *   node build.js
  */
 
 const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
 
-const BRAND_FILE = path.join(__dirname, 'brand.yaml');
-const DESIGN_MD_FILE = path.join(__dirname, 'DESIGN.md');
-const DOCS_DIR = path.join(__dirname, 'docs');
+const ROOT = __dirname;
+const BRAND_FILE = path.join(ROOT, 'brand.yaml');
+const DESIGN_MD = path.join(ROOT, 'DESIGN.md');
+const TOKENS_CSS = path.join(ROOT, 'tokens.css');
+const TAILWIND_CSS = path.join(ROOT, 'tailwind.css');
+const TOKENS_JSON = path.join(ROOT, 'tokens.json');
+const SITE_DIR = path.join(ROOT, 'site');
+const TEMPLATE_DIR = path.join(SITE_DIR, 'template');
+const DOCS_DIR = path.join(SITE_DIR, 'docs');
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function loadBrand() {
-  const raw = fs.readFileSync(BRAND_FILE, 'utf8');
-  return yaml.load(raw);
+  return yaml.load(fs.readFileSync(BRAND_FILE, 'utf8'));
 }
 
-function isLight(hex) {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-  return (r * 299 + g * 587 + b * 114) / 1000 > 128;
+function slugify(s) {
+  return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
-// ─── Generate DESIGN.md ────────────────────────────────────────────────────────
-
-function generateDesignMd(brand) {
-  const b = brand;
-  const colors = b.colors;
-  const typo = b.typography;
-  const comp = b.components;
-
-  const colorLines = Object.entries(colors)
-    .filter(([k]) => k !== 'selection')
-    .map(([_, c]) => `- **${c.name}** (\`${c.hex}\`) — ${c.role}`)
-    .join('\n');
-
-  const fontLines = Object.entries(typo.fonts)
-    .map(([role, f]) => {
-      const weights = f.weights ? ` — weights: ${f.weights.join(', ')}` : f.variants ? ` — variants: ${f.variants.join(', ')}` : '';
-      return `- **${f.family}** (${role})${weights}\n  ${f.role}`;
-    })
-    .join('\n');
-
-  const scaleLines = typo.scale
-    .map(s => `| \`${s.name}\` | ${s.size} | ${s.font} | ${s.use} |`)
-    .join('\n');
-
-  const spacingLines = typo.letter_spacing
-    ? Object.entries(typo.letter_spacing).map(([k, v]) => `| ${k} | ${v} |`).join('\n')
-    : '';
-
-  const doLines = b.guidelines.do.map(d => `- ${d}`).join('\n');
-  const dontLines = b.guidelines.dont.map(d => `- ${d}`).join('\n');
-
-  const principleLines = b.principles
-    .map(p => `- **${p.name}**: ${p.description}`)
-    .join('\n');
-
-  const promptLines = b.agent.prompts
-    .map(p => `- "${p}"`)
-    .join('\n');
-
-  const quickRef = Object.entries(b.agent.quick_reference)
-    .map(([k, v]) => `| ${k} | \`${v}\` |`)
-    .join('\n');
-
-  return `# DESIGN.md — ${b.meta.name}
-
-> ${b.meta.tagline}
->
-> ${b.meta.description}
->
-> Generated from \`brand.yaml\` — do not edit directly.
-
----
-
-## 1. Visual Theme & Atmosphere
-
-**Mood:** ${b.atmosphere.mood}
-
-**Density:** ${b.atmosphere.density}
-
-**Shape language:** ${b.atmosphere.shape_language}
-
-**Depth:** ${b.atmosphere.depth}
-
-**Philosophy:** ${b.atmosphere.philosophy}
-
-## 2. Color Palette & Roles
-
-${colorLines}
-
-**Text selection:** ${colors.selection.text} on ${colors.selection.background}
-
-## 3. Typography Rules
-
-### Font Families
-
-${fontLines}
-
-### Type Scale
-
-| Token | Size | Font | Use |
-|-------|------|------|-----|
-${scaleLines}
-
-### Letter Spacing
-
-| Token | Value |
-|-------|-------|
-${spacingLines}
-
-## 4. Component Stylings
-
-### Buttons
-
-**Primary:**
-- Background: \`${comp.buttons.primary.background}\`
-- Text: \`${comp.buttons.primary.text_color}\`
-- Radius: \`${comp.buttons.primary.radius}\` (pill)
-- Padding: \`${comp.buttons.primary.padding}\`
-- Font: ${comp.buttons.primary.font_family}, ${comp.buttons.primary.font_size}, weight ${comp.buttons.primary.font_weight}
-- Letter spacing: \`${comp.buttons.primary.letter_spacing}\`
-- Text transform: ${comp.buttons.primary.text_transform}
-- Hover: \`${comp.buttons.primary.hover.background}\`
-
-**Accent:**
-- Background: \`${comp.buttons.accent.background}\` (Toldwell Gold)
-- Text: \`${comp.buttons.accent.text_color}\`
-- Radius: \`${comp.buttons.accent.radius}\`
-
-**Ghost:**
-- Background: \`${comp.buttons.ghost.background}\`
-- Border: \`${comp.buttons.ghost.border}\`
-- Radius: \`${comp.buttons.ghost.radius}\`
-
-### Cards
-
-**Default:**
-- Background: \`${comp.cards.default.background}\`
-- Radius: \`${comp.cards.default.radius}\`
-- Shadow: \`${comp.cards.default.shadow}\`
-- Padding: \`${comp.cards.default.padding}\`
-
-**Portfolio:**
-- Radius: \`${comp.cards.portfolio.radius}\`
-- Overflow: ${comp.cards.portfolio.overflow}
-
-### Tags
-
-- Background: \`${comp.tags.background}\`
-- Radius: \`${comp.tags.radius}\` (pill)
-- Padding: \`${comp.tags.padding}\`
-- Font size: \`${comp.tags.font_size}\`
-
-## 5. Layout Principles
-
-**Spacing scale:** ${b.layout.spacing_scale.map(s => `${s}px`).join(', ')}
-
-**Base unit:** ${b.layout.base_unit}
-
-**Max width:** ${b.layout.max_width}
-
-**Border radii:**
-| Token | Value |
-|-------|-------|
-${Object.entries(b.layout.radii).map(([k, v]) => `| ${k} | ${v} |`).join('\n')}
-
-## 6. Depth & Elevation
-
-**Shadow — inset card:** \`${b.depth.shadows.inset_card}\`
-
-${b.depth.notes}
-
-## 7. Do's and Don'ts
-
-### Do
-
-${doLines}
-
-### Don't
-
-${dontLines}
-
-## 8. Responsive Behavior
-
-**Breakpoints:**
-| Name | Width |
-|------|-------|
-${Object.entries(b.responsive.breakpoints).map(([k, v]) => `| ${k} | ${v} |`).join('\n')}
-
-${b.responsive.notes}
-
-## 9. Agent Prompt Guide
-
-### Quick Reference
-
-| Token | Value |
-|-------|-------|
-${quickRef}
-
-### Ready-to-Use Prompts
-
-${promptLines}
-
-## 10. Voice & Tone
-
-**Personality:** ${b.voice.personality.join(', ')}
-
-**Tone spectrum:** Formal ${b.voice.tone_spectrum.formal}/10 · Playful ${b.voice.tone_spectrum.playful}/10 · Technical ${b.voice.tone_spectrum.technical}/10 · Emotional ${b.voice.tone_spectrum.emotional}/10
-
-**CTA style:** ${b.voice.microcopy.cta_style}
-
-**Error style:** ${b.voice.microcopy.error_style}
-
-**Avoid:** ${b.voice.avoid.join(', ')}
-
-## 11. Brand Narrative
-
-**What we are:** ${b.narrative.what_we_are}
-
-**What we reject:** ${b.narrative.what_we_reject}
-
-**Core belief:** ${b.narrative.belief}
-
-## 12. Principles
-
-${principleLines}
-
----
-
-*Generated from \`brand.yaml\` by the Toldwell brand pipeline. Edit brand.yaml, not this file.*
-`;
+function ensureDir(p) {
+  fs.mkdirSync(p, { recursive: true });
 }
 
-// ─── Generate Static Site ──────────────────────────────────────────────────────
-// Layout modeled on cipherly.framer.website with exact token mapping
-
-function generateSite(brand) {
-  const b = brand;
-  const c = b.colors;
-
-  fs.mkdirSync(DOCS_DIR, { recursive: true });
-
-  const sections = [
-    { id: 'introduction', num: '01', title: 'Introduction' },
-    { id: 'strategy', num: '02', title: 'Strategy' },
-    { id: 'colors', num: '03', title: 'Color', subs: [
-      { id: 'color-palette', title: 'Palette' },
-      { id: 'color-usage', title: 'Usage' },
-    ]},
-    { id: 'typography', num: '04', title: 'Typography', subs: [
-      { id: 'type-fonts', title: 'Fonts' },
-      { id: 'type-scale', title: 'Type Scale' },
-      { id: 'type-spacing', title: 'Letter Spacing' },
-    ]},
-    { id: 'components', num: '05', title: 'Components', subs: [
-      { id: 'comp-buttons', title: 'Buttons' },
-      { id: 'comp-cards', title: 'Cards' },
-      { id: 'comp-tags', title: 'Tags' },
-    ]},
-    { id: 'layout', num: '06', title: 'Layout', subs: [
-      { id: 'layout-spacing', title: 'Spacing' },
-      { id: 'layout-radii', title: 'Border Radii' },
-    ]},
-    { id: 'guidelines', num: '07', title: 'Guidelines' },
-    { id: 'voice', num: '08', title: 'Voice & Narrative', subs: [
-      { id: 'voice-tone', title: 'Tone' },
-      { id: 'voice-narrative', title: 'Narrative' },
-      { id: 'voice-principles', title: 'Principles' },
-    ]},
-  ];
-
-  // Sidebar nav HTML
-  const sidebarNav = sections.map(s => {
-    let html = `<a href="#${s.id}" class="nav-item" data-section="${s.id}"><span class="nav-num">${s.num}</span><span class="nav-text">${s.title}</span></a>`;
-    if (s.subs) {
-      const subs = s.subs.map(sub =>
-        `<a href="#${sub.id}" class="nav-sub-item" data-parent="${s.id}">${sub.title}</a>`
-      ).join('\n');
-      html += `\n<div class="nav-sub-group" data-parent="${s.id}">${subs}</div>`;
+function rmDirContents(dir, except = []) {
+  if (!fs.existsSync(dir)) return;
+  for (const entry of fs.readdirSync(dir)) {
+    if (except.includes(entry)) continue;
+    const full = path.join(dir, entry);
+    const stat = fs.statSync(full);
+    if (stat.isDirectory()) {
+      fs.rmSync(full, { recursive: true, force: true });
+    } else {
+      fs.unlinkSync(full);
     }
-    return html;
-  }).join('\n');
-
-  // Color swatches
-  const swatches = Object.entries(c)
-    .filter(([k]) => k !== 'selection')
-    .map(([, col]) => {
-      const txtCol = isLight(col.hex) ? c.primary.hex : '#fff';
-      return `<div class="swatch-card">
-        <div class="swatch-color" style="background:${col.hex};color:${txtCol}"><span>${col.hex}</span></div>
-        <div class="swatch-meta"><strong>${col.name}</strong><span>${col.role}</span></div>
-      </div>`;
-    }).join('\n');
-
-  // Type scale table
-  const typeRows = b.typography.scale.map(s =>
-    `<tr><td><code>${s.name}</code></td><td>${s.size}</td><td>${s.font}</td><td>${s.use}</td></tr>`
-  ).join('\n');
-
-  // Letter spacing table
-  const lsRows = Object.entries(b.typography.letter_spacing).map(([k, v]) =>
-    `<tr><td>${k}</td><td><code>${v}</code></td></tr>`
-  ).join('\n');
-
-  // Spacing bars
-  const spacingBars = b.layout.spacing_scale.map(s =>
-    `<div class="sp-row"><div class="sp-bar" style="width:${Math.min(s, 240)}px"></div><code>${s}px</code></div>`
-  ).join('\n');
-
-  // Radii demos
-  const radiiDemos = Object.entries(b.layout.radii).map(([k, v]) =>
-    `<div class="rad-item"><div class="rad-box" style="border-radius:${v}"></div><strong>${k}</strong><code>${v}</code></div>`
-  ).join('\n');
-
-  // Guidelines
-  const doItems = b.guidelines.do.map(d => `<li>${d}</li>`).join('\n');
-  const dontItems = b.guidelines.dont.map(d => `<li>${d}</li>`).join('\n');
-
-  // Principles
-  const principles = b.principles.map(p =>
-    `<div class="info-block"><h4>${p.name}</h4><p>${p.description}</p></div>`
-  ).join('\n');
-
-  // Tone bars
-  const tones = Object.entries(b.voice.tone_spectrum).map(([k, v]) =>
-    `<div class="tone-row"><span class="tone-name">${k}</span><div class="tone-track"><div class="tone-bar" style="width:${v*10}%"></div></div><span class="tone-val">${v}/10</span></div>`
-  ).join('\n');
-
-  const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${b.meta.name} — Brand Guidelines</title>
-<meta name="description" content="${b.meta.tagline}">
-<link rel="icon" href="${b.meta.favicon}">
-<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-/* ════════════════════════════════════════════════════════════════════════════════
-   Cipherly-mapped tokens → Toldwell brand
-   ════════════════════════════════════════════════════════════════════════════ */
-:root{
-  --white:#fff;
-  --black:${c.primary.hex};
-  --accent:${c.accent.hex};
-  --surface:${c.surface.hex};
-  --gray:#7f7f7f;
-  --border:#f0f0f0;
-  --border2:#ebebeb;
-  --sidebar-bg:${c.primary.hex};
-  --sidebar-w:240px;
-  --accent-7:rgba(243,204,146,.07);
-  --accent-20:rgba(243,204,146,.20);
-  --white-5:rgba(255,255,255,.05);
-  --white-15:rgba(255,255,255,.15);
-  --white-50:rgba(255,255,255,.50);
-}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-::selection{color:${c.selection.text};background:${c.selection.background}}
-html{scroll-behavior:smooth;scroll-padding-top:20px}
-body{
-  font-family:'Red Hat Display',sans-serif;
-  font-size:16px;
-  font-weight:500;
-  line-height:128%;
-  color:var(--black);
-  background:var(--white);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+  }
 }
 
-/* ─── Two-column layout ─── */
-.wrap{display:flex;min-height:100vh}
-
-/* ─── Sidebar ─── */
-.sidebar{
-  width:var(--sidebar-w);
-  position:fixed;top:0;left:0;bottom:0;
-  background:var(--sidebar-bg);
-  display:flex;flex-direction:column;
-  z-index:100;
-  overflow:hidden;
-}
-.sb-head{
-  padding:28px 20px 20px;
-  border-bottom:1px solid var(--white-15);
-}
-.sb-logo{
-  font-size:18px;font-weight:700;color:var(--white);
-  letter-spacing:-.36px;line-height:120%;
-}
-.sb-label{
-  font-size:10px;font-weight:600;color:var(--white-50);
-  letter-spacing:.4px;text-transform:uppercase;
-  margin-top:4px;
-}
-.sb-nav{
-  flex:1;overflow-y:auto;
-  padding:12px 0;
-  scrollbar-width:none;
-}
-.sb-nav::-webkit-scrollbar{display:none}
-
-.nav-item{
-  display:flex;align-items:center;gap:10px;
-  padding:9px 20px;
-  color:var(--white-50);
-  text-decoration:none;
-  font-size:14px;font-weight:500;
-  letter-spacing:-.14px;
-  line-height:120%;
-  transition:color .15s,background .15s;
-  border-left:2px solid transparent;
-}
-.nav-item:hover{color:rgba(255,255,255,.8);background:var(--white-5)}
-.nav-item.active{color:var(--accent);border-left-color:var(--accent);background:var(--white-5)}
-.nav-num{
-  font-family:'DM Mono',monospace;font-size:10px;
-  min-width:18px;opacity:.6;
-}
-.nav-item.active .nav-num{opacity:1;color:var(--accent)}
-
-.nav-sub-group{display:none;padding:2px 0}
-.nav-sub-group.visible{display:block}
-.nav-sub-item{
-  display:block;
-  padding:5px 20px 5px 52px;
-  color:rgba(255,255,255,.3);
-  text-decoration:none;
-  font-size:14px;font-weight:400;
-  letter-spacing:-.14px;
-  transition:color .15s;
-}
-.nav-sub-item:hover{color:rgba(255,255,255,.6)}
-.nav-sub-item.active{color:var(--accent)}
-
-.sb-foot{
-  padding:16px 20px;
-  border-top:1px solid var(--white-15);
-}
-.sb-foot a{
-  display:block;padding:5px 0;
-  color:var(--white-50);text-decoration:none;
-  font-size:14px;font-weight:500;
-  letter-spacing:-.14px;
-  transition:color .15s;
-}
-.sb-foot a:hover{color:var(--accent)}
-.sb-cta{
-  display:inline-block;margin-top:12px;
-  padding:8px 18px;
-  background:var(--accent);color:var(--black);
-  border-radius:100px;
-  font-size:10px;font-weight:600;
-  letter-spacing:.4px;text-transform:uppercase;
-  text-decoration:none;
-  transition:opacity .15s;
-}
-.sb-cta:hover{opacity:.85}
-
-/* ─── Main ─── */
-.main{flex:1;margin-left:var(--sidebar-w)}
-
-.section{
-  padding:80px 60px 100px;
-  border-bottom:1px solid var(--border);
-}
-.section:last-child{border-bottom:none}
-.sec-inner{max-width:780px}
-
-/* ─── Section header — matches Cipherly pattern ─── */
-.sec-num{
-  font-family:'DM Mono',monospace;
-  font-size:42px;font-weight:600;
-  color:var(--accent);
-  letter-spacing:-.56px;
-  line-height:104%;
-  margin-bottom:4px;
-  opacity:.25;
-}
-.sec-title{
-  font-size:42px;font-weight:600;
-  letter-spacing:-.56px;
-  line-height:104%;
-  margin-bottom:20px;
-}
-.sec-intro{
-  font-size:18px;font-weight:400;
-  line-height:128%;
-  color:var(--gray);
-  letter-spacing:-.16px;
-  max-width:620px;
-  margin-bottom:60px;
+function copyDir(src, dst, transform = null) {
+  ensureDir(dst);
+  for (const entry of fs.readdirSync(src)) {
+    const sp = path.join(src, entry);
+    const dp = path.join(dst, entry);
+    const stat = fs.statSync(sp);
+    if (stat.isDirectory()) {
+      copyDir(sp, dp, transform);
+    } else if (transform) {
+      const out = transform(sp, fs.readFileSync(sp));
+      fs.writeFileSync(dp, out);
+    } else {
+      fs.copyFileSync(sp, dp);
+    }
+  }
 }
 
-/* ─── Content headings ─── */
-h3.sub-head{
-  font-size:10px;font-weight:600;
-  letter-spacing:.4px;text-transform:uppercase;
-  color:var(--gray);
-  margin:56px 0 20px;
-  padding-bottom:12px;
-  border-bottom:1px solid var(--border);
-}
-h3.sub-head:first-of-type{margin-top:0}
+// ─── Token flattening ─────────────────────────────────────────────────────────
+// Walks the brand.yaml structure and produces flat key→value pairs for emit.
 
-/* ─── Info blocks (cards) ─── */
-.info-block{
-  background:var(--surface);
-  border-radius:10px;
-  padding:24px 28px;
-  margin-bottom:12px;
-}
-.info-block h4{
-  font-size:14px;font-weight:600;
-  letter-spacing:-.14px;margin-bottom:6px;
-}
-.info-block p{
-  font-size:16px;font-weight:400;
-  color:var(--gray);line-height:128%;
-  letter-spacing:-.16px;
-}
-.info-block p:last-child{margin-bottom:0}
+function flattenTokens(brand) {
+  const tokens = {
+    colors: {},
+    surfaces: {},
+    typography: { fonts: {}, scale: [], weights: {}, letter_spacing: {} },
+    spacing: {},
+    radii: {},
+    named_radii: {},
+    shadows: {},
+    breakpoints: {},
+  };
 
-/* ─── Color swatches ─── */
-.swatch-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-  gap:16px;
-}
-.swatch-card{
-  border-radius:10px;overflow:hidden;
-  border:1px solid var(--border);
-}
-.swatch-color{
-  height:120px;display:flex;align-items:flex-end;padding:14px;
-}
-.swatch-color span{
-  font-family:'DM Mono',monospace;font-size:12px;opacity:.8;
-}
-.swatch-meta{
-  padding:14px;background:var(--white);
-}
-.swatch-meta strong{
-  display:block;font-size:14px;font-weight:600;
-  letter-spacing:-.14px;margin-bottom:2px;
-}
-.swatch-meta span{font-size:12px;color:var(--gray);line-height:140%}
+  // Colors: brand / accent / neutrals / semantic
+  for (const group of ['brand', 'accent', 'neutrals', 'semantic']) {
+    if (!brand.colors[group]) continue;
+    for (const [name, def] of Object.entries(brand.colors[group])) {
+      tokens.colors[`${group}-${name}`] = { hex: def.hex, role: def.role, group, name };
+    }
+  }
+  if (brand.colors.selection) {
+    tokens.colors['selection-text'] = { hex: brand.colors.selection.text, role: 'Text selection foreground', group: 'selection', name: 'text' };
+    tokens.colors['selection-background'] = { hex: brand.colors.selection.background, role: 'Text selection background', group: 'selection', name: 'background' };
+  }
 
-/* ─── Type specimens ─── */
-.type-spec{
-  background:var(--surface);border-radius:10px;
-  padding:40px;margin-bottom:16px;
-}
-.type-spec .label{
-  font-size:10px;font-weight:600;
-  letter-spacing:.4px;text-transform:uppercase;
-  color:var(--gray);margin-bottom:14px;
-}
-.type-spec .sample-lg{
-  font-size:48px;font-weight:700;
-  letter-spacing:-.56px;line-height:104%;
-}
-.type-spec .sample-body{
-  font-size:18px;font-weight:400;
-  line-height:128%;letter-spacing:-.16px;
-  max-width:520px;
+  // Surfaces
+  for (const [name, def] of Object.entries(brand.surfaces || {})) {
+    tokens.surfaces[name] = { value: def.value, role: def.role };
+  }
+
+  // Typography
+  tokens.typography.fonts = brand.typography.fonts;
+  tokens.typography.scale = brand.typography.scale;
+  tokens.typography.weights = brand.typography.weights || {};
+  tokens.typography.letter_spacing = brand.typography.letter_spacing || {};
+  tokens.typography.ratio = brand.typography.ratio || {};
+
+  // Spacing
+  tokens.spacing = brand.layout.spacing || {};
+  tokens.semantic_spacing = brand.layout.semantic_spacing || {};
+
+  // Radii
+  tokens.radii = brand.layout.radii || {};
+  tokens.named_radii = brand.layout.named_radii || {};
+
+  // Shadows
+  tokens.shadows = brand.depth.shadows || {};
+
+  // Breakpoints
+  tokens.breakpoints = brand.responsive.breakpoints || {};
+
+  return tokens;
 }
 
-/* ─── Tables ─── */
-table{width:100%;border-collapse:collapse}
-th,td{
-  text-align:left;padding:12px 14px;
-  border-bottom:1px solid var(--border);
-  font-size:14px;font-weight:500;
-  letter-spacing:-.14px;
-}
-th{
-  font-size:10px;font-weight:600;
-  letter-spacing:.4px;text-transform:uppercase;
-  color:var(--gray);
-}
-code{
-  font-family:'DM Mono',monospace;font-size:12px;
-  background:var(--surface);padding:2px 6px;border-radius:4px;
-}
+// ─── Emit: DESIGN.md ──────────────────────────────────────────────────────────
 
-/* ─── Buttons ─── */
-.btn-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.btn{
-  font-family:'Red Hat Display',sans-serif;
-  font-size:10px;font-weight:600;
-  letter-spacing:.4px;text-transform:uppercase;
-  padding:12px 24px;border-radius:100px;
-  border:none;cursor:pointer;transition:all .15s;
-}
-.btn-p{background:var(--black);color:var(--white)}
-.btn-p:hover{opacity:.85}
-.btn-a{background:var(--accent);color:var(--black)}
-.btn-a:hover{opacity:.85}
-.btn-g{background:transparent;color:var(--black);border:1.5px solid var(--black)}
-.btn-g:hover{background:var(--surface)}
-.btn-note{
-  margin-top:14px;font-family:'DM Mono',monospace;
-  font-size:12px;color:var(--gray);
-}
+function emitDesignMd(brand) {
+  const t = flattenTokens(brand);
 
-/* ─── Cards ─── */
-.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.demo-card{
-  background:var(--surface);border-radius:9px;padding:24px;
-  box-shadow:rgba(0,0,0,.18) .3px .6px .67px -1.25px inset,
-    rgba(0,0,0,.16) 1.14px 2.29px 2.56px -2.5px inset,
-    rgba(0,0,0,.063) 5px 10px 11.18px -3.75px inset;
-}
-.demo-card h4{font-size:14px;font-weight:600;margin-bottom:6px;letter-spacing:-.14px}
-.demo-card p{font-size:14px;color:var(--gray);line-height:128%}
-.demo-card.portfolio{border-radius:20px}
+  const lines = [];
+  const p = (s = '') => lines.push(s);
 
-/* ─── Tags ─── */
-.tag{
-  display:inline-block;background:var(--surface);
-  color:var(--black);border-radius:100px;
-  padding:5px 14px;font-size:12px;font-weight:500;
-  margin:3px;letter-spacing:-.14px;
-}
+  p(`# DESIGN.md — ${brand.meta.name}`);
+  p('');
+  p(`> ${brand.meta.tagline}`);
+  p(`>`);
+  p(`> ${brand.meta.description}`);
+  p(`>`);
+  p(`> Generated from \`brand.yaml\` — do not edit directly.`);
+  p('');
+  p('---');
+  p('');
 
-/* ─── Spacing bars ─── */
-.sp-row{display:flex;align-items:center;gap:14px;margin-bottom:6px}
-.sp-bar{height:20px;background:var(--accent);border-radius:4px;min-width:4px}
-.sp-row code{font-size:12px;color:var(--gray);min-width:50px}
+  // 1. Atmosphere
+  p('## 1. Visual Theme & Atmosphere');
+  p('');
+  p(`**Mood:** ${brand.atmosphere.mood}`);
+  p('');
+  p(`**Density:** ${brand.atmosphere.density}`);
+  p('');
+  p(`**Shape language:** ${brand.atmosphere.shape_language}`);
+  p('');
+  p(`**Depth:** ${brand.atmosphere.depth}`);
+  p('');
+  p(`**Philosophy:** ${brand.atmosphere.philosophy}`);
+  p('');
+  if (brand.atmosphere.one_liner) {
+    p(`**One-liner:** ${brand.atmosphere.one_liner}`);
+    p('');
+  }
 
-/* ─── Radii ─── */
-.rad-grid{display:flex;gap:20px;flex-wrap:wrap}
-.rad-item{text-align:center}
-.rad-box{
-  width:72px;height:72px;
-  background:var(--surface);border:1.5px solid var(--border2);
-  margin-bottom:6px;
-}
-.rad-item strong{display:block;font-size:12px}
-.rad-item code{display:block;font-size:11px;background:none;padding:0}
+  // 2. Colors — grouped
+  p('## 2. Color Palette');
+  p('');
+  for (const group of ['brand', 'accent', 'neutrals', 'semantic']) {
+    if (!brand.colors[group]) continue;
+    const label = group[0].toUpperCase() + group.slice(1);
+    p(`### ${label}`);
+    p('');
+    p('| Token | Hex | Role |');
+    p('|-------|-----|------|');
+    for (const [name, def] of Object.entries(brand.colors[group])) {
+      p(`| \`${group}.${name}\` | \`${def.hex}\` | ${def.role} |`);
+    }
+    p('');
+  }
+  if (brand.colors.selection) {
+    p(`**Text selection:** \`${brand.colors.selection.text}\` on \`${brand.colors.selection.background}\``);
+    p('');
+  }
 
-/* ─── Guidelines ─── */
-.gl-split{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-.gl-title{
-  font-size:14px;font-weight:600;letter-spacing:-.14px;
-  margin-bottom:14px;
-}
-.gl-do{color:#2a9d2a}
-.gl-dont{color:#d32f2f}
-.gl-split ul{list-style:none}
-.gl-split li{
-  padding:10px 0 10px 24px;position:relative;
-  font-size:14px;line-height:128%;letter-spacing:-.14px;
-  border-bottom:1px solid var(--border);
-}
-.gl-split li:last-child{border-bottom:none}
-.do-list li::before{content:"\\2713";position:absolute;left:0;color:#2a9d2a;font-weight:700}
-.dont-list li::before{content:"\\2717";position:absolute;left:0;color:#d32f2f;font-weight:700}
+  // 2a. Surfaces
+  if (brand.surfaces) {
+    p('## 2a. Surfaces');
+    p('');
+    p('Semantic surface tokens — name describes role, not appearance.');
+    p('');
+    p('| Token | Value | Role |');
+    p('|-------|-------|------|');
+    for (const [name, def] of Object.entries(brand.surfaces)) {
+      p(`| \`surface.${name}\` | \`${def.value}\` | ${def.role} |`);
+    }
+    p('');
+  }
 
-/* ─── Tone bars ─── */
-.tone-row{display:flex;align-items:center;gap:14px;margin-bottom:10px}
-.tone-name{font-size:14px;font-weight:500;width:80px;text-transform:capitalize;letter-spacing:-.14px}
-.tone-track{flex:1;height:5px;background:var(--surface);border-radius:100px}
-.tone-bar{height:100%;background:var(--accent);border-radius:100px}
-.tone-val{font-family:'DM Mono',monospace;font-size:11px;color:var(--gray);width:35px;text-align:right}
+  // 3. Typography
+  p('## 3. Typography');
+  p('');
+  p('### Font Families');
+  p('');
+  for (const [role, f] of Object.entries(brand.typography.fonts)) {
+    const w = f.weights ? f.weights.join(', ') : (f.variants ? f.variants.join(', ') : '');
+    p(`- **${f.family}** (${role}) — ${w}`);
+    p(`  ${f.role}`);
+  }
+  p('');
 
-/* ─── Principles grid ─── */
-.pr-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  if (brand.typography.ratio) {
+    p('### Type Scale Ratio');
+    p('');
+    if (brand.typography.ratio.body) p(`- **Body:** ${brand.typography.ratio.body}`);
+    if (brand.typography.ratio.display) p(`- **Display:** ${brand.typography.ratio.display}`);
+    p('');
+  }
 
-/* ─── Mobile ─── */
-.mob-btn{
-  display:none;position:fixed;top:14px;left:14px;z-index:200;
-  width:40px;height:40px;background:var(--black);color:var(--white);
-  border:none;border-radius:10px;font-size:18px;cursor:pointer;
-  align-items:center;justify-content:center;
-}
-.mob-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:99}
+  p('### Type Scale');
+  p('');
+  p('| Token | Size | Line Height | Weight | Font | Use |');
+  p('|-------|------|-------------|--------|------|-----|');
+  for (const s of brand.typography.scale) {
+    p(`| \`${s.name}\` | ${s.size}px | ${s.line_height} | ${s.weight} | ${s.font} | ${s.use} |`);
+  }
+  p('');
 
-@media(max-width:1023px){
-  .mob-btn{display:flex}
-  .sidebar{transform:translateX(-100%);transition:transform .25s ease}
-  .sidebar.open{transform:translateX(0)}
-  .mob-overlay.open{display:block}
-  .main{margin-left:0}
-  .section{padding:56px 28px 72px}
-  .sec-num,.sec-title{font-size:36px}
-  .type-spec .sample-lg{font-size:36px}
-  .type-spec{padding:28px}
-  .card-grid,.gl-split,.pr-grid{grid-template-columns:1fr}
-  .swatch-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:480px){
-  .swatch-grid{grid-template-columns:1fr}
-  .section{padding:40px 20px 60px}
-}
-</style>
-</head>
-<body>
+  if (brand.typography.weights && Object.keys(brand.typography.weights).length) {
+    p('### Weights');
+    p('');
+    p('| Token | Value |');
+    p('|-------|-------|');
+    for (const [k, v] of Object.entries(brand.typography.weights)) {
+      p(`| \`weight.${k}\` | ${v} |`);
+    }
+    p('');
+  }
 
-<button class="mob-btn" onclick="tog()" aria-label="Menu">&#9776;</button>
-<div class="mob-overlay" onclick="tog()"></div>
+  if (brand.typography.letter_spacing && Object.keys(brand.typography.letter_spacing).length) {
+    p('### Letter Spacing');
+    p('');
+    p('| Token | Value |');
+    p('|-------|-------|');
+    for (const [k, v] of Object.entries(brand.typography.letter_spacing)) {
+      p(`| \`tracking.${k}\` | \`${v}\` |`);
+    }
+    p('');
+  }
 
-<div class="wrap">
-<aside class="sidebar">
-  <div class="sb-head">
-    <div class="sb-logo">${b.meta.name}</div>
-    <div class="sb-label">Brand Guidelines</div>
-  </div>
-  <nav class="sb-nav">${sidebarNav}</nav>
-  <div class="sb-foot">
-    <a href="${b.meta.url}" target="_blank">Go to Website &rarr;</a>
-    <a class="sb-cta" href="mailto:hello@toldwell.com">Connect With Us</a>
-  </div>
-</aside>
+  // 4. Components
+  p('## 4. Components');
+  p('');
+  const c = brand.components;
+  p('### Buttons');
+  p('');
+  for (const [variant, def] of Object.entries(c.buttons)) {
+    p(`**${variant}:**`);
+    for (const [k, v] of Object.entries(def)) {
+      if (k === 'hover') {
+        p(`- hover.background: \`${def.hover.background}\``);
+      } else {
+        p(`- ${k}: \`${v}\``);
+      }
+    }
+    p('');
+  }
+  p('### Cards');
+  p('');
+  for (const [variant, def] of Object.entries(c.cards)) {
+    p(`**${variant}:**`);
+    for (const [k, v] of Object.entries(def)) {
+      p(`- ${k}: \`${v}\``);
+    }
+    p('');
+  }
+  p('### Tags');
+  p('');
+  for (const [k, v] of Object.entries(c.tags)) {
+    p(`- ${k}: \`${v}\``);
+  }
+  p('');
 
-<main class="main">
+  // 5. Layout
+  p('## 5. Layout');
+  p('');
+  p(`**Base unit:** ${brand.layout.base_unit}px`);
+  p('');
+  p(`**Max width:** ${brand.layout.max_width}px`);
+  p('');
+  p(`**Density:** ${brand.layout.density}`);
+  p('');
+  p('### Spacing Scale');
+  p('');
+  p('| Token | Value |');
+  p('|-------|-------|');
+  for (const [k, v] of Object.entries(brand.layout.spacing)) {
+    p(`| \`spacing.${k}\` | ${v}px |`);
+  }
+  p('');
+  if (brand.layout.semantic_spacing) {
+    p('### Semantic Spacing');
+    p('');
+    p('| Purpose | Value |');
+    p('|---------|-------|');
+    for (const [k, v] of Object.entries(brand.layout.semantic_spacing)) {
+      p(`| ${k.replace(/_/g, ' ')} | ${v}px |`);
+    }
+    p('');
+  }
+  p('### Border Radii');
+  p('');
+  p('| Token | Value |');
+  p('|-------|-------|');
+  for (const [k, v] of Object.entries(brand.layout.radii)) {
+    p(`| \`radius.${k}\` | ${v}px |`);
+  }
+  p('');
+  if (brand.layout.named_radii) {
+    p('### Named Radii (per component)');
+    p('');
+    p('| Component | Radius |');
+    p('|-----------|--------|');
+    for (const [k, v] of Object.entries(brand.layout.named_radii)) {
+      p(`| \`radius.${k}\` | ${v}px |`);
+    }
+    p('');
+  }
 
-<!-- 01 Introduction -->
-<div class="section" id="introduction">
-<div class="sec-inner">
-  <div class="sec-num">01</div>
-  <h1 class="sec-title">Introduction</h1>
-  <p class="sec-intro">${b.meta.description} ${b.atmosphere.philosophy}</p>
-  <h3 class="sub-head">Atmosphere</h3>
-  <div class="info-block"><h4>Mood</h4><p>${b.atmosphere.mood}</p></div>
-  <div class="info-block"><h4>Shape Language</h4><p>${b.atmosphere.shape_language}</p></div>
-  <div class="info-block"><h4>Depth</h4><p>${b.atmosphere.depth}</p></div>
-</div></div>
+  // 6. Depth
+  p('## 6. Depth & Elevation');
+  p('');
+  p('### Shadows');
+  p('');
+  p('| Token | Value |');
+  p('|-------|-------|');
+  for (const [k, v] of Object.entries(brand.depth.shadows)) {
+    p(`| \`shadow.${k}\` | \`${v}\` |`);
+  }
+  p('');
+  if (brand.depth.notes) p(`> ${brand.depth.notes}`);
+  p('');
 
-<!-- 02 Strategy -->
-<div class="section" id="strategy">
-<div class="sec-inner">
-  <div class="sec-num">02</div>
-  <h1 class="sec-title">Strategy</h1>
-  <p class="sec-intro">${b.narrative.what_we_are}</p>
-  <h3 class="sub-head">Brand Narrative</h3>
-  <div class="info-block"><h4>What We Are</h4><p>${b.narrative.what_we_are}</p></div>
-  <div class="info-block"><h4>What We Reject</h4><p>${b.narrative.what_we_reject}</p></div>
-  <div class="info-block"><h4>Core Belief</h4><p>${b.narrative.belief}</p></div>
-</div></div>
+  // 7. Guidelines
+  p(`## 7. Do's and Don'ts`);
+  p('');
+  p('### Do');
+  p('');
+  for (const item of brand.guidelines.do) p(`- ${item}`);
+  p('');
+  p(`### Don't`);
+  p('');
+  for (const item of brand.guidelines.dont) p(`- ${item}`);
+  p('');
 
-<!-- 03 Color -->
-<div class="section" id="colors">
-<div class="sec-inner">
-  <div class="sec-num">03</div>
-  <h1 class="sec-title">Color</h1>
-  <p class="sec-intro">Our palette is intentionally restrained — warm dark tones anchored by a distinctive gold accent that carries the warmth of storytelling through every touchpoint.</p>
-  <h3 class="sub-head" id="color-palette">Palette</h3>
-  <div class="swatch-grid">${swatches}</div>
-  <h3 class="sub-head" id="color-usage">Usage</h3>
-  <div class="info-block"><h4>Text Selection</h4><p>Selection uses <code>${c.selection.text}</code> on <code>${c.selection.background}</code>, reinforcing the brand in micro-interactions.</p></div>
-</div></div>
+  // 8. Responsive
+  p('## 8. Responsive Behavior');
+  p('');
+  p('| Breakpoint | Width |');
+  p('|------------|-------|');
+  for (const [k, v] of Object.entries(brand.responsive.breakpoints)) {
+    p(`| ${k} | ${v}px |`);
+  }
+  p('');
+  if (brand.responsive.notes) {
+    p(`> ${brand.responsive.notes}`);
+    p('');
+  }
 
-<!-- 04 Typography -->
-<div class="section" id="typography">
-<div class="sec-inner">
-  <div class="sec-num">04</div>
-  <h1 class="sec-title">Typography</h1>
-  <p class="sec-intro">Two fonts define Toldwell. Belwe brings warmth and character to display text. Red Hat Display handles everything else with clean precision.</p>
-  <h3 class="sub-head" id="type-fonts">Fonts</h3>
-  ${Object.entries(b.typography.fonts).map(([role, f]) => `
-  <div class="type-spec">
-    <div class="label">${role.toUpperCase()} — ${f.family}</div>
-    <div class="${role === 'display' ? 'sample-lg' : 'sample-body'}">${role === 'display' ? 'Films That Stick' : 'We create videos for companies and individuals seeking a good story. Every frame is crafted with intention, every cut serves the narrative.'}</div>
-  </div>`).join('\n')}
-  <h3 class="sub-head" id="type-scale">Type Scale</h3>
-  <table><thead><tr><th>Token</th><th>Size</th><th>Font</th><th>Use</th></tr></thead><tbody>${typeRows}</tbody></table>
-  <h3 class="sub-head" id="type-spacing">Letter Spacing</h3>
-  <table><thead><tr><th>Token</th><th>Value</th></tr></thead><tbody>${lsRows}</tbody></table>
-</div></div>
+  // 9. Agent guide
+  p('## 9. Agent Quick Reference');
+  p('');
+  p('| Token | Value |');
+  p('|-------|-------|');
+  for (const [k, v] of Object.entries(brand.agent.quick_reference)) {
+    p(`| ${k} | \`${v}\` |`);
+  }
+  p('');
+  p('### Ready-to-Use Prompts');
+  p('');
+  for (const prompt of brand.agent.prompts) p(`- ${prompt}`);
+  p('');
 
-<!-- 05 Components -->
-<div class="section" id="components">
-<div class="sec-inner">
-  <div class="sec-num">05</div>
-  <h1 class="sec-title">Components</h1>
-  <p class="sec-intro">Core UI components that maintain brand consistency. Pill-shaped buttons, inset-shadow cards, and clean tags.</p>
-  <h3 class="sub-head" id="comp-buttons">Buttons</h3>
-  <div class="btn-row">
-    <button class="btn btn-p">Primary</button>
-    <button class="btn btn-a">Accent</button>
-    <button class="btn btn-g">Ghost</button>
-  </div>
-  <div class="btn-note">radius: 100px &middot; padding: 12px 24px &middot; weight: 600 &middot; uppercase</div>
-  <h3 class="sub-head" id="comp-cards">Cards</h3>
-  <div class="card-grid">
-    <div class="demo-card"><h4>Default Card</h4><p>Light gray surface with inset shadow. Pressed-in, not floating. 9px radius.</p></div>
-    <div class="demo-card portfolio"><h4>Portfolio Card</h4><p>Larger 20px radius with overflow hidden for media content.</p></div>
-  </div>
-  <h3 class="sub-head" id="comp-tags">Tags</h3>
-  <div><span class="tag">Video Production</span><span class="tag">Brand Film</span><span class="tag">Documentary</span><span class="tag">Motion Graphics</span><span class="tag">Commercial</span></div>
-</div></div>
+  // 10. Voice
+  p('## 10. Voice & Tone');
+  p('');
+  p(`**Personality:** ${brand.voice.personality.join(', ')}`);
+  p('');
+  const ts = brand.voice.tone_spectrum;
+  p(`**Tone spectrum:** Formal ${ts.formal}/10 · Playful ${ts.playful}/10 · Technical ${ts.technical}/10 · Emotional ${ts.emotional}/10`);
+  p('');
+  p(`**CTA style:** ${brand.voice.microcopy.cta_style}`);
+  p('');
+  p(`**Error style:** ${brand.voice.microcopy.error_style}`);
+  p('');
+  p(`**Avoid:** ${brand.voice.avoid.join(', ')}`);
+  p('');
 
-<!-- 06 Layout -->
-<div class="section" id="layout">
-<div class="sec-inner">
-  <div class="sec-num">06</div>
-  <h1 class="sec-title">Layout</h1>
-  <p class="sec-intro">A spacing system built on a 5px base unit with generous whitespace. Maximum content width of ${b.layout.max_width}.</p>
-  <h3 class="sub-head" id="layout-spacing">Spacing Scale</h3>
-  ${spacingBars}
-  <h3 class="sub-head" id="layout-radii">Border Radii</h3>
-  <div class="rad-grid">${radiiDemos}</div>
-</div></div>
+  // 11. Narrative
+  p('## 11. Brand Narrative');
+  p('');
+  p(`**What we are:** ${brand.narrative.what_we_are}`);
+  p('');
+  p(`**What we reject:** ${brand.narrative.what_we_reject}`);
+  p('');
+  p(`**Core belief:** ${brand.narrative.belief}`);
+  p('');
 
-<!-- 07 Guidelines -->
-<div class="section" id="guidelines">
-<div class="sec-inner">
-  <div class="sec-num">07</div>
-  <h1 class="sec-title">Guidelines</h1>
-  <p class="sec-intro">Rules that keep the brand consistent. When in doubt, reference these guardrails.</p>
-  <div class="gl-split">
-    <div><h4 class="gl-title gl-do">Do</h4><ul class="do-list">${doItems}</ul></div>
-    <div><h4 class="gl-title gl-dont">Don't</h4><ul class="dont-list">${dontItems}</ul></div>
-  </div>
-</div></div>
+  // 12. Principles
+  p('## 12. Principles');
+  p('');
+  for (const pr of brand.principles) {
+    p(`- **${pr.name}:** ${pr.description}`);
+  }
+  p('');
 
-<!-- 08 Voice -->
-<div class="section" id="voice">
-<div class="sec-inner">
-  <div class="sec-num">08</div>
-  <h1 class="sec-title">Voice & Narrative</h1>
-  <p class="sec-intro">${b.voice.personality.join(' &middot; ')} — the personality that shapes every word.</p>
-  <h3 class="sub-head" id="voice-tone">Tone Spectrum</h3>
-  ${tones}
-  <div style="margin-top:24px">
-    <div class="info-block"><h4>CTA Style</h4><p>${b.voice.microcopy.cta_style}</p></div>
-    <div class="info-block"><h4>Avoid</h4><p>${b.voice.avoid.join(' &middot; ')}</p></div>
-  </div>
-  <h3 class="sub-head" id="voice-narrative">Narrative</h3>
-  <div class="info-block"><h4>What We Are</h4><p>${b.narrative.what_we_are}</p></div>
-  <div class="info-block"><h4>What We Reject</h4><p>${b.narrative.what_we_reject}</p></div>
-  <div class="info-block"><h4>Core Belief</h4><p>${b.narrative.belief}</p></div>
-  <h3 class="sub-head" id="voice-principles">Principles</h3>
-  <div class="pr-grid">${principles}</div>
-</div></div>
+  p('---');
+  p('');
+  p('*Generated from `brand.yaml` by `build.js`. Edit the yaml, not this file.*');
+  p('');
 
-</main>
-</div>
-
-<script>
-function tog(){
-  document.querySelector('.sidebar').classList.toggle('open');
-  document.querySelector('.mob-overlay').classList.toggle('open');
-}
-const NL=document.querySelectorAll('.nav-item');
-const NS=document.querySelectorAll('.nav-sub-item');
-const SG=document.querySelectorAll('.nav-sub-group');
-const SE=document.querySelectorAll('.section');
-function upd(){
-  let cur='';const y=window.scrollY+100;
-  SE.forEach(s=>{if(s.offsetTop<=y)cur=s.id});
-  NL.forEach(l=>{l.classList.toggle('active',l.dataset.section===cur)});
-  SG.forEach(g=>{g.classList.toggle('visible',g.dataset.parent===cur)});
-  let anc='';
-  document.querySelectorAll('[id]').forEach(e=>{if(e.offsetTop<=y)anc=e.id});
-  NS.forEach(s=>{s.classList.toggle('active',s.getAttribute('href')==='#'+anc)});
-}
-window.addEventListener('scroll',upd,{passive:true});
-upd();
-document.querySelectorAll('.sidebar a').forEach(a=>{
-  a.addEventListener('click',()=>{if(window.innerWidth<=1023)tog()});
-});
-</script>
-</body>
-</html>`;
-
-  fs.writeFileSync(path.join(DOCS_DIR, 'index.html'), html);
+  return lines.join('\n');
 }
 
-// ─── Main ──────────────────────────────────────────────────────────────────────
+// ─── Emit: tokens.css ─────────────────────────────────────────────────────────
+
+function emitTokensCss(brand) {
+  const lines = [];
+  const p = (s = '') => lines.push(s);
+
+  p('/**');
+  p(` * tokens.css — ${brand.meta.name} design tokens`);
+  p(' * CSS custom properties. Drop-in for any framework.');
+  p(' * Generated from brand.yaml — do not edit directly.');
+  p(' */');
+  p('');
+  p(':root {');
+
+  // Colors
+  p('  /* ─── Colors ───────────────────────────────────────────────────────── */');
+  for (const group of ['brand', 'accent', 'neutrals', 'semantic']) {
+    if (!brand.colors[group]) continue;
+    p(`  /* ${group} */`);
+    for (const [name, def] of Object.entries(brand.colors[group])) {
+      p(`  --color-${group}-${name}: ${def.hex};`);
+    }
+  }
+  p('');
+
+  // Surfaces
+  if (brand.surfaces) {
+    p('  /* ─── Surfaces ─────────────────────────────────────────────────────── */');
+    for (const [name, def] of Object.entries(brand.surfaces)) {
+      p(`  --surface-${name}: ${def.value};`);
+    }
+    p('');
+  }
+
+  // Typography — fonts
+  p('  /* ─── Typography ───────────────────────────────────────────────────── */');
+  for (const [role, f] of Object.entries(brand.typography.fonts)) {
+    const fallback = role === 'display' ? "'Georgia', serif" : "'Helvetica Neue', system-ui, sans-serif";
+    p(`  --font-${role}: '${f.family}', ${fallback};`);
+  }
+  p('');
+
+  // Type scale
+  for (const s of brand.typography.scale) {
+    p(`  --text-${s.name}: ${s.size}px;`);
+    p(`  --leading-${s.name}: ${s.line_height};`);
+    p(`  --weight-${s.name}: ${s.weight};`);
+  }
+  p('');
+
+  // Weights
+  if (brand.typography.weights) {
+    for (const [k, v] of Object.entries(brand.typography.weights)) {
+      p(`  --weight-${k}: ${v};`);
+    }
+    p('');
+  }
+
+  // Letter spacing
+  if (brand.typography.letter_spacing) {
+    for (const [k, v] of Object.entries(brand.typography.letter_spacing)) {
+      p(`  --tracking-${k}: ${v};`);
+    }
+    p('');
+  }
+
+  // Spacing
+  p('  /* ─── Spacing ──────────────────────────────────────────────────────── */');
+  for (const [k, v] of Object.entries(brand.layout.spacing)) {
+    p(`  --spacing-${k}: ${v}px;`);
+  }
+  p('');
+  if (brand.layout.semantic_spacing) {
+    for (const [k, v] of Object.entries(brand.layout.semantic_spacing)) {
+      p(`  --${k.replace(/_/g, '-')}: ${v}px;`);
+    }
+    p('');
+  }
+
+  // Radii
+  p('  /* ─── Radii ────────────────────────────────────────────────────────── */');
+  for (const [k, v] of Object.entries(brand.layout.radii)) {
+    p(`  --radius-${k}: ${v === 0 ? '0' : v + 'px'};`);
+  }
+  if (brand.layout.named_radii) {
+    p('');
+    for (const [k, v] of Object.entries(brand.layout.named_radii)) {
+      p(`  --radius-${k}: ${v}px;`);
+    }
+  }
+  p('');
+
+  // Shadows
+  p('  /* ─── Shadows ──────────────────────────────────────────────────────── */');
+  for (const [k, v] of Object.entries(brand.depth.shadows)) {
+    p(`  --shadow-${k}: ${v};`);
+  }
+  p('');
+
+  // Breakpoints (for use in container queries / JS)
+  p('  /* ─── Breakpoints ──────────────────────────────────────────────────── */');
+  for (const [k, v] of Object.entries(brand.responsive.breakpoints)) {
+    p(`  --breakpoint-${k}: ${v}px;`);
+  }
+  p('');
+
+  // Layout
+  p('  /* ─── Layout ───────────────────────────────────────────────────────── */');
+  p(`  --max-width: ${brand.layout.max_width}px;`);
+  p(`  --base-unit: ${brand.layout.base_unit}px;`);
+
+  p('}');
+  p('');
+
+  // Selection
+  if (brand.colors.selection) {
+    p(`::selection { color: ${brand.colors.selection.text}; background: ${brand.colors.selection.background}; }`);
+    p('');
+  }
+
+  return lines.join('\n');
+}
+
+// ─── Emit: tailwind.css (Tailwind v4 @theme) ──────────────────────────────────
+
+function emitTailwindCss(brand) {
+  const lines = [];
+  const p = (s = '') => lines.push(s);
+
+  p('/**');
+  p(` * tailwind.css — ${brand.meta.name} Tailwind v4 theme`);
+  p(' * Drop into your Tailwind v4 project as the theme block.');
+  p(' * Generated from brand.yaml — do not edit directly.');
+  p(' */');
+  p('');
+  p('@theme {');
+
+  // Colors
+  p('  /* Colors */');
+  for (const group of ['brand', 'accent', 'neutrals', 'semantic']) {
+    if (!brand.colors[group]) continue;
+    for (const [name, def] of Object.entries(brand.colors[group])) {
+      p(`  --color-${group}-${name}: ${def.hex};`);
+    }
+  }
+  p('');
+
+  // Surfaces (also as colors so utilities like bg-surface-card work)
+  if (brand.surfaces) {
+    p('  /* Surfaces */');
+    for (const [name, def] of Object.entries(brand.surfaces)) {
+      p(`  --color-surface-${name}: ${def.value};`);
+    }
+    p('');
+  }
+
+  // Fonts
+  p('  /* Typography — Fonts */');
+  for (const [role, f] of Object.entries(brand.typography.fonts)) {
+    const fallback = role === 'display' ? "'Georgia', serif" : "'Helvetica Neue', system-ui, sans-serif";
+    p(`  --font-${role}: '${f.family}', ${fallback};`);
+  }
+  p('');
+
+  // Type scale
+  p('  /* Typography — Scale */');
+  for (const s of brand.typography.scale) {
+    p(`  --text-${s.name}: ${s.size}px;`);
+    p(`  --leading-${s.name}: ${s.line_height};`);
+  }
+  p('');
+
+  // Weights
+  if (brand.typography.weights) {
+    p('  /* Typography — Weights */');
+    for (const [k, v] of Object.entries(brand.typography.weights)) {
+      p(`  --font-weight-${k}: ${v};`);
+    }
+    p('');
+  }
+
+  // Tracking
+  if (brand.typography.letter_spacing) {
+    p('  /* Typography — Tracking */');
+    for (const [k, v] of Object.entries(brand.typography.letter_spacing)) {
+      p(`  --tracking-${k}: ${v};`);
+    }
+    p('');
+  }
+
+  // Spacing
+  p('  /* Spacing */');
+  for (const [k, v] of Object.entries(brand.layout.spacing)) {
+    p(`  --spacing-${k}: ${v}px;`);
+  }
+  p('');
+
+  // Radii
+  p('  /* Border Radius */');
+  for (const [k, v] of Object.entries(brand.layout.radii)) {
+    p(`  --radius-${k}: ${v === 0 ? '0' : v + 'px'};`);
+  }
+  if (brand.layout.named_radii) {
+    for (const [k, v] of Object.entries(brand.layout.named_radii)) {
+      p(`  --radius-${k}: ${v}px;`);
+    }
+  }
+  p('');
+
+  // Shadows
+  p('  /* Shadows */');
+  for (const [k, v] of Object.entries(brand.depth.shadows)) {
+    p(`  --shadow-${k}: ${v};`);
+  }
+  p('');
+
+  // Breakpoints
+  p('  /* Breakpoints */');
+  for (const [k, v] of Object.entries(brand.responsive.breakpoints)) {
+    p(`  --breakpoint-${k}: ${v}px;`);
+  }
+
+  p('}');
+  p('');
+
+  return lines.join('\n');
+}
+
+// ─── Emit: tokens.json (W3C Design Tokens spec) ───────────────────────────────
+
+function emitTokensJson(brand) {
+  const out = {
+    $schema: 'https://schemas.dtcg.org/tokens/v1.0/',
+    $description: `${brand.meta.name} design tokens — generated from brand.yaml`,
+    color: {},
+    surface: {},
+    font: {},
+    text: {},
+    leading: {},
+    weight: {},
+    tracking: {},
+    spacing: {},
+    radius: {},
+    shadow: {},
+    breakpoint: {},
+  };
+
+  // Colors
+  for (const group of ['brand', 'accent', 'neutrals', 'semantic']) {
+    if (!brand.colors[group]) continue;
+    out.color[group] = {};
+    for (const [name, def] of Object.entries(brand.colors[group])) {
+      out.color[group][name] = {
+        $value: def.hex,
+        $type: 'color',
+        $description: def.role,
+      };
+    }
+  }
+  if (brand.colors.selection) {
+    out.color.selection = {
+      text: { $value: brand.colors.selection.text, $type: 'color', $description: 'Text selection foreground' },
+      background: { $value: brand.colors.selection.background, $type: 'color', $description: 'Text selection background' },
+    };
+  }
+
+  // Surfaces
+  for (const [name, def] of Object.entries(brand.surfaces || {})) {
+    out.surface[name] = {
+      $value: def.value,
+      $type: 'color',
+      $description: def.role,
+    };
+  }
+
+  // Fonts
+  for (const [role, f] of Object.entries(brand.typography.fonts)) {
+    out.font[role] = {
+      $value: f.family,
+      $type: 'fontFamily',
+      $description: f.role,
+    };
+  }
+
+  // Text scale
+  for (const s of brand.typography.scale) {
+    out.text[s.name] = {
+      $value: `${s.size}px`,
+      $type: 'dimension',
+      $description: s.use,
+    };
+    out.leading[s.name] = {
+      $value: s.line_height,
+      $type: 'number',
+    };
+  }
+
+  // Weights
+  for (const [k, v] of Object.entries(brand.typography.weights || {})) {
+    out.weight[k] = { $value: v, $type: 'fontWeight' };
+  }
+
+  // Tracking
+  for (const [k, v] of Object.entries(brand.typography.letter_spacing || {})) {
+    out.tracking[k] = { $value: v, $type: 'dimension' };
+  }
+
+  // Spacing
+  for (const [k, v] of Object.entries(brand.layout.spacing || {})) {
+    out.spacing[k] = { $value: `${v}px`, $type: 'dimension' };
+  }
+  for (const [k, v] of Object.entries(brand.layout.semantic_spacing || {})) {
+    out.spacing[k] = { $value: `${v}px`, $type: 'dimension' };
+  }
+
+  // Radii
+  for (const [k, v] of Object.entries(brand.layout.radii || {})) {
+    out.radius[k] = { $value: v === 0 ? '0' : `${v}px`, $type: 'dimension' };
+  }
+  for (const [k, v] of Object.entries(brand.layout.named_radii || {})) {
+    out.radius[k] = { $value: `${v}px`, $type: 'dimension' };
+  }
+
+  // Shadows
+  for (const [k, v] of Object.entries(brand.depth.shadows || {})) {
+    out.shadow[k] = { $value: v, $type: 'shadow' };
+  }
+
+  // Breakpoints
+  for (const [k, v] of Object.entries(brand.responsive.breakpoints || {})) {
+    out.breakpoint[k] = { $value: `${v}px`, $type: 'dimension' };
+  }
+
+  return JSON.stringify(out, null, 2) + '\n';
+}
+
+// ─── Site build: copy site/template/* → site/docs/* with token injection ──────
+//
+// We don't blow away the docs folder entirely (must preserve CNAME + generated
+// design files dropped there). We copy the template tree, and inject a tokens
+// CSS link into every HTML file's <head> so site styles can reference the
+// brand tokens via CSS custom properties.
+
+const TOKENS_LINK = '<link rel="stylesheet" href="/tokens.css">';
+
+function transformHtml(filePath, buf) {
+  let html = buf.toString();
+  // Idempotent: only insert if not already present
+  if (html.includes('href="/tokens.css"')) return html;
+  // Insert just before </head>
+  if (html.includes('</head>')) {
+    html = html.replace('</head>', `  ${TOKENS_LINK}\n</head>`);
+  }
+  return html;
+}
+
+function buildSite(brand) {
+  if (!fs.existsSync(TEMPLATE_DIR)) {
+    console.log('  (no site/template/ — skipping site build)');
+    return;
+  }
+
+  // Preserve CNAME if present
+  const cnamePath = path.join(DOCS_DIR, 'CNAME');
+  let cname = null;
+  if (fs.existsSync(cnamePath)) {
+    cname = fs.readFileSync(cnamePath);
+  }
+
+  // Wipe docs/ (will be regenerated). Keep the dir itself.
+  ensureDir(DOCS_DIR);
+  rmDirContents(DOCS_DIR);
+
+  // Copy template → docs with HTML transform
+  copyDir(TEMPLATE_DIR, DOCS_DIR, (filePath, buf) => {
+    if (filePath.endsWith('.html')) return transformHtml(filePath, buf);
+    return buf;
+  });
+
+  // Restore CNAME
+  if (cname) fs.writeFileSync(cnamePath, cname);
+  else fs.writeFileSync(cnamePath, 'brand.toldwell.com\n');
+}
+
+// Drop the four design files into site/docs/ too so they're served by Pages
+function copyDesignFilesToSite() {
+  ensureDir(DOCS_DIR);
+  for (const f of [DESIGN_MD, TOKENS_CSS, TAILWIND_CSS, TOKENS_JSON]) {
+    if (fs.existsSync(f)) {
+      fs.copyFileSync(f, path.join(DOCS_DIR, path.basename(f)));
+    }
+  }
+}
+
+// ─── Main ─────────────────────────────────────────────────────────────────────
 
 function main() {
+  console.log('Toldwell brand build');
+  console.log('────────────────────');
   console.log('Loading brand.yaml...');
   const brand = loadBrand();
 
-  console.log('Generating DESIGN.md...');
-  fs.writeFileSync(DESIGN_MD_FILE, generateDesignMd(brand));
-  console.log('  -> ' + DESIGN_MD_FILE);
+  console.log('Emitting design files at repo root:');
 
-  console.log('Generating docs/ site...');
-  generateSite(brand);
-  console.log('  -> ' + path.join(DOCS_DIR, 'index.html'));
+  fs.writeFileSync(DESIGN_MD, emitDesignMd(brand));
+  console.log('  ✓ DESIGN.md');
 
+  fs.writeFileSync(TOKENS_CSS, emitTokensCss(brand));
+  console.log('  ✓ tokens.css');
+
+  fs.writeFileSync(TAILWIND_CSS, emitTailwindCss(brand));
+  console.log('  ✓ tailwind.css');
+
+  fs.writeFileSync(TOKENS_JSON, emitTokensJson(brand));
+  console.log('  ✓ tokens.json');
+
+  console.log('Building site (site/template → site/docs)...');
+  buildSite(brand);
+  copyDesignFilesToSite();
+  console.log('  ✓ site/docs/');
+
+  console.log('');
   console.log('Done.');
 }
 

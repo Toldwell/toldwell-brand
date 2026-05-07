@@ -1,50 +1,117 @@
 # Toldwell Brand System
-# Source of truth — generates both DESIGN.md (for agents) and docs/ site (for humans)
-# Last updated: 2026-04-22
+# Source of truth — generates DESIGN.md, tokens.css, tailwind.css, tokens.json, docs/
+# Last updated: 2026-05-06
 
 meta:
   name: Toldwell
   tagline: "A Video Studio Creating Films That Stick"
   description: "We create videos for companies and individuals seeking a good story."
   url: https://toldwell.com
+  brand_site: https://brand.toldwell.com
   favicon: https://framerusercontent.com/images/pdG7wnHWSIz40DFnecZAchvHusY.svg
   og_image: https://framerusercontent.com/assets/kzLvQWEZM570OsVVa8vBvXqGCd0.gif
 
-# ─── 1. Visual Theme & Atmosphere ───────────────────────────────────────────────
+# ─── 1. Visual Theme & Atmosphere ──────────────────────────────────────────────
 
 atmosphere:
   mood: "Warm, cinematic, story-driven"
-  density: "Moderate — generous whitespace with purposeful density in portfolio sections"
-  shape_language: "Rounded and approachable — heavy use of pill shapes (100px radius) for buttons and tags, softer radii (9-25px) for cards"
+  density: moderate              # compact | moderate | comfortable
+  shape_language: "Rounded and approachable — heavy use of pill shapes (100px radius) for buttons and tags, softer radii (9–25px) for cards"
   depth: "Subtle inset shadows on cards, creating a pressed/etched feel rather than elevated"
   philosophy: "The design reflects filmmaking craft — dark warm tones for the cinema, warm gold for the story, generous space for the visually-minded audience to breathe"
+  one_liner: "Cinematic warmth on warm parchment, gold reserved for moments that matter."
 
 # ─── 2. Color Palette ──────────────────────────────────────────────────────────
+# Architecture follows refero/Anthropic pattern:
+#   brand     → the singular hero color of Toldwell (the gold)
+#   accent    → secondary chromatic colors for variety / context
+#   neutrals  → 7-step warm scale, parchment baseline (not white)
+#   semantic  → success / warning / error / info
+#   surfaces  → role-named surfaces (canvas, card, elevated, dark-stage)
 
 colors:
-  primary:
-    name: "Toldwell Dark"
-    hex: "#191412"
-    role: "Primary text, dark backgrounds, footer, navigation — warm near-black"
+  brand:
+    toldwell-gold:
+      hex: "#F3CC92"
+      role: "Primary accent, CTAs, highlight backgrounds — the warm storytelling tone. Used sparingly; reserved for moments that should warm."
 
   accent:
-    name: "Toldwell Gold"
-    hex: "#F3CC92"
-    role: "Primary accent, CTAs, highlight backgrounds, warm storytelling tone"
+    toldwell-gold-soft:
+      hex: "#F8E0BB"
+      role: "Tinted gold backgrounds, subtle accent fills"
+    toldwell-gold-deep:
+      hex: "#D9A85F"
+      role: "Hover/pressed state for gold CTAs"
 
-  surface:
-    name: "Light Gray"
-    hex: "#F2F2F2"
-    role: "Card backgrounds, section surfaces, content containers"
+  neutrals:
+    # Warm scale — every step has a perceivable warm undertone, not pure gray
+    toldwell-dark:
+      hex: "#191412"
+      role: "Primary text, dark backgrounds, footer, navigation — warm near-black. Toldwell never uses pure black."
+    slate:
+      hex: "#3A3230"
+      role: "Hover state for dark surfaces, secondary dark text"
+    graphite:
+      hex: "#5C504C"
+      role: "Tertiary text, captions on light surfaces, subtle borders on dark"
+    fog:
+      hex: "#9A8E89"
+      role: "Disabled text, muted metadata, inactive icon fills"
+    driftwood:
+      hex: "#D6CFC9"
+      role: "Dividers, hairline borders, subtle structural lines"
+    surface-light:
+      hex: "#F2F2F2"
+      role: "Card backgrounds, secondary surface, content containers"
+    parchment:
+      hex: "#FAF8F4"
+      role: "Page canvas alternative — warm off-white, mood-adjacent for editorial sections"
+    bone:
+      hex: "#FFFFFF"
+      role: "Page canvas (default), light text on dark backgrounds, card surfaces over parchment"
 
-  background:
-    name: "White"
-    hex: "#FFFFFF"
-    role: "Page canvas, light text on dark backgrounds"
+  semantic:
+    success:
+      hex: "#3D8A5F"
+      role: "Success state, positive confirmations"
+    warning:
+      hex: "#D9A85F"   # intentionally aligns with toldwell-gold-deep
+      role: "Warning state, attention required"
+    error:
+      hex: "#B5453A"
+      role: "Error state, destructive actions"
+    info:
+      hex: "#4A6B8A"
+      role: "Informational notices, neutral status"
 
   selection:
     text: "#FFFFFF"
     background: "#191412"
+
+# ─── 2a. Surfaces (semantic surface naming) ────────────────────────────────────
+
+surfaces:
+  canvas:
+    value: "#FFFFFF"
+    role: "Default page background"
+  canvas-warm:
+    value: "#FAF8F4"
+    role: "Warm parchment alternative for editorial sections"
+  card:
+    value: "#F2F2F2"
+    role: "Default card surface — slightly recessed against canvas"
+  card-elevated:
+    value: "#FFFFFF"
+    role: "Elevated cards over warm canvas (parchment)"
+  dark-stage:
+    value: "#191412"
+    role: "Dark hero sections, footers, full-bleed cinematic blocks"
+  dark-stage-soft:
+    value: "#3A3230"
+    role: "Hover/secondary dark surfaces"
+  accent-stage:
+    value: "#F3CC92"
+    role: "Gold full-bleed sections — used rarely, for moments of high warmth"
 
 # ─── 3. Typography ─────────────────────────────────────────────────────────────
 
@@ -53,43 +120,53 @@ typography:
     display:
       family: "Belwe"
       variants: ["Regular (400)", "Medium (500)", "Bold", "Italic"]
-      source: "Custom (uploaded to Framer)"
+      source: "Custom (uploaded to Framer; needs self-hosted woff2)"
       role: "Hero headlines, large display text — gives Toldwell its distinctive warm serif character"
-
     body:
       family: "Red Hat Display"
       weights: [400, 500, 600, 700, 900]
       source: "Google Fonts"
       role: "Headings, subheadings, body text, UI elements — the workhorse font"
 
+  ratio:
+    body: "Major Third (1.25) from 12px base"
+    display: "Editorial — Belwe sizes are chosen for cinematic impact, not a ratio"
+
   scale:
-    # Display sizes (Belwe)
-    - { name: "display-xxl", size: "215px", use: "Hero splash text", font: "Belwe" }
-    - { name: "display-xl", size: "120px", use: "Large hero headlines", font: "Belwe" }
-    - { name: "display-lg", size: "100px", use: "Section hero text", font: "Belwe" }
-    - { name: "display-md", size: "92px", use: "Feature headlines", font: "Belwe" }
-    - { name: "display-sm", size: "70px", use: "Secondary headlines", font: "Belwe" }
-    # Heading sizes (Red Hat Display)
-    - { name: "h1", size: "48px", use: "Page titles", font: "Red Hat Display" }
-    - { name: "h2", size: "32px", use: "Section titles", font: "Red Hat Display" }
-    - { name: "h3", size: "30px", use: "Subsection titles", font: "Red Hat Display" }
-    - { name: "h4", size: "26px", use: "Card titles, feature headers", font: "Red Hat Display" }
-    - { name: "h5", size: "24px", use: "Small section headers", font: "Red Hat Display" }
+    # Display sizes (Belwe) — editorial, not algorithmic
+    - { name: "display-xxl",  size: 215, line_height: 1.0,  weight: 400, font: "Belwe", use: "Hero splash text" }
+    - { name: "display-xl",   size: 120, line_height: 1.0,  weight: 400, font: "Belwe", use: "Large hero headlines" }
+    - { name: "display-lg",   size: 100, line_height: 1.05, weight: 400, font: "Belwe", use: "Section hero text" }
+    - { name: "display-md",   size: 92,  line_height: 1.05, weight: 400, font: "Belwe", use: "Feature headlines" }
+    - { name: "display-sm",   size: 70,  line_height: 1.1,  weight: 400, font: "Belwe", use: "Secondary headlines" }
+    # Heading sizes (Red Hat Display) — Major Third ratio
+    - { name: "h1",       size: 48, line_height: 1.15, weight: 700, font: "Red Hat Display", use: "Page titles" }
+    - { name: "h2",       size: 32, line_height: 1.25, weight: 600, font: "Red Hat Display", use: "Section titles" }
+    - { name: "h3",       size: 30, line_height: 1.3,  weight: 600, font: "Red Hat Display", use: "Subsection titles" }
+    - { name: "h4",       size: 26, line_height: 1.35, weight: 500, font: "Red Hat Display", use: "Card titles, feature headers" }
+    - { name: "h5",       size: 24, line_height: 1.4,  weight: 500, font: "Red Hat Display", use: "Small section headers" }
     # Body sizes (Red Hat Display)
-    - { name: "body-lg", size: "22px", use: "Lead paragraphs", font: "Red Hat Display" }
-    - { name: "body-md", size: "20px", use: "Standard body text", font: "Red Hat Display" }
-    - { name: "body-sm", size: "18px", use: "Compact body text", font: "Red Hat Display" }
+    - { name: "body-lg",  size: 22, line_height: 1.5,  weight: 400, font: "Red Hat Display", use: "Lead paragraphs" }
+    - { name: "body-md",  size: 20, line_height: 1.55, weight: 400, font: "Red Hat Display", use: "Standard body text" }
+    - { name: "body-sm",  size: 18, line_height: 1.6,  weight: 400, font: "Red Hat Display", use: "Compact body text" }
     # Small sizes (Red Hat Display)
-    - { name: "caption", size: "12px", use: "Captions, labels, tags, buttons", font: "Red Hat Display" }
-    - { name: "micro", size: "11px", use: "Fine print, metadata", font: "Red Hat Display" }
+    - { name: "caption",  size: 12, line_height: 1.4,  weight: 500, font: "Red Hat Display", use: "Captions, labels, tags, buttons" }
+    - { name: "micro",    size: 11, line_height: 1.4,  weight: 400, font: "Red Hat Display", use: "Fine print, metadata" }
+
+  weights:
+    regular: 400
+    medium: 500
+    semibold: 600
+    bold: 700
+    black: 900
 
   letter_spacing:
-    tight: "-1.5px"       # Large display text
-    medium_tight: "-1px"  # Display text
-    snug: "-0.8px"        # Headings
-    normal: "-0.5px"      # Default body
-    reading: "-0.4px"     # Body text
-    wide: "0.4px"         # Labels, uppercase text
+    display-xxl: "-1.5px"
+    display: "-1px"
+    heading: "-0.8px"
+    body: "-0.4px"
+    default: "-0.5px"
+    label: "0.4px"
 
 # ─── 4. Components ─────────────────────────────────────────────────────────────
 
@@ -106,7 +183,7 @@ components:
       letter_spacing: "0.4px"
       text_transform: "uppercase"
       hover:
-        background: "#3a3230"
+        background: "#3A3230"
 
     accent:
       background: "#F3CC92"
@@ -115,6 +192,8 @@ components:
       padding: "12px 24px"
       font_size: "12px"
       font_weight: 500
+      hover:
+        background: "#D9A85F"
 
     ghost:
       background: "transparent"
@@ -127,12 +206,15 @@ components:
     default:
       background: "#F2F2F2"
       radius: "9px"
-      shadow: "rgba(0, 0, 0, 0.18) 0.3px 0.6px 0.67px -1.25px inset, rgba(0, 0, 0, 0.16) 1.14px 2.29px 2.56px -2.5px inset, rgba(0, 0, 0, 0.063) 5px 10px 11.18px -3.75px inset"
+      shadow: "inset-card"
       padding: "20px"
-
     portfolio:
       radius: "20px"
       overflow: "hidden"
+    feature:
+      background: "#FFFFFF"
+      radius: "25px"
+      padding: "32px"
 
   tags:
     radius: "100px"
@@ -144,23 +226,60 @@ components:
 # ─── 5. Layout ──────────────────────────────────────────────────────────────────
 
 layout:
-  spacing_scale: [2, 5, 10, 15, 20, 25, 32, 40, 50, 80, 96]
-  base_unit: "5px"
-  max_width: "1200px"
+  base_unit: 4
+  max_width: 1200
+  density: moderate
+
+  spacing:
+    # 4px base unit, refero-style power-of-2 + curated additions
+    "4":   4
+    "8":   8
+    "12":  12
+    "16":  16
+    "20":  20
+    "24":  24
+    "32":  32
+    "40":  40
+    "48":  48
+    "64":  64
+    "80":  80
+    "96":  96
+    "128": 128
+
+  semantic_spacing:
+    section_gap: 80
+    card_padding: 20
+    element_gap: 8
 
   radii:
-    sm: "9px"
-    md: "20px"
-    lg: "25px"
-    xl: "40px"
-    pill: "100px"
+    none: 0
+    sm: 9
+    md: 20
+    lg: 25
+    xl: 40
+    pill: 100
+    full: 9999
+
+  named_radii:
+    buttons: 100
+    tags: 100
+    pill: 100
+    cards: 9
+    cards-md: 20
+    cards-lg: 25
+    portfolio: 20
+    feature: 25
+    inputs: 9
 
 # ─── 6. Depth & Elevation ──────────────────────────────────────────────────────
 
 depth:
   shadows:
-    inset_card: "rgba(0, 0, 0, 0.18) 0.3px 0.6px 0.67px -1.25px inset, rgba(0, 0, 0, 0.16) 1.14px 2.29px 2.56px -2.5px inset, rgba(0, 0, 0, 0.063) 5px 10px 11.18px -3.75px inset"
-  notes: "Toldwell uses inset shadows exclusively — pressed/etched aesthetic, not floating cards. This is distinctive."
+    none: "none"
+    inset-card: "rgba(0, 0, 0, 0.18) 0.3px 0.6px 0.67px -1.25px inset, rgba(0, 0, 0, 0.16) 1.14px 2.29px 2.56px -2.5px inset, rgba(0, 0, 0, 0.063) 5px 10px 11.18px -3.75px inset"
+    inset-card-deep: "rgba(0, 0, 0, 0.22) 0.5px 1px 1.5px -1.5px inset, rgba(0, 0, 0, 0.18) 2px 4px 5px -2.5px inset, rgba(0, 0, 0, 0.08) 7px 14px 16px -4px inset"
+    focus-ring: "0 0 0 3px rgba(243, 204, 146, 0.4)"
+  notes: "Toldwell uses inset shadows exclusively — pressed/etched aesthetic, not floating cards. This is distinctive. Drop shadows are reserved for focus rings only."
 
 # ─── 7. Do's and Don'ts ────────────────────────────────────────────────────────
 
@@ -174,7 +293,7 @@ guidelines:
     - "Use pill-shaped buttons (100px radius) consistently"
     - "Use inset shadows on cards, not drop shadows"
     - "Pair serif display (Belwe) with Red Hat Display for body"
-
+    - "Hold the gold in reserve — accent, not field. Used too often, it loses meaning."
   dont:
     - "Don't use pure black (#000000) — use Toldwell Dark (#191412)"
     - "Don't use drop shadows — Toldwell cards are pressed in, not floating"
@@ -183,34 +302,39 @@ guidelines:
     - "Don't use fonts other than Belwe and Red Hat Display"
     - "Don't use sharp corners — minimum radius is 9px"
     - "Don't make buttons rectangular — always pill-shaped"
+    - "Don't field gold across full sections without intentional reason"
 
 # ─── 8. Responsive ─────────────────────────────────────────────────────────────
 
 responsive:
   breakpoints:
-    mobile: "390px"
-    tablet: "768px"
-    desktop: "1200px"
-    wide: "1440px"
+    mobile: 390
+    tablet: 768
+    desktop: 1200
+    wide: 1440
   notes: "Framer-built — uses fluid responsive scaling. Display text scales dramatically between breakpoints."
 
-# ─── 9. Agent Prompt Guide ──────────────────────────────────────────────────────
+# ─── 9. Agent Prompt Guide ─────────────────────────────────────────────────────
 
 agent:
   quick_reference:
     primary: "#191412"
     accent: "#F3CC92"
-    surface: "#F2F2F2"
-    background: "#FFFFFF"
+    canvas: "#FFFFFF"
+    canvas-warm: "#FAF8F4"
+    surface-card: "#F2F2F2"
     display_font: "Belwe"
     body_font: "Red Hat Display"
     button_radius: "100px"
     card_radius: "9px"
+    base_spacing: "4px"
+    type_ratio: "Major Third (1.25) from 12px"
 
   prompts:
-    - "Build a landing page with dark (#191412) hero section, warm gold (#F3CC92) accent, Belwe serif headlines, Red Hat Display body text, pill-shaped buttons"
-    - "Create a portfolio card grid with light gray (#F2F2F2) cards, inset shadows, 9px radius, generous spacing"
-    - "Design a dark footer with white text, Red Hat Display typography, pill-shaped CTA button in gold"
+    - "Build a landing page with Toldwell Dark (#191412) hero section, warm gold (#F3CC92) accent reserved for the primary CTA, Belwe serif headlines, Red Hat Display body text, pill-shaped buttons (100px radius), inset card shadows."
+    - "Create a portfolio card grid with light gray (#F2F2F2) cards, inset shadows, 9px radius, generous spacing (80px section gap, 20px card padding)."
+    - "Design a dark footer (#191412) with white text, Red Hat Display typography, pill-shaped CTA button in gold (#F3CC92)."
+    - "Editorial section: warm parchment canvas (#FAF8F4), Belwe display headline, Red Hat Display body. No gold unless it's earning attention."
 
 # ─── 10. Voice & Tone (OmD v0.1) ───────────────────────────────────────────────
 
@@ -250,6 +374,8 @@ principles:
     description: "Generous whitespace. Let content and visuals command attention without clutter."
   - name: "Show, Don't Tell"
     description: "Lead with work. Portfolio pieces speak louder than copy."
+  - name: "Hold the Gold"
+    description: "The accent is reserved. A single warm note across an otherwise neutral score is what makes it sing."
 
 # ─── Logo ───────────────────────────────────────────────────────────────────────
 

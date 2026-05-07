@@ -1,44 +1,48 @@
 # Toldwell Brand System
 
-Single source of truth for the Toldwell visual identity. Edit `brand.yaml`, everything else updates automatically.
+Single source of truth for the Toldwell visual identity. Edit `brand.yaml`, run `npm run build`, everything else regenerates.
 
-## Structure
+## Design Files
+
+These are the canonical, machine-readable outputs. Drop them into any project that needs to use Toldwell's brand.
+
+| File | Format | For |
+|------|--------|-----|
+| [`DESIGN.md`](./DESIGN.md) | Markdown (Stitch + OmD v0.1) | AI agents (Claude, Cursor, etc.) |
+| [`tokens.css`](./tokens.css) | CSS custom properties | Vanilla CSS, any framework |
+| [`tailwind.css`](./tailwind.css) | Tailwind v4 `@theme` block | Tailwind v4 projects |
+| [`tokens.json`](./tokens.json) | W3C Design Tokens spec | Figma, Style Dictionary, Tokens Studio |
+
+All four are generated from [`brand.yaml`](./brand.yaml) — the only file you edit by hand.
+
+## Pipeline
 
 ```
-brand.yaml          ← THE source of truth (edit this)
-DESIGN.md           ← Generated — agent-readable design tokens (Google Stitch + OmD v0.1)
-docs/index.html     ← Generated — human-readable brand guide site
-build.js            ← Pipeline that generates both outputs
+brand.yaml ──┬──>  DESIGN.md            (root)
+             ├──>  tokens.css            (root)
+             ├──>  tailwind.css          (root)
+             ├──>  tokens.json           (root)
+             └──>  site/template/*  →  site/docs/*   (Cipherly-styled brand site)
 ```
-
-## How it works
-
-```
-Edit brand.yaml → git push → GitHub Action runs build.js
-                                    ↓              ↓
-                              DESIGN.md      docs/index.html
-                             (for agents)   (brand.toldwell.com)
-```
-
-## Local development
 
 ```bash
-npm run build      # Regenerate DESIGN.md and docs/
-npm run preview    # Build and open the brand guide in browser
+npm run build      # Regenerate all design files + site
+npm run preview    # Build and open the site locally
 ```
 
-## What's in brand.yaml
+## What's in `brand.yaml`
 
-Sections 1-9 follow the [Google Stitch DESIGN.md format](https://stitch.withgoogle.com/docs/design-md/format/). Sections 10-12 follow the [OmD v0.1 Philosophy Layer](https://github.com/kwakseongjae/oh-my-design).
+Sections 1–9 follow the [Google Stitch DESIGN.md format](https://stitch.withgoogle.com/docs/design-md/format/). Sections 10–12 follow the [OmD v0.1 Philosophy Layer](https://github.com/kwakseongjae/oh-my-design).
 
 | # | Section | Content |
 |---|---------|---------|
 | 1 | Atmosphere | Mood, density, shape language, philosophy |
-| 2 | Colors | Palette with semantic roles |
-| 3 | Typography | Font families, type scale, letter spacing |
-| 4 | Components | Buttons, cards, tags with exact values |
-| 5 | Layout | Spacing scale, border radii |
-| 6 | Depth | Shadow system |
+| 2 | Colors | Brand / Accent / Neutrals / Semantic |
+| 2a | Surfaces | Semantic surface tokens (canvas, card, dark-stage…) |
+| 3 | Typography | Fonts, type scale (with documented ratio), weights, tracking |
+| 4 | Components | Buttons, cards, tags |
+| 5 | Layout | Spacing scale (4px base), radii (named per component) |
+| 6 | Depth | Shadow system (inset-only philosophy) |
 | 7 | Guidelines | Do's and don'ts |
 | 8 | Responsive | Breakpoints |
 | 9 | Agent Guide | Quick reference + ready-to-use prompts |
@@ -46,6 +50,32 @@ Sections 1-9 follow the [Google Stitch DESIGN.md format](https://stitch.withgoog
 | 11 | Narrative | Brand story, beliefs |
 | 12 | Principles | Design decision-making rules |
 
-## Hosted at
+## Site
 
-**brand.toldwell.com** — via GitHub Pages + Cloudflare DNS
+Hosted at **[brand.toldwell.com](https://brand.toldwell.com)** (GitHub Pages, Cloudflare DNS).
+
+The visual brand guide lives in [`site/`](./site/):
+
+- `site/template/` — editable Cipherly-styled HTML source
+- `site/docs/` — generated output served by GitHub Pages
+- `site/_archive/` — legacy attempts (failed onepage merge, raw Cipherly rips)
+
+When you run `npm run build`, the site is regenerated from the templates with `tokens.css` injected — so site styles automatically reflect any change to `brand.yaml`.
+
+## Repo layout
+
+```
+toldwell-brand/
+├── README.md
+├── brand.yaml             ← THE source of truth
+├── DESIGN.md              ← generated
+├── tokens.css             ← generated
+├── tailwind.css           ← generated
+├── tokens.json            ← generated
+├── build.js               ← pipeline
+├── package.json
+└── site/
+    ├── template/          ← editable HTML source
+    ├── docs/              ← generated, served by GitHub Pages
+    └── _archive/          ← legacy attempts
+```

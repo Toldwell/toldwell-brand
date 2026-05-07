@@ -5,7 +5,7 @@
   "main": "build.js",
   "scripts": {
     "build": "node build.js",
-    "preview": "node build.js && open docs/index.html"
+    "preview": "node build.js && open site/docs/index.html"
   },
   "keywords": ["brand", "design-system", "design-md"],
   "author": "Toldwell",

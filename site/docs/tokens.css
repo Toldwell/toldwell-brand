@@ -1,0 +1,156 @@
+/**
+ * tokens.css — Toldwell design tokens
+ * CSS custom properties. Drop-in for any framework.
+ * Generated from brand.yaml — do not edit directly.
+ */
+
+:root {
+  /* ─── Colors ───────────────────────────────────────────────────────── */
+  /* brand */
+  --color-brand-toldwell-gold: #F3CC92;
+  /* accent */
+  --color-accent-toldwell-gold-soft: #F8E0BB;
+  --color-accent-toldwell-gold-deep: #D9A85F;
+  /* neutrals */
+  --color-neutrals-toldwell-dark: #191412;
+  --color-neutrals-slate: #3A3230;
+  --color-neutrals-graphite: #5C504C;
+  --color-neutrals-fog: #9A8E89;
+  --color-neutrals-driftwood: #D6CFC9;
+  --color-neutrals-surface-light: #F2F2F2;
+  --color-neutrals-parchment: #FAF8F4;
+  --color-neutrals-bone: #FFFFFF;
+  /* semantic */
+  --color-semantic-success: #3D8A5F;
+  --color-semantic-warning: #D9A85F;
+  --color-semantic-error: #B5453A;
+  --color-semantic-info: #4A6B8A;
+
+  /* ─── Surfaces ─────────────────────────────────────────────────────── */
+  --surface-canvas: #FFFFFF;
+  --surface-canvas-warm: #FAF8F4;
+  --surface-card: #F2F2F2;
+  --surface-card-elevated: #FFFFFF;
+  --surface-dark-stage: #191412;
+  --surface-dark-stage-soft: #3A3230;
+  --surface-accent-stage: #F3CC92;
+
+  /* ─── Typography ───────────────────────────────────────────────────── */
+  --font-display: 'Belwe', 'Georgia', serif;
+  --font-body: 'Red Hat Display', 'Helvetica Neue', system-ui, sans-serif;
+
+  --text-display-xxl: 215px;
+  --leading-display-xxl: 1;
+  --weight-display-xxl: 400;
+  --text-display-xl: 120px;
+  --leading-display-xl: 1;
+  --weight-display-xl: 400;
+  --text-display-lg: 100px;
+  --leading-display-lg: 1.05;
+  --weight-display-lg: 400;
+  --text-display-md: 92px;
+  --leading-display-md: 1.05;
+  --weight-display-md: 400;
+  --text-display-sm: 70px;
+  --leading-display-sm: 1.1;
+  --weight-display-sm: 400;
+  --text-h1: 48px;
+  --leading-h1: 1.15;
+  --weight-h1: 700;
+  --text-h2: 32px;
+  --leading-h2: 1.25;
+  --weight-h2: 600;
+  --text-h3: 30px;
+  --leading-h3: 1.3;
+  --weight-h3: 600;
+  --text-h4: 26px;
+  --leading-h4: 1.35;
+  --weight-h4: 500;
+  --text-h5: 24px;
+  --leading-h5: 1.4;
+  --weight-h5: 500;
+  --text-body-lg: 22px;
+  --leading-body-lg: 1.5;
+  --weight-body-lg: 400;
+  --text-body-md: 20px;
+  --leading-body-md: 1.55;
+  --weight-body-md: 400;
+  --text-body-sm: 18px;
+  --leading-body-sm: 1.6;
+  --weight-body-sm: 400;
+  --text-caption: 12px;
+  --leading-caption: 1.4;
+  --weight-caption: 500;
+  --text-micro: 11px;
+  --leading-micro: 1.4;
+  --weight-micro: 400;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-black: 900;
+
+  --tracking-display-xxl: -1.5px;
+  --tracking-display: -1px;
+  --tracking-heading: -0.8px;
+  --tracking-body: -0.4px;
+  --tracking-default: -0.5px;
+  --tracking-label: 0.4px;
+
+  /* ─── Spacing ──────────────────────────────────────────────────────── */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+  --spacing-128: 128px;
+
+  --section-gap: 80px;
+  --card-padding: 20px;
+  --element-gap: 8px;
+
+  /* ─── Radii ────────────────────────────────────────────────────────── */
+  --radius-none: 0;
+  --radius-sm: 9px;
+  --radius-md: 20px;
+  --radius-lg: 25px;
+  --radius-xl: 40px;
+  --radius-pill: 100px;
+  --radius-full: 9999px;
+
+  --radius-buttons: 100px;
+  --radius-tags: 100px;
+  --radius-pill: 100px;
+  --radius-cards: 9px;
+  --radius-cards-md: 20px;
+  --radius-cards-lg: 25px;
+  --radius-portfolio: 20px;
+  --radius-feature: 25px;
+  --radius-inputs: 9px;
+
+  /* ─── Shadows ──────────────────────────────────────────────────────── */
+  --shadow-none: none;
+  --shadow-inset-card: rgba(0, 0, 0, 0.18) 0.3px 0.6px 0.67px -1.25px inset, rgba(0, 0, 0, 0.16) 1.14px 2.29px 2.56px -2.5px inset, rgba(0, 0, 0, 0.063) 5px 10px 11.18px -3.75px inset;
+  --shadow-inset-card-deep: rgba(0, 0, 0, 0.22) 0.5px 1px 1.5px -1.5px inset, rgba(0, 0, 0, 0.18) 2px 4px 5px -2.5px inset, rgba(0, 0, 0, 0.08) 7px 14px 16px -4px inset;
+  --shadow-focus-ring: 0 0 0 3px rgba(243, 204, 146, 0.4);
+
+  /* ─── Breakpoints ──────────────────────────────────────────────────── */
+  --breakpoint-mobile: 390px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1200px;
+  --breakpoint-wide: 1440px;
+
+  /* ─── Layout ───────────────────────────────────────────────────────── */
+  --max-width: 1200px;
+  --base-unit: 4px;
+}
+
+::selection { color: #FFFFFF; background: #191412; }
