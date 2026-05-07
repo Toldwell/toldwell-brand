@@ -249,16 +249,16 @@ pages:
   icons:
     text:
       - from: "Toldwell's brand identity is defined by our comprehensive iconography, comprising product symbols and functional icons. Reflecting our commitment to user experience and brand consistency, these elements play a vital role in guiding users."
-        to: "Toldwell does not ship a proprietary icon library. We use bespoke iconography per project, drawn to match each film or campaign. For standard UI work, we recommend Lucide or Feather as starting points — both are open-source, clean, and pair well with Red Hat Display."
+        to: "Toldwell partners with agencies, brands, and leaders across industries — from mission-driven nonprofits to global enterprises. The marks below represent some of the organizations we've had the privilege to work with."
 
       - from: "Our product symbols guide customers through our offerings, available in original, black, and white. They provide flexibility while maintaining consistency across our brand."
-        to: "Project-specific symbols and pictograms are crafted in-house when a film calls for them. These are commissioned per engagement, not maintained as a shared library — source files live with the project they were made for."
+        to: "Each engagement is approached with care for the partner's identity. We respect every brand mark we work alongside and represent them faithfully in our work."
 
       - from: "We utilize the \u201CIBM Carbon Icon Library\u201D in our brand identity, ensuring consistency across communications. These functional icons aid customers in navigating dense copy or complex choices within our products and brand materials."
-        to: "When functional UI icons are needed — for navigation, status, or controls — we recommend Lucide (lucide.dev) or Feather (feathericons.com). Both are 24px, stroke-based, and visually consistent with Toldwell's typographic style."
+        to: "For Toldwell's own UI iconography needs — when something requires a functional icon for navigation, status, or controls — we recommend Lucide (lucide.dev) or Feather (feathericons.com). Both are 24px, stroke-based, and pair well with Red Hat Display."
 
       - from: "Toldwell icon library"
-        to: "Recommended icon set"
+        to: "Selected partners"
 
   # ═══ Images ═══════════════════════════════════════════════════════════════════
 
@@ -317,6 +317,31 @@ pages:
 
 images:
   swaps:
-    # No mappings yet — to be added after first visual review pass once we
-    # know which Cipherly slot corresponds to which "best-fit" Toldwell photo.
-    []
+    # ─── Hero / decoration photos (random Toldwell BTS) ───────────────────
+    # Cipherly's hero on home page → court + jib shot
+    - from: "https://framerusercontent.com/images/Pqe2xl85kUFpoCbDKOMJdklVM.jpg"
+      to: "/photo-04-court-jib.jpg"
+    # Intro page hero photo
+    - from: "https://framerusercontent.com/images/m61VTkwnnyDNXKfVHIXsXcVDlM.jpg"
+      to: "/photo-01-camera-crew.jpg"
+    # Home page secondary illustration
+    - from: "https://framerusercontent.com/images/NgHIvauvH5wuJQ324fRjaFMmOM.png"
+      to: "/photo-07-dolly-lights.jpg"
+    # Note: UYMagulWPpFj34IvtUP5uUZqYvM.png is a 32x32 checker pattern used
+    # for safe-zone demos — leave it.
+
+    # ─── Icons page: swap 7 of Cipherly's product icons → Toldwell client logos ──
+    - from: "https://framerusercontent.com/images/2xucd45XwsTVXw8VkVs60jWTBM.svg"
+      to: "/client-logos/spotify-icon.svg"
+    - from: "https://framerusercontent.com/images/7iIFLw0Jec9fMZkWsRmqA3oHD4.svg"
+      to: "/client-logos/cfgc.svg"
+    - from: "https://framerusercontent.com/images/HGx4WzZ7syEXls723KXf0u27B0.svg"
+      to: "/client-logos/ncf.svg"
+    - from: "https://framerusercontent.com/images/Lec9yTkjJs9JAeb7v56FQeFCov8.svg"
+      to: "/client-logos/emerson.svg"
+    - from: "https://framerusercontent.com/images/MZF6zgJNK7AphRcWvNfkkt3kTTg.svg"
+      to: "/client-logos/addo-logo.svg"
+    - from: "https://framerusercontent.com/images/PiOXKxAdxA3OCLSfg1otBkgfb4.svg"
+      to: "/client-logos/intellicheck.svg"
+    - from: "https://framerusercontent.com/images/QX2SH4rUzM7KS2aUPdhZ6g5TCE.svg"
+      to: "/client-logos/in-the-black.svg"
