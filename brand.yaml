@@ -120,6 +120,11 @@ typography:
       variants: ["Regular (400)", "Medium (500)", "Bold (700)", "Italic"]
       source: "Custom (uploaded to Framer; needs self-hosted woff2 for site portability)"
       role: "Hero headlines, display text, named brand moments. Belwe gives Toldwell its distinctive warm serif character — the editorial weight of a film title card."
+    editorial:
+      family: "Instrument Serif"
+      variants: ["Regular (400)", "Italic (400)"]
+      source: "Google Fonts"
+      role: "Editorial accent. Used sparingly for emphasis, pull quotes, and italic display moments where the curl of the italic does the work — e.g. 'Stories worth telling, told well.' Belwe carries the brand weight; Instrument Serif carries the brand grace."
     body:
       family: "Red Hat Display"
       weights: [400, 500, 600, 700, 900]
@@ -335,6 +340,7 @@ voice:
     error_style: "Friendly, direct — never blame the user. Plain language."
   signature_phrases:
     - "Good stories, told well."
+    - "Stories worth telling, told well."   # editorial / hero variant — set in Instrument Serif italic on 'told well.'
     - "Stories that inspire. Stories that matter."
     - "Video that lasts."
     - "Together, we can make something meaningful."

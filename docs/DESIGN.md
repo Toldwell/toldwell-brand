@@ -77,6 +77,8 @@ Semantic surface tokens — name describes role, not appearance.
 
 - **Belwe** (display) — Regular (400), Medium (500), Bold (700), Italic
   Hero headlines, display text, named brand moments. Belwe gives Toldwell its distinctive warm serif character — the editorial weight of a film title card.
+- **Instrument Serif** (editorial) — Regular (400), Italic (400)
+  Editorial accent. Used sparingly for emphasis, pull quotes, and italic display moments where the curl of the italic does the work — e.g. 'Stories worth telling, told well.' Belwe carries the brand weight; Instrument Serif carries the brand grace.
 - **Red Hat Display** (body) — 400, 500, 600, 700, 900
   Headings, subheadings, body text, UI elements. The clean sans-serif partner — modern, readable, gets out of the way.
 

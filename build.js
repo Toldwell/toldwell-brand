@@ -484,7 +484,8 @@ function emitTokensCss(brand) {
   // Typography — fonts
   p('  /* ─── Typography ───────────────────────────────────────────────────── */');
   for (const [role, f] of Object.entries(brand.typography.fonts)) {
-    const fallback = role === 'display' ? "'Georgia', serif" : "'Helvetica Neue', system-ui, sans-serif";
+    // body is the only sans role; everything else (display, editorial, etc.) is a serif
+    const fallback = role === 'body' ? "'Helvetica Neue', system-ui, sans-serif" : "'Georgia', serif";
     p(`  --font-${role}: '${f.family}', ${fallback};`);
   }
   p('');
@@ -606,7 +607,8 @@ function emitTailwindCss(brand) {
   // Fonts
   p('  /* Typography — Fonts */');
   for (const [role, f] of Object.entries(brand.typography.fonts)) {
-    const fallback = role === 'display' ? "'Georgia', serif" : "'Helvetica Neue', system-ui, sans-serif";
+    // body is the only sans role; everything else (display, editorial, etc.) is a serif
+    const fallback = role === 'body' ? "'Helvetica Neue', system-ui, sans-serif" : "'Georgia', serif";
     p(`  --font-${role}: '${f.family}', ${fallback};`);
   }
   p('');
