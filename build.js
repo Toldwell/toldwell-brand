@@ -806,16 +806,435 @@ ${swatches}
   }).filter(Boolean).join('\n\n');
 
   return `<!-- Toldwell color panel — generated from brand.yaml -->
-<aside id="tw-color-panel">
-  <header class="tw-color-panel-head">
+<aside id="tw-color-panel" class="tw-panel">
+  <header class="tw-panel-head">
     <h2>Color Palette</h2>
-    <p>The Toldwell palette is intentionally restrained. Warm dark tones anchored by a distinctive gold accent, structured into four roles: brand, accent, neutrals, and semantic. Every color reads to its purpose.</p>
+    <p>Toldwell's palette is deliberately small. Nearly achromatic — black, white, and a single warm gold held in reserve for moments that earn it. Restraint is what makes the gold sing.</p>
   </header>
 
 ${sections}
 
-  <footer class="tw-color-panel-foot">
+  <footer class="tw-panel-foot">
     <p>All colors are exposed as CSS variables in <a href="/tokens.css"><code>tokens.css</code></a>, Tailwind v4 theme in <a href="/tailwind.css"><code>tailwind.css</code></a>, and W3C Design Tokens spec in <a href="/tokens.json"><code>tokens.json</code></a>.</p>
+  </footer>
+</aside>
+`;
+}
+
+// ─── Introduction panel ───────────────────────────────────────────────────────
+
+function generateIntroPanel(brand) {
+  const a = brand.atmosphere;
+  const m = brand.meta;
+  const founders = (m.founders || []).map(f =>
+    `      <li class="tw-founder"><strong>${f.name}</strong><span>${f.role}</span></li>`
+  ).join('\n');
+
+  return `<!-- Toldwell introduction panel — generated from brand.yaml -->
+<aside id="tw-intro-panel" class="tw-panel">
+  <header class="tw-panel-head">
+    <h2>${m.tagline}</h2>
+    <p class="tw-lede">${m.sub_tagline}</p>
+  </header>
+
+  <figure class="tw-hero-photo">
+    <img src="/photo-01-camera-crew.jpg" alt="Toldwell crew adjusting cinema camera on set" loading="lazy">
+  </figure>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">Who we are</h3>
+    <p>${brand.narrative.what_we_do}</p>
+  </section>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">What we make</h3>
+    <p>${brand.narrative.what_we_are}</p>
+    <p class="tw-pullquote">${brand.narrative.promise}</p>
+  </section>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">Atmosphere of the brand</h3>
+    <dl class="tw-spec-list">
+      <dt>Mood</dt><dd>${a.mood}</dd>
+      <dt>Density</dt><dd>${a.density}</dd>
+      <dt>Shape language</dt><dd>${a.shape_language}</dd>
+      <dt>Depth</dt><dd>${a.depth}</dd>
+      <dt>Philosophy</dt><dd>${a.philosophy}</dd>
+    </dl>
+  </section>
+
+  ${founders ? `<section class="tw-intro-block">
+    <h3 class="tw-eyebrow">Founders</h3>
+    <ul class="tw-founders">
+${founders}
+    </ul>
+    <p class="tw-meta">Based in ${m.location}.</p>
+  </section>` : ''}
+
+  <footer class="tw-panel-foot">
+    <p>This document is the source of truth for Toldwell's brand. Edit <code>brand.yaml</code> in the repo, run <code>npm run build</code>, every page on this site updates automatically.</p>
+  </footer>
+</aside>
+`;
+}
+
+// ─── Strategy panel ───────────────────────────────────────────────────────────
+
+function generateStrategyPanel(brand) {
+  const n = brand.narrative;
+  const principles = brand.principles.map(p =>
+    `    <article class="tw-principle">
+      <h4>${p.name}</h4>
+      <p>${p.description}</p>
+    </article>`
+  ).join('\n');
+
+  const phases = (brand.process && brand.process.phases || []).map(ph => {
+    const acts = (ph.activities || []).map(a => `<li>${a}</li>`).join('');
+    const outs = (ph.outcomes || []).map(o => `<li>${o}</li>`).join('');
+    return `    <article class="tw-phase">
+      <header>
+        <span class="tw-phase-num">Phase ${ph.phase}</span>
+        <h4>${ph.name}</h4>
+        <span class="tw-phase-duration">${ph.duration}</span>
+      </header>
+      <p>${ph.summary}</p>
+      ${acts ? `<details><summary>Activities</summary><ul>${acts}</ul></details>` : ''}
+      ${outs ? `<details><summary>Outcomes</summary><ul>${outs}</ul></details>` : ''}
+    </article>`;
+  }).join('\n');
+
+  return `<!-- Toldwell strategy panel — generated from brand.yaml -->
+<aside id="tw-strategy-panel" class="tw-panel">
+  <header class="tw-panel-head">
+    <h2>Strategy</h2>
+    <p>What Toldwell stands for, what we reject, and how we work. These commitments shape every project we take on.</p>
+  </header>
+
+  <figure class="tw-hero-photo">
+    <img src="/photo-03-godrays-boxing.jpg" alt="Toldwell operator on set with cinematic side light" loading="lazy">
+  </figure>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">What we are</h3>
+    <p class="tw-lede">${n.what_we_are}</p>
+  </section>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">What we believe</h3>
+    <p>${n.belief}</p>
+  </section>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">What we reject</h3>
+    <p>${n.what_we_reject}</p>
+  </section>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">Who we serve</h3>
+    <p>${n.audience}</p>
+  </section>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">Principles</h3>
+    <div class="tw-principle-grid">
+${principles}
+    </div>
+  </section>
+
+  ${phases ? `<section class="tw-intro-block">
+    <h3 class="tw-eyebrow">Our process</h3>
+    <p class="tw-meta">Five phases, intentionally sequenced. We identify the right video to make before deciding how to make it.</p>
+    <div class="tw-phase-grid">
+${phases}
+    </div>
+  </section>` : ''}
+
+  <footer class="tw-panel-foot">
+    <p>Want to work with us? <a href="mailto:${brand.meta.contact_email}">${brand.meta.contact_email}</a> or use our <a href="${brand.meta.inquiry_form}">inquiry form</a>.</p>
+  </footer>
+</aside>
+`;
+}
+
+// ─── Typography panel ─────────────────────────────────────────────────────────
+
+function generateTypographyPanel(brand) {
+  const fonts = Object.entries(brand.typography.fonts).map(([role, f]) => {
+    const sample = role === 'display'
+      ? `<span class="tw-type-sample tw-type-display">Good stories, told well.</span>`
+      : `<span class="tw-type-sample tw-type-body">We are storytellers and filmmakers crafting work that holds meaning, creates impact, and stands the test of time.</span>`;
+    const variants = f.weights ? f.weights.join(', ') : (f.variants ? f.variants.join(', ') : '');
+    return `    <article class="tw-font-card" data-role="${role}">
+      <header>
+        <span class="tw-eyebrow">${role}</span>
+        <h4>${f.family}</h4>
+      </header>
+      ${sample}
+      <dl class="tw-spec-list">
+        <dt>Role</dt><dd>${f.role}</dd>
+        <dt>Weights</dt><dd>${variants}</dd>
+        <dt>Source</dt><dd>${f.source}</dd>
+        <dt>CSS variable</dt><dd><code>--font-${role}</code></dd>
+      </dl>
+    </article>`;
+  }).join('\n');
+
+  const scale = brand.typography.scale.map(s => {
+    const sampleStyle = `font-family: ${s.font === 'Belwe' ? "'Belwe', Georgia, serif" : "'Red Hat Display', system-ui, sans-serif"}; font-size: ${Math.min(s.size, 72)}px; line-height: ${s.line_height}; font-weight: ${s.weight};`;
+    return `      <tr>
+        <td><code>${s.name}</code></td>
+        <td>${s.size}px</td>
+        <td>${s.line_height}</td>
+        <td>${s.weight}</td>
+        <td>${s.font}</td>
+        <td class="tw-scale-sample" style="${sampleStyle}">Aa</td>
+        <td class="tw-meta">${s.use}</td>
+      </tr>`;
+  }).join('\n');
+
+  const tracking = Object.entries(brand.typography.letter_spacing || {}).map(([k, v]) =>
+    `      <tr><td><code>tracking.${k}</code></td><td><code>${v}</code></td></tr>`
+  ).join('\n');
+
+  return `<!-- Toldwell typography panel — generated from brand.yaml -->
+<aside id="tw-type-panel" class="tw-panel">
+  <header class="tw-panel-head">
+    <h2>Typography</h2>
+    <p>Two fonts. Belwe carries the brand voice in display moments. Red Hat Display does the rest.</p>
+  </header>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">Type families</h3>
+    <div class="tw-font-grid">
+${fonts}
+    </div>
+  </section>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">Type scale</h3>
+    <p class="tw-meta">${brand.typography.ratio.body} for body. Display sizes are editorial — chosen for cinematic weight, not a ratio.</p>
+    <div class="tw-table-scroll">
+      <table class="tw-scale-table">
+        <thead>
+          <tr><th>Token</th><th>Size</th><th>Leading</th><th>Weight</th><th>Font</th><th>Sample</th><th>Use</th></tr>
+        </thead>
+        <tbody>
+${scale}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  ${tracking ? `<section class="tw-intro-block">
+    <h3 class="tw-eyebrow">Letter spacing</h3>
+    <table class="tw-scale-table">
+      <thead><tr><th>Token</th><th>Value</th></tr></thead>
+      <tbody>
+${tracking}
+      </tbody>
+    </table>
+  </section>` : ''}
+
+  <footer class="tw-panel-foot">
+    <p>All type tokens are in <a href="/tokens.css"><code>tokens.css</code></a> as <code>--text-*</code>, <code>--leading-*</code>, <code>--weight-*</code>, and <code>--tracking-*</code>.</p>
+  </footer>
+</aside>
+`;
+}
+
+// ─── Logo panel ───────────────────────────────────────────────────────────────
+
+function generateLogoPanel(brand) {
+  return `<!-- Toldwell logo panel — generated from brand.yaml -->
+<aside id="tw-logo-panel" class="tw-panel">
+  <header class="tw-panel-head">
+    <h2>Logo</h2>
+    <p>The Toldwell wordmark is the primary identity mark. Used at the top of every page, on every artifact, on every signature.</p>
+  </header>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">Wordmark</h3>
+    <div class="tw-logo-stage tw-logo-stage--light">
+      <img src="/toldwell-wordmark.svg" alt="Toldwell wordmark" class="tw-logo-mark">
+    </div>
+    <div class="tw-logo-stage tw-logo-stage--dark">
+      <img src="/toldwell-wordmark.svg" alt="Toldwell wordmark on dark" class="tw-logo-mark tw-logo-mark--inverted">
+    </div>
+    <div class="tw-logo-stage tw-logo-stage--accent">
+      <img src="/toldwell-wordmark.svg" alt="Toldwell wordmark on gold" class="tw-logo-mark">
+    </div>
+  </section>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">Specifications</h3>
+    <dl class="tw-spec-list">
+      <dt>Clear space</dt><dd>${brand.logo.clear_space}</dd>
+      <dt>Minimum size</dt><dd>${brand.logo.min_size}</dd>
+      <dt>Source asset</dt><dd><code>${brand.logo.primary_svg}</code></dd>
+      <dt>Favicon</dt><dd><code>${brand.logo.favicon}</code></dd>
+    </dl>
+  </section>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">Don't</h3>
+    <ul class="tw-rule-list tw-rule-list--dont">
+      ${brand.logo.donts.map(d => `<li>${d}</li>`).join('\n      ')}
+    </ul>
+  </section>
+
+  <footer class="tw-panel-foot tw-panel-foot--placeholder">
+    <p><strong>Coming soon:</strong> additional logo lockups, monogram, and emblem variations. Will provide source files (SVG, PNG, EPS) once finalized.</p>
+  </footer>
+</aside>
+`;
+}
+
+// ─── Components panel (used on /icons/, since we don't ship an icon library) ─
+
+function generateComponentsPanel(brand) {
+  const c = brand.components;
+  return `<!-- Toldwell components panel — generated from brand.yaml -->
+<aside id="tw-components-panel" class="tw-panel">
+  <header class="tw-panel-head">
+    <h2>Components</h2>
+    <p>Core interactive primitives. Pill-shaped buttons, softly-rounded cards with inset shadows, pill tags. The shape language stays consistent across every surface.</p>
+  </header>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">Buttons</h3>
+    <div class="tw-btn-row">
+      <button class="tw-btn tw-btn--primary">Let's get to work</button>
+      <button class="tw-btn tw-btn--accent">Watch our showreel</button>
+      <button class="tw-btn tw-btn--ghost">View our deck</button>
+    </div>
+    <dl class="tw-spec-list">
+      <dt>Radius</dt><dd><code>${c.buttons.primary.radius}</code> (pill)</dd>
+      <dt>Padding</dt><dd><code>${c.buttons.primary.padding}</code></dd>
+      <dt>Font</dt><dd>${c.buttons.primary.font_family}, ${c.buttons.primary.font_size}, weight ${c.buttons.primary.font_weight}</dd>
+      <dt>Letter spacing</dt><dd><code>${c.buttons.primary.letter_spacing}</code></dd>
+      <dt>Text transform</dt><dd>${c.buttons.primary.text_transform}</dd>
+    </dl>
+  </section>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">Cards</h3>
+    <div class="tw-card-row">
+      <div class="tw-demo-card">
+        <h4>Default card</h4>
+        <p>Light surface with inset shadow. Pressed in, not floating. ${c.cards.default.radius} radius.</p>
+      </div>
+      <div class="tw-demo-card tw-demo-card--feature">
+        <h4>Feature card</h4>
+        <p>White surface for elevated content blocks. Same radius, more padding.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">Tags</h3>
+    <div class="tw-tag-row">
+      <span class="tw-tag">Brand Film</span>
+      <span class="tw-tag">Commercial</span>
+      <span class="tw-tag">Campaign</span>
+      <span class="tw-tag">Instructional</span>
+      <span class="tw-tag">Testimonial</span>
+      <span class="tw-tag">Collateral</span>
+    </div>
+    <p class="tw-meta">Service categories from <code>brand.yaml.services</code>. Used to label work across the portfolio.</p>
+  </section>
+
+  <footer class="tw-panel-foot tw-panel-foot--placeholder">
+    <p><strong>Note:</strong> Toldwell does not ship a functional icon library — we use bespoke iconography per project. Standard UI icons should be sourced from <a href="https://lucide.dev">Lucide</a> or <a href="https://feathericons.com">Feather</a> when needed.</p>
+  </footer>
+</aside>
+`;
+}
+
+// ─── Photography / Images panel ───────────────────────────────────────────────
+
+function generatePhotographyPanel(brand) {
+  return `<!-- Toldwell photography panel — generated from brand.yaml -->
+<aside id="tw-photo-panel" class="tw-panel">
+  <header class="tw-panel-head">
+    <h2>Photography</h2>
+    <p>Behind-the-scenes from real Toldwell sets. Cinematic, candid, never staged corporate stock. The work is the brand.</p>
+  </header>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">Style principles</h3>
+    <ul class="tw-rule-list tw-rule-list--do">
+      <li>Real sets, real crews, real moments — never composite or staged stock</li>
+      <li>Natural light when possible; cinematic side-light, godrays, and haze when working</li>
+      <li>Black-and-white treatment is welcome for editorial weight; saturation should never feel artificial</li>
+      <li>Subjects in motion or in thought, never posed for the camera</li>
+      <li>Equipment-forward shots are encouraged — the craft is part of the brand</li>
+    </ul>
+  </section>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">Reference set</h3>
+    <p class="tw-meta">Below are the canonical Toldwell reference photographs. Use these directly or as direction for new shoots.</p>
+    <div class="tw-photo-grid">
+      <figure><img src="/photo-01-camera-crew.jpg" alt="Crew adjusting cinema camera on gimbal" loading="lazy"><figcaption>Camera crew, gimbal setup</figcaption></figure>
+      <figure><img src="/photo-02-jib-gym-bw.jpg" alt="Jib in gymnasium, black and white" loading="lazy"><figcaption>Jib setup, gym (B&amp;W)</figcaption></figure>
+      <figure><img src="/photo-03-godrays-boxing.jpg" alt="Operator with sunlit godrays" loading="lazy"><figcaption>Operator, godrays</figcaption></figure>
+      <figure><img src="/photo-04-court-jib.jpg" alt="Two athletes on court, jib in foreground" loading="lazy"><figcaption>Court jib, athletes</figcaption></figure>
+      <figure><img src="/photo-05-team-stadium.jpg" alt="Team in stadium under haze and lights" loading="lazy"><figcaption>Team, stadium haze</figcaption></figure>
+      <figure><img src="/photo-06-studio-crew.jpg" alt="Studio with full crew and monitors" loading="lazy"><figcaption>Studio shoot, full crew</figcaption></figure>
+      <figure><img src="/photo-07-dolly-lights.jpg" alt="Dolly and lighting setup, no subject" loading="lazy"><figcaption>Dolly, lighting setup</figcaption></figure>
+    </div>
+  </section>
+
+  <footer class="tw-panel-foot tw-panel-foot--placeholder">
+    <p><strong>Need more:</strong> additional source photography for specific contexts (talent close-ups, location work, post-production studio) is best requested directly. Will provide raw files as needed.</p>
+  </footer>
+</aside>
+`;
+}
+
+// ─── Resources panel ──────────────────────────────────────────────────────────
+
+function generateResourcesPanel(brand) {
+  const m = brand.meta;
+  return `<!-- Toldwell resources panel — generated from brand.yaml -->
+<aside id="tw-resources-panel" class="tw-panel">
+  <header class="tw-panel-head">
+    <h2>Resources</h2>
+    <p>Everything you need to work with Toldwell's brand, in one place. Design files, machine-readable tokens, and key links.</p>
+  </header>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">Design files</h3>
+    <ul class="tw-resource-list">
+      <li><a href="/DESIGN.md"><strong>DESIGN.md</strong><span>Markdown design system for AI agents (Claude, Cursor, etc.)</span></a></li>
+      <li><a href="/tokens.css"><strong>tokens.css</strong><span>CSS custom properties — drop-in for any framework</span></a></li>
+      <li><a href="/tailwind.css"><strong>tailwind.css</strong><span>Tailwind v4 <code>@theme</code> block</span></a></li>
+      <li><a href="/tokens.json"><strong>tokens.json</strong><span>W3C Design Tokens spec — Figma, Style Dictionary, Tokens Studio</span></a></li>
+    </ul>
+  </section>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">Brand assets</h3>
+    <ul class="tw-resource-list">
+      <li><a href="/toldwell-wordmark.svg"><strong>Toldwell wordmark</strong><span>Primary logo, SVG</span></a></li>
+      <li class="tw-resource-list-placeholder"><strong>Logo lockups + monogram</strong><span>Coming soon — additional variations and source files</span></li>
+      <li class="tw-resource-list-placeholder"><strong>Belwe woff2 files</strong><span>Coming soon — self-hosted display font</span></li>
+    </ul>
+  </section>
+
+  <section class="tw-intro-block">
+    <h3 class="tw-eyebrow">External links</h3>
+    <ul class="tw-resource-list">
+      <li><a href="${m.url}"><strong>toldwell.com</strong><span>The main Toldwell site</span></a></li>
+      ${m.capabilities_deck ? `<li><a href="${m.capabilities_deck}"><strong>Capabilities deck</strong><span>Full company overview, services, work</span></a></li>` : ''}
+      ${m.inquiry_form ? `<li><a href="${m.inquiry_form}"><strong>Work inquiry form</strong><span>Start a project conversation</span></a></li>` : ''}
+      <li><a href="https://github.com/Toldwell/toldwell-brand"><strong>GitHub repository</strong><span>Source for this brand system</span></a></li>
+    </ul>
+  </section>
+
+  <footer class="tw-panel-foot">
+    <p>Questions, additions, corrections? Email <a href="mailto:${m.contact_email}">${m.contact_email}</a>.</p>
   </footer>
 </aside>
 `;
@@ -862,12 +1281,37 @@ function transformHtml(filePath, buf, brand) {
       html = html.replace('</head>', `  ${OVERRIDES_LINK}\n</head>`);
     }
   }
-  // Page-specific injections
-  if (filePath.endsWith('/color/index.html') || filePath.endsWith('\\color\\index.html')) {
-    if (!html.includes('id="tw-color-panel"')) {
-      const panel = generateColorPanel(brand);
-      html = html.replace('</body>', `${panel}\n</body>`);
-    }
+  // Page-specific injections — generate Toldwell content panels from yaml
+  // and inject before </body>. site-overrides.css hides the original Cipherly
+  // template content, leaving only the injected Toldwell panels visible.
+  //
+  // Match by the parent directory name (relative to TEMPLATE_DIR), since every
+  // page's filename is just "index.html". The home page has no parent — its
+  // relative path equals "index.html".
+  const normalized = filePath.replace(/\\/g, '/');
+  const rel = normalized.startsWith(TEMPLATE_DIR.replace(/\\/g, '/'))
+    ? normalized.slice(TEMPLATE_DIR.replace(/\\/g, '/').length).replace(/^\/+/, '')
+    : normalized;
+  // rel is now e.g. "index.html", "color/index.html", "typography/index.html"
+  const parts = rel.split('/');
+  const dir = parts.length > 1 ? parts[0] : '';
+
+  const pageInjections = {
+    '':             { idCheck: 'tw-intro-panel',      gen: generateIntroPanel },        // home
+    'introduction': { idCheck: 'tw-intro-panel',      gen: generateIntroPanel },
+    'strategy':     { idCheck: 'tw-strategy-panel',   gen: generateStrategyPanel },
+    'color':        { idCheck: 'tw-color-panel',      gen: generateColorPanel },
+    'typography':   { idCheck: 'tw-type-panel',       gen: generateTypographyPanel },
+    'logo':         { idCheck: 'tw-logo-panel',       gen: generateLogoPanel },
+    'icons':        { idCheck: 'tw-components-panel', gen: generateComponentsPanel },
+    'images':       { idCheck: 'tw-photo-panel',      gen: generatePhotographyPanel },
+    'resources':    { idCheck: 'tw-resources-panel',  gen: generateResourcesPanel },
+  };
+
+  const inj = pageInjections[dir];
+  if (inj && rel.endsWith('index.html') && !html.includes(`id="${inj.idCheck}"`)) {
+    const panel = inj.gen(brand);
+    html = html.replace('</body>', `${panel}\n</body>`);
   }
   return html;
 }

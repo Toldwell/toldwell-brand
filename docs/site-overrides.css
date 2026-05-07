@@ -1,29 +1,30 @@
 /**
  * site-overrides.css — Toldwell brand site overrides
- * Hand-edited supplement to tokens.css. Used to patch the Framer-rip
- * templates with Toldwell-specific replacements (logos, hide demos, etc).
+ *
+ * Hand-edited supplement to tokens.css. Patches the Framer-rip templates with
+ * Toldwell-specific replacements: hides Cipherly demo content, swaps in our
+ * generated Toldwell panels, polishes typography to match Belwe + Red Hat
+ * Display.
  *
  * Loaded after tokens.css on every page in the brand site.
  */
 
-/* ─── Hide the "Made in Framer" badge ──────────────────────────────────────── */
+/* ─── Hide Framer leftovers ────────────────────────────────────────────────── */
+
 #__framer-badge-container,
 .__framer-badge,
 [class*="framer-badge"] {
   display: none !important;
 }
 
-/* ─── Hide unused social links: Twitter/X and Medium ───────────────────────── */
+/* Hide unused social links: Twitter/X and Medium */
 a[href*="twitter.com"],
 a[href*="medium.com"] {
   display: none !important;
 }
 
-/* ─── Header logo: hide Cipherly wordmark, overlay Toldwell ──────────────────
-   The Framer header logo is an <a data-framer-name="Logo"> wrapping an inline
-   SVG with a <use href="#svg..."> reference to the cursive Cipherly wordmark.
-   We hide the inner SVG and apply a background-image of the Toldwell wordmark.
-*/
+/* ─── Header logo: hide Cipherly wordmark, overlay Toldwell ────────────────── */
+
 a[data-framer-name="Logo"] {
   background-image: url("/toldwell-wordmark.svg");
   background-repeat: no-repeat;
@@ -36,81 +37,97 @@ a[data-framer-name="Logo"] svg {
   visibility: hidden;
 }
 
-/* ─── Logo page demos: temporary placeholder while we extract Toldwell assets ─
-   The logo guidelines page shows Cipherly's emblem + wordmark in multiple
-   color variations. Until we have Toldwell SVG variants, fade them out so
-   they don't claim to be Toldwell's logo system.
-*/
+/* ─── Hide Cipherly content sections that we replace with our panels ───────── */
+
+/* Strategy page — hide all of: Mission, Brand Idea, Our Values */
+[data-framer-name="Mission"],
+[data-framer-name="Brand Idea"],
+[data-framer-name="Our Values"],
+/* Color page — Cipherly's color blocks grid */
+[data-framer-name="Color Blocks Grid"],
+[data-framer-name="Color Property Info"],
+[data-framer-name="Accent & Tones"],
+[data-framer-name="Black & White"],
+[data-framer-name="Background"],
+[data-framer-name="Grey"],
+[data-framer-name="Light"]:not(.tw-logo-stage--light),
+/* Typography page — Cipherly's font specimens (Plus Jakarta Sans) */
+[data-framer-name="Typography Description"],
+[data-framer-name="Type Sample"],
+[data-framer-name="Type Sample Group"],
+[data-framer-name="Font Family"],
+[data-framer-name="Font Weights"],
+[data-framer-name="Kerning Tracking"],
+/* Logo page — Cipherly's emblem demos */
 [data-framer-name="Lookup Logo Block"],
+[data-framer-name="Lookup Logo Block Wrapper"],
 [data-framer-name="Logo Color Block"],
 [data-framer-name="Color Logo Grid"],
 [data-framer-name="Safe Zone Emblem Block"],
-[data-framer-name="Safe Zone Wordmark Block"] {
-  position: relative;
-}
-
-[data-framer-name="Lookup Logo Block"]::after,
-[data-framer-name="Logo Color Block"]::after {
-  content: "Toldwell logo SVG — coming soon";
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(250, 248, 244, 0.9);
-  color: #5C504C;
-  font-family: 'Red Hat Display', sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.4px;
-  text-transform: uppercase;
-  pointer-events: none;
-}
-
-/* ─── Color page: hide Framer's color grid, show our injected panel ────────── */
-/* Hides the entire "Color" section content area on /color/ so our generated
-   panel takes its place. The hero, sidebar, and footer remain. */
-body[data-framer-page-id] [data-framer-name="Content"] > section[id="color"],
-[data-framer-name="Color Blocks Grid"] {
+[data-framer-name="Safe Zone Wordmark Block"],
+[data-framer-name="Safe Zone Blocks Content"],
+/* Icons page — Cipherly's icon library demos */
+[data-framer-name="Icons Grid"],
+[data-framer-name="Functional Icons"],
+[data-framer-name="Product Symbols"],
+/* Images page — Cipherly's photography style demos */
+[data-framer-name="Photography Grid"],
+[data-framer-name="Photography Style"],
+[data-framer-name="Image Examples"],
+/* Resources page — Cipherly's resource cards */
+[data-framer-name="Resources Grid"],
+[data-framer-name="Asset Download Cards"] {
   display: none !important;
 }
 
-#tw-color-panel {
-  font-family: 'Red Hat Display', system-ui, sans-serif;
-  color: var(--color-neutrals-toldwell-dark, #191412);
-  background: var(--surface-canvas, #FFFFFF);
-  padding: 80px 60px 100px;
-  border-bottom: 1px solid var(--color-neutrals-mid-gray, #6B6B6B);
+/* Hide every section description that we override.
+   Cipherly's lede paragraphs sit just under each page hero.
+   Targets the description+button block that appears on most pages. */
+[data-framer-name="Description & Button"] {
+  display: none !important;
 }
 
-#tw-color-panel .tw-color-panel-head {
+/* ─── Toldwell panel: shared ───────────────────────────────────────────────── */
+
+.tw-panel {
+  font-family: 'Red Hat Display', system-ui, -apple-system, sans-serif;
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C);
+  background: var(--surface-canvas, #FFFFFF);
+  padding: 80px 60px 100px;
+  border-bottom: 1px solid var(--color-neutrals-surface-light, #F2F2F2);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.tw-panel * {
+  box-sizing: border-box;
+}
+
+.tw-panel-head {
   max-width: 720px;
   margin-bottom: 64px;
 }
 
-#tw-color-panel .tw-color-panel-head h2 {
+.tw-panel-head h2 {
   font-family: 'Belwe', Georgia, serif;
   font-size: 56px;
   font-weight: 400;
   line-height: 1.05;
   letter-spacing: -0.8px;
   margin: 0 0 20px;
-  color: var(--color-neutrals-toldwell-dark, #191412);
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C);
 }
 
-#tw-color-panel .tw-color-panel-head p {
+.tw-panel-head p,
+.tw-lede {
   font-size: 20px;
   line-height: 1.55;
   letter-spacing: -0.4px;
   color: var(--color-neutrals-mid-gray, #6B6B6B);
-  margin: 0;
+  margin: 0 0 16px;
 }
 
-#tw-color-panel .tw-color-group {
-  margin-bottom: 64px;
-}
-
-#tw-color-panel .tw-color-group-label {
+.tw-eyebrow {
   font-family: 'Red Hat Display', sans-serif;
   font-size: 12px;
   font-weight: 600;
@@ -119,16 +136,152 @@ body[data-framer-page-id] [data-framer-name="Content"] > section[id="color"],
   color: var(--color-neutrals-mid-gray, #6B6B6B);
   margin: 0 0 24px;
   padding-bottom: 12px;
-  border-bottom: 1px solid var(--color-neutrals-mid-gray, #6B6B6B);
+  border-bottom: 1px solid var(--color-neutrals-surface-light, #F2F2F2);
+  display: block;
 }
 
-#tw-color-panel .tw-color-grid {
+.tw-intro-block {
+  margin-bottom: 64px;
+  max-width: 880px;
+}
+
+.tw-intro-block p {
+  font-size: 17px;
+  line-height: 1.65;
+  letter-spacing: -0.2px;
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C);
+  margin: 0 0 16px;
+  max-width: 680px;
+}
+
+.tw-pullquote {
+  font-family: 'Belwe', Georgia, serif;
+  font-size: 28px !important;
+  line-height: 1.3 !important;
+  letter-spacing: -0.4px;
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C);
+  margin-top: 24px !important;
+  padding-left: 24px;
+  border-left: 3px solid var(--color-brand-toldwell-gold, #F3CC92);
+}
+
+.tw-meta {
+  font-size: 14px !important;
+  color: var(--color-neutrals-mid-gray, #6B6B6B) !important;
+  letter-spacing: -0.1px;
+}
+
+.tw-panel-foot {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--color-neutrals-surface-light, #F2F2F2);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--color-neutrals-mid-gray, #6B6B6B);
+  max-width: 720px;
+}
+
+.tw-panel-foot--placeholder {
+  background: var(--color-neutrals-surface-light, #F2F2F2);
+  border-radius: 40px;
+  padding: 24px 32px;
+  border-top: none;
+  margin-top: 32px;
+}
+
+.tw-panel-foot--placeholder strong {
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C);
+}
+
+.tw-panel-foot a,
+.tw-panel a {
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-brand-toldwell-gold, #F3CC92);
+  text-decoration-thickness: 2px;
+}
+
+.tw-panel code {
+  font-family: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  background: var(--color-neutrals-surface-light, #F2F2F2);
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* ─── Spec list (key/value pairs used in many panels) ─────────────────────── */
+
+.tw-spec-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 24px;
+  margin: 16px 0 0;
+  padding: 0;
+}
+
+.tw-spec-list dt {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-neutrals-mid-gray, #6B6B6B);
+  letter-spacing: -0.1px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-neutrals-surface-light, #F2F2F2);
+}
+
+.tw-spec-list dd {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.14px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-neutrals-surface-light, #F2F2F2);
+}
+
+/* ─── Photo / hero image ──────────────────────────────────────────────────── */
+
+.tw-hero-photo {
+  margin: 0 0 64px;
+  border-radius: 40px;
+  overflow: hidden;
+  background: var(--color-neutrals-surface-light, #F2F2F2);
+  aspect-ratio: 3 / 2;
+  max-width: 100%;
+}
+
+.tw-hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ─── Color panel (specific) ──────────────────────────────────────────────── */
+
+.tw-color-group {
+  margin-bottom: 48px;
+}
+
+.tw-color-group .tw-color-group-label {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--color-neutrals-mid-gray, #6B6B6B);
+  margin: 0 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-neutrals-surface-light, #F2F2F2);
+}
+
+.tw-color-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 16px;
 }
 
-#tw-color-panel .tw-swatch {
+.tw-swatch {
   border-radius: 9px;
   overflow: hidden;
   background: var(--surface-canvas, #FFFFFF);
@@ -138,82 +291,566 @@ body[data-framer-page-id] [data-framer-name="Content"] > section[id="color"],
     rgba(0, 0, 0, 0.063) 5px 10px 11.18px -3.75px inset;
 }
 
-#tw-color-panel .tw-swatch-color {
+.tw-swatch-color {
   height: 140px;
   display: flex;
   align-items: flex-end;
   padding: 16px;
 }
 
-#tw-color-panel .tw-swatch-hex {
-  font-family: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+.tw-swatch-hex {
+  font-family: 'DM Mono', ui-monospace, monospace;
   font-size: 12px;
   letter-spacing: 0.4px;
   font-weight: 500;
-  opacity: 0.9;
 }
 
-#tw-color-panel .tw-swatch-meta {
+.tw-swatch-meta {
   padding: 16px 18px 18px;
   background: var(--surface-canvas, #FFFFFF);
 }
 
-#tw-color-panel .tw-swatch-name {
+.tw-swatch-name {
   display: block;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: -0.14px;
-  color: var(--color-neutrals-toldwell-dark, #191412);
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C);
   margin-bottom: 4px;
 }
 
-#tw-color-panel .tw-swatch-token {
+.tw-swatch-token {
   display: inline-block;
-  font-family: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 11px;
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 11px !important;
   background: var(--color-neutrals-surface-light, #F2F2F2);
   color: var(--color-neutrals-mid-gray, #6B6B6B);
-  padding: 2px 8px;
+  padding: 2px 8px !important;
   border-radius: 4px;
   margin-bottom: 10px;
 }
 
-#tw-color-panel .tw-swatch-role {
-  font-size: 13px;
-  line-height: 1.45;
+.tw-swatch-role {
+  font-size: 13px !important;
+  line-height: 1.45 !important;
   letter-spacing: -0.13px;
-  color: var(--color-neutrals-mid-gray, #6B6B6B);
-  margin: 0;
+  color: var(--color-neutrals-mid-gray, #6B6B6B) !important;
+  margin: 0 !important;
 }
 
-#tw-color-panel .tw-color-panel-foot {
-  margin-top: 32px;
-  padding-top: 32px;
-  border-top: 1px solid var(--color-neutrals-mid-gray, #6B6B6B);
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--color-neutrals-mid-gray, #6B6B6B);
-  max-width: 720px;
+/* ─── Founders + intro lists ──────────────────────────────────────────────── */
+
+.tw-founders {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
 }
 
-#tw-color-panel .tw-color-panel-foot a {
-  color: var(--color-neutrals-toldwell-dark, #191412);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-color: var(--color-brand-toldwell-gold, #F3CC92);
-  text-decoration-thickness: 2px;
-}
-
-#tw-color-panel .tw-color-panel-foot code {
-  font-family: 'DM Mono', ui-monospace, monospace;
-  font-size: 12px;
+.tw-founder {
   background: var(--color-neutrals-surface-light, #F2F2F2);
-  padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: 40px;
+  padding: 20px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tw-founder strong {
+  font-family: 'Belwe', Georgia, serif;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C);
+}
+
+.tw-founder span {
+  font-size: 13px;
+  color: var(--color-neutrals-mid-gray, #6B6B6B);
+  letter-spacing: -0.1px;
+}
+
+/* ─── Strategy: principles + phases ───────────────────────────────────────── */
+
+.tw-principle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.tw-principle {
+  background: var(--color-neutrals-surface-light, #F2F2F2);
+  border-radius: 40px;
+  padding: 28px 32px;
+}
+
+.tw-principle h4 {
+  font-family: 'Belwe', Georgia, serif;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C);
+  margin: 0 0 8px;
+}
+
+.tw-principle p {
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+  color: var(--color-neutrals-mid-gray, #6B6B6B) !important;
+  margin: 0 !important;
+}
+
+.tw-phase-grid {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.tw-phase {
+  background: var(--color-neutrals-surface-light, #F2F2F2);
+  border-radius: 40px;
+  padding: 28px 32px;
+}
+
+.tw-phase header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.tw-phase-num {
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--color-brand-toldwell-gold, #F3CC92);
+  background: var(--color-neutrals-toldwell-dark, #1B1B1C);
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+
+.tw-phase h4 {
+  font-family: 'Belwe', Georgia, serif;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.4px;
+  margin: 0;
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C);
+}
+
+.tw-phase-duration {
+  font-size: 13px;
+  color: var(--color-neutrals-mid-gray, #6B6B6B);
+  letter-spacing: -0.1px;
+  margin-left: auto;
+}
+
+.tw-phase p {
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C) !important;
+  margin: 0 0 12px !important;
+}
+
+.tw-phase details {
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.tw-phase summary {
+  cursor: pointer;
+  color: var(--color-neutrals-mid-gray, #6B6B6B);
+  font-weight: 500;
+  letter-spacing: -0.1px;
+  padding: 4px 0;
+}
+
+.tw-phase details ul {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tw-phase details li {
+  font-size: 12px;
+  background: var(--surface-canvas, #FFFFFF);
+  padding: 4px 10px;
+  border-radius: 100px;
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C);
+}
+
+/* ─── Typography panel ────────────────────────────────────────────────────── */
+
+.tw-font-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.tw-font-card {
+  background: var(--color-neutrals-surface-light, #F2F2F2);
+  border-radius: 40px;
+  padding: 32px 36px;
+}
+
+.tw-font-card[data-role="display"] {
+  background: var(--color-neutrals-toldwell-dark, #1B1B1C);
+  color: var(--surface-canvas, #FFFFFF);
+}
+
+.tw-font-card[data-role="display"] h4,
+.tw-font-card[data-role="display"] dd,
+.tw-font-card[data-role="display"] dt {
+  color: var(--surface-canvas, #FFFFFF) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.tw-font-card[data-role="display"] .tw-eyebrow {
+  color: var(--color-brand-toldwell-gold, #F3CC92) !important;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.tw-font-card[data-role="display"] code {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: var(--surface-canvas, #FFFFFF) !important;
+}
+
+.tw-font-card h4 {
+  font-family: 'Belwe', Georgia, serif;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: -0.4px;
+  margin: 0 0 16px;
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C);
+}
+
+.tw-type-sample {
+  display: block;
+  margin: 16px 0 24px;
+  letter-spacing: -0.4px;
+}
+
+.tw-type-display {
+  font-family: 'Belwe', Georgia, serif;
+  font-size: 36px;
+  line-height: 1.1;
+  font-weight: 400;
+}
+
+.tw-type-body {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 18px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+.tw-table-scroll {
+  overflow-x: auto;
+}
+
+.tw-scale-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  font-size: 13px;
+}
+
+.tw-scale-table th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--color-neutrals-mid-gray, #6B6B6B);
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--color-neutrals-surface-light, #F2F2F2);
+}
+
+.tw-scale-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--color-neutrals-surface-light, #F2F2F2);
+  letter-spacing: -0.1px;
+  vertical-align: middle;
+}
+
+.tw-scale-sample {
+  font-family: 'Belwe', Georgia, serif;
+  text-align: center;
+  min-width: 40px;
+}
+
+/* ─── Logo panel ──────────────────────────────────────────────────────────── */
+
+.tw-logo-stage {
+  border-radius: 40px;
+  padding: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  min-height: 200px;
+}
+
+.tw-logo-stage--light {
+  background: var(--color-neutrals-surface-light, #F2F2F2);
+}
+
+.tw-logo-stage--dark {
+  background: var(--color-neutrals-toldwell-dark, #1B1B1C);
+}
+
+.tw-logo-stage--accent {
+  background: var(--color-brand-toldwell-gold, #F3CC92);
+}
+
+.tw-logo-mark {
+  height: 64px;
+  width: auto;
+  display: block;
+}
+
+.tw-logo-mark--inverted {
+  filter: invert(1);
+}
+
+.tw-rule-list {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+}
+
+.tw-rule-list li {
+  position: relative;
+  padding: 12px 0 12px 28px;
+  border-bottom: 1px solid var(--color-neutrals-surface-light, #F2F2F2);
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: -0.14px;
+}
+
+.tw-rule-list--do li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #3D8A5F;
+  font-weight: 700;
+}
+
+.tw-rule-list--dont li::before {
+  content: "✗";
+  position: absolute;
+  left: 0;
+  color: #B5453A;
+  font-weight: 700;
+}
+
+/* ─── Components panel ────────────────────────────────────────────────────── */
+
+.tw-btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 16px 0 24px;
+  align-items: center;
+}
+
+.tw-btn {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s, background 0.15s;
+}
+
+.tw-btn--primary {
+  background: var(--color-neutrals-toldwell-dark, #1B1B1C);
+  color: var(--surface-canvas, #FFFFFF);
+}
+
+.tw-btn--primary:hover { background: #3A3230; }
+
+.tw-btn--accent {
+  background: var(--color-brand-toldwell-gold, #F3CC92);
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C);
+}
+
+.tw-btn--accent:hover { background: #D9A85F; }
+
+.tw-btn--ghost {
+  background: transparent;
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C);
+  border: 1px solid var(--color-neutrals-toldwell-dark, #1B1B1C);
+}
+
+.tw-btn--ghost:hover { background: var(--color-neutrals-surface-light, #F2F2F2); }
+
+.tw-card-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin: 16px 0 24px;
+}
+
+.tw-demo-card {
+  background: var(--color-neutrals-surface-light, #F2F2F2);
+  border-radius: 40px;
+  padding: 32px;
+  box-shadow:
+    rgba(0, 0, 0, 0.18) 0.3px 0.6px 0.67px -1.25px inset,
+    rgba(0, 0, 0, 0.16) 1.14px 2.29px 2.56px -2.5px inset,
+    rgba(0, 0, 0, 0.063) 5px 10px 11.18px -3.75px inset;
+}
+
+.tw-demo-card--feature {
+  background: var(--surface-canvas, #FFFFFF);
+}
+
+.tw-demo-card h4 {
+  font-family: 'Belwe', Georgia, serif;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  margin: 0 0 8px;
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C);
+}
+
+.tw-demo-card p {
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+  color: var(--color-neutrals-mid-gray, #6B6B6B) !important;
+  margin: 0 !important;
+}
+
+.tw-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.tw-tag {
+  display: inline-block;
+  background: var(--color-neutrals-surface-light, #F2F2F2);
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C);
+  border-radius: 100px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.1px;
+}
+
+/* ─── Photography panel ───────────────────────────────────────────────────── */
+
+.tw-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.tw-photo-grid figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tw-photo-grid img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 40px;
+  background: var(--color-neutrals-surface-light, #F2F2F2);
+  display: block;
+}
+
+.tw-photo-grid figcaption {
+  font-size: 13px;
+  color: var(--color-neutrals-mid-gray, #6B6B6B);
+  letter-spacing: -0.1px;
+}
+
+/* ─── Resources panel ─────────────────────────────────────────────────────── */
+
+.tw-resource-list {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.tw-resource-list li,
+.tw-resource-list a {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px 24px;
+  background: var(--color-neutrals-surface-light, #F2F2F2);
+  border-radius: 40px;
+  text-decoration: none !important;
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C);
+  transition: background 0.15s;
+}
+
+.tw-resource-list a:hover {
+  background: #E8E8E8;
+}
+
+.tw-resource-list strong {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.16px;
+  color: var(--color-neutrals-toldwell-dark, #1B1B1C);
+}
+
+.tw-resource-list span {
+  font-size: 13px;
+  color: var(--color-neutrals-mid-gray, #6B6B6B);
+  letter-spacing: -0.1px;
+}
+
+.tw-resource-list-placeholder {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 1023px) {
+  .tw-panel { padding: 64px 32px 80px; }
+  .tw-panel-head h2 { font-size: 44px; }
+  .tw-color-grid,
+  .tw-photo-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
 }
 
 @media (max-width: 768px) {
-  #tw-color-panel { padding: 48px 24px 64px; }
-  #tw-color-panel .tw-color-panel-head h2 { font-size: 36px; }
-  #tw-color-panel .tw-color-grid { grid-template-columns: 1fr; }
+  .tw-panel { padding: 48px 24px 64px; }
+  .tw-panel-head h2 { font-size: 36px; letter-spacing: -0.6px; }
+  .tw-panel-head p, .tw-lede { font-size: 17px; }
+  .tw-color-grid,
+  .tw-photo-grid,
+  .tw-card-row,
+  .tw-font-grid,
+  .tw-principle-grid,
+  .tw-founders { grid-template-columns: 1fr; }
+  .tw-spec-list { grid-template-columns: 1fr; gap: 0; }
+  .tw-spec-list dd { padding-bottom: 12px; margin-bottom: 4px; }
+  .tw-logo-stage { padding: 48px; min-height: 140px; }
+  .tw-pullquote { font-size: 22px !important; padding-left: 16px; }
 }
