@@ -26,7 +26,7 @@ const TAILWIND_CSS = path.join(ROOT, 'tailwind.css');
 const TOKENS_JSON = path.join(ROOT, 'tokens.json');
 const SITE_DIR = path.join(ROOT, 'site');
 const TEMPLATE_DIR = path.join(SITE_DIR, 'template');
-const DOCS_DIR = path.join(SITE_DIR, 'docs');
+const DOCS_DIR = path.join(ROOT, 'docs');
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -841,10 +841,10 @@ function main() {
   fs.writeFileSync(TOKENS_JSON, emitTokensJson(brand));
   console.log('  ✓ tokens.json');
 
-  console.log('Building site (site/template → site/docs)...');
+  console.log('Building site (site/template → docs/)...');
   buildSite(brand);
   copyDesignFilesToSite();
-  console.log('  ✓ site/docs/');
+  console.log('  ✓ docs/');
 
   console.log('');
   console.log('Done.');

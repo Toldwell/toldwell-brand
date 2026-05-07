@@ -22,7 +22,7 @@ brand.yaml ──┬──>  DESIGN.md            (root)
              ├──>  tokens.css            (root)
              ├──>  tailwind.css          (root)
              ├──>  tokens.json           (root)
-             └──>  site/template/*  →  site/docs/*   (Cipherly-styled brand site)
+             └──>  site/template/*  →  docs/*       (Cipherly-styled brand site)
 ```
 
 ```bash
@@ -54,11 +54,12 @@ Sections 1–9 follow the [Google Stitch DESIGN.md format](https://stitch.withgo
 
 Hosted at **[brand.toldwell.com](https://brand.toldwell.com)** (GitHub Pages, Cloudflare DNS).
 
-The visual brand guide lives in [`site/`](./site/):
+The visual brand guide source lives in [`site/`](./site/):
 
 - `site/template/` — editable Cipherly-styled HTML source
-- `site/docs/` — generated output served by GitHub Pages
 - `site/_archive/` — legacy attempts (failed onepage merge, raw Cipherly rips)
+
+Generated output lands in [`docs/`](./docs/) at repo root (GitHub Pages constraint — only `/` or `/docs` are valid serve paths).
 
 When you run `npm run build`, the site is regenerated from the templates with `tokens.css` injected — so site styles automatically reflect any change to `brand.yaml`.
 
@@ -74,8 +75,8 @@ toldwell-brand/
 ├── tokens.json            ← generated
 ├── build.js               ← pipeline
 ├── package.json
+├── docs/                  ← generated output, served by GitHub Pages
 └── site/
     ├── template/          ← editable HTML source
-    ├── docs/              ← generated, served by GitHub Pages
     └── _archive/          ← legacy attempts
 ```
