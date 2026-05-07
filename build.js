@@ -796,19 +796,12 @@ const OVERRIDES_LINK = '<link rel="stylesheet" href="/site-overrides.css">';
 function transformHtml(filePath, buf, brand, content) {
   let html = buf.toString();
 
-  // Strip Framer's hydration JS bundles + module preloads. These scripts
-  // re-fetch the original Cipherly content from Framer's CDN at runtime and
-  // overwrite our static Toldwell HTML in the DOM. Without them, the static
-  // HTML renders as-is. Also drop the analytics beacon phoning home.
-  html = html.replace(/<script[^>]*src="https:\/\/framerusercontent\.com\/sites\/[^"]*"[^>]*><\/script>/g, '');
+  // Drop ONLY the analytics beacon (phones home, not needed for menu).
+  // We KEEP the main hydration bundle, modulepreloads, and hydrate attribute
+  // because they drive the original Cipherly mobile menu drawer + other
+  // interactive bits. If hydration re-fetches Cipherly content and clobbers
+  // our swaps, we narrow this further. For now: minimum strip.
   html = html.replace(/<script[^>]*src="https:\/\/events\.framer\.com\/script"[^>]*><\/script>/g, '');
-  html = html.replace(/<script[^>]*src="https:\/\/app\.framerstatic\.com\/[^"]*\.mjs"[^>]*><\/script>/g, '');
-  // <link rel="modulepreload"> tags pointing at Framer chunks
-  html = html.replace(/<link[^>]*rel="modulepreload"[^>]*href="https:\/\/framerusercontent\.com\/sites\/[^"]*"[^>]*\/?>/g, '');
-  html = html.replace(/<link[^>]*rel="modulepreload"[^>]*href="https:\/\/app\.framerstatic\.com\/[^"]*"[^>]*\/?>/g, '');
-  // Also strip framer-hydrate-v2 attribute (the JS won't run anyway, but
-  // remove the trigger so nothing else attempts hydration)
-  html = html.replace(/data-framer-hydrate-v2="[^"]*"/g, '');
   // Drop the framer search index meta tag (points to Cipherly's content)
   html = html.replace(/<meta[^>]*name="framer-search-index"[^>]*\/?>/g, '');
 
