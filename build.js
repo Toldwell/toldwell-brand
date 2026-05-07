@@ -29,6 +29,9 @@ const OVERRIDES_CSS = path.join(ROOT, 'site-overrides.css');
 const SITE_DIR = path.join(ROOT, 'site');
 const TEMPLATE_DIR = path.join(SITE_DIR, 'template');
 const DOCS_DIR = path.join(ROOT, 'docs');
+const FONTS_DIR = path.join(ROOT, 'assets', 'fonts');
+const DOCS_FONTS_DIR = path.join(DOCS_DIR, 'fonts');
+const SWAP_RUNTIME_JS = path.join(ROOT, 'swap-runtime.js');
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -794,6 +797,7 @@ function emitTokensJson(brand) {
 
 const TOKENS_LINK = '<link rel="stylesheet" href="/tokens.css">';
 const OVERRIDES_LINK = '<link rel="stylesheet" href="/site-overrides.css">';
+const SWAP_RUNTIME_TAG = '<script defer src="/swap-runtime.js"></script>';
 
 function transformHtml(filePath, buf, brand, content) {
   let html = buf.toString();
@@ -817,6 +821,14 @@ function transformHtml(filePath, buf, brand, content) {
   if (!html.includes('href="/site-overrides.css"')) {
     if (html.includes('</head>')) {
       html = html.replace('</head>', `  ${OVERRIDES_LINK}\n</head>`);
+    }
+  }
+  // Insert swap-runtime.js if not present. Re-applies content swaps to the
+  // live DOM after Framer's hydration bundle re-renders the page with
+  // upstream Cipherly content.
+  if (!html.includes('src="/swap-runtime.js"')) {
+    if (html.includes('</head>')) {
+      html = html.replace('</head>', `  ${SWAP_RUNTIME_TAG}\n</head>`);
     }
   }
 
@@ -893,6 +905,32 @@ function copyDesignFilesToSite() {
   }
 }
 
+// Copy self-hosted font files (assets/fonts/) into docs/fonts/ so the site can
+// load Belwe (and any other custom faces) at /fonts/<family>/<file>.woff2.
+// Google Fonts (Red Hat Display, Instrument Serif) are pulled from the CDN
+// via @font-face rules in site-overrides.css and don't need copying.
+function copyFontsToSite() {
+  if (!fs.existsSync(FONTS_DIR)) return;
+  ensureDir(DOCS_FONTS_DIR);
+  copyDir(FONTS_DIR, DOCS_FONTS_DIR);
+}
+
+// Emit swaps.json (machine-readable copy of content.yaml swap rules) and
+// copy swap-runtime.js into docs/. The runtime fetches swaps.json on every
+// page load and re-applies content swaps to the live DOM after Framer's
+// hydration bundle has rendered.
+function emitSwapRuntime(content) {
+  if (!content) return;
+  ensureDir(DOCS_DIR);
+  fs.writeFileSync(
+    path.join(DOCS_DIR, 'swaps.json'),
+    JSON.stringify(content, null, 2)
+  );
+  if (fs.existsSync(SWAP_RUNTIME_JS)) {
+    fs.copyFileSync(SWAP_RUNTIME_JS, path.join(DOCS_DIR, 'swap-runtime.js'));
+  }
+}
+
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 function main() {
@@ -925,6 +963,8 @@ function main() {
   console.log('Building site (site/template → docs/)...');
   buildSite(brand, content);
   copyDesignFilesToSite();
+  copyFontsToSite();
+  emitSwapRuntime(content);
   console.log('  ✓ docs/');
 
   console.log('');

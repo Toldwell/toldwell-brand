@@ -1,16 +1,151 @@
 /**
  * site-overrides.css — Toldwell brand site overrides
  *
- * Minimal hand-edited CSS for things sed/yaml swaps cannot fix.
+ * Minimal hand-edited CSS for things sed/yaml swaps cannot fix:
+ *   - Hide Framer badge
+ *   - Hide unused social links
+ *   - Overlay the Toldwell wordmark on top of Cipherly's header logo SVG
+ *   - Force Toldwell typography (Belwe / Red Hat Display / Instrument Serif)
+ *     onto every page by aliasing Cipherly's Plus Jakarta Sans references
+ *
  * Loaded after tokens.css on every page.
  *
- * RULE (see RULES.md): keep this file SMALL. Anything here that isn't a hide
- * or asset overlay should probably be a content swap or token change instead.
+ * RULE (see RULES.md): keep this file SMALL. Anything here that isn't a hide,
+ * asset overlay, or font-system swap should probably be a content swap or
+ * token change instead.
  */
 
-/* Hide the "Made in Framer" badge */
+/* @import MUST come first per CSS spec. Pulls Red Hat Display (body) and
+ * Instrument Serif (editorial) from Google Fonts. Belwe is self-hosted below.
+ */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Red+Hat+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500;1,600;1,700&display=swap");
+
+/* ─── Cipherly token override: blue → Toldwell Gold ──────────────────────── */
+/* Cipherly's templates use UUID-named CSS custom properties for their accent
+ * color (rgb(0, 64, 255), Cipherly Blue). We override them globally here so
+ * every blue surface, fill, hero punctuation, and accent fades to gold.
+ *
+ * Toldwell Gold = #F3CC92 = rgb(243, 204, 146).
+ *
+ * The variables are defined inline at :root in each template. CSS specificity
+ * means our :root rule with !important wins.
+ */
+:root,
+body {
+  /* Primary accent — full opacity */
+  --token-b86b2b97-21c3-4923-8078-2b01fa18a230: rgb(243, 204, 146) !important;
+  /* Accent at 7% — hero text faded backgrounds */
+  --token-9591973c-603e-4471-ac44-394b03ef75a6: rgba(243, 204, 146, .15) !important;
+  --token-c0242277-37d2-4726-b627-3669530d1456: rgba(243, 204, 146, .15) !important;
+  /* Accent at 20% — accent surfaces, hover states */
+  --token-b5f8e51d-4e20-4192-9f20-5364352f4f29: rgba(243, 204, 146, .35) !important;
+}
+
+/* ─── Hide Framer leftovers ───────────────────────────────────────────────── */
+
 #__framer-badge-container,
 .__framer-badge,
 [class*="framer-badge"] {
   display: none !important;
+}
+
+/* Hide unused social links: Twitter/X and Medium */
+a[href*="twitter.com"],
+a[href*="medium.com"] {
+  display: none !important;
+}
+
+/* ─── Header logo: hide Cipherly wordmark, overlay Toldwell ─────────────── */
+/* The wordmark on toldwell.com is white-on-dark. The brand-guide sidebar is
+ * a white surface, so we use the dark-fill variant (toldwell-wordmark-dark.svg)
+ * which has the same paths but with rgb(27, 27, 28) fill — Toldwell Dark.
+ */
+
+a[data-framer-name="Logo"] {
+  background-image: url("/toldwell-wordmark-dark.svg") !important;
+  background-repeat: no-repeat !important;
+  background-position: left center !important;
+  background-size: contain !important;
+}
+
+a[data-framer-name="Logo"] > div,
+a[data-framer-name="Logo"] svg {
+  visibility: hidden !important;
+}
+
+/* ─── Belwe — display, self-hosted from /fonts/belwe/ ──────────────────────── */
+/* Sourced from Framer's CDN once and committed to assets/fonts/belwe/. Build
+ * step copies them to docs/fonts/belwe/ so they're served by GitHub Pages.
+ */
+
+@font-face {
+  font-family: "Belwe";
+  src: url("/fonts/belwe/belwe-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Belwe";
+  src: url("/fonts/belwe/belwe-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Belwe";
+  src: url("/fonts/belwe/belwe-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Belwe";
+  src: url("/fonts/belwe/belwe-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ─── Force-replace Cipherly's Plus Jakarta Sans with Red Hat Display ─────── */
+/* Cipherly templates inline `font-family: "Plus Jakarta Sans", ...` on hundreds
+ * of elements. Inline styles outrank external stylesheets, so we need
+ * !important to override. We blanket-replace at the .framer-text level — that's
+ * Cipherly's text wrapper class, used everywhere copy appears.
+ *
+ * Belwe overrides for display moments (h1) come AFTER and are also !important.
+ */
+
+.framer-text,
+.framer-text * {
+  font-family: "Red Hat Display", "Helvetica Neue", system-ui, sans-serif !important;
+}
+
+/* ─── Display moments: Belwe for h1 headings ──────────────────────────────── */
+/* Cipherly's h1.framer-text is the page-level hero / display headline.
+ * Apply Belwe to give Toldwell's editorial weight.
+ */
+
+h1.framer-text,
+.framer-text h1 {
+  font-family: "Belwe", "Georgia", serif !important;
+  font-weight: 400 !important;
+  letter-spacing: -1px !important;
+}
+
+/* ─── Editorial accent: Instrument Serif italic for emphasis in headings ─── */
+/* Italics inside h1 headings become Instrument Serif — the "told well." moment.
+ * Also exposed as a utility class .editorial-italic for content swaps that
+ * want to add it explicitly.
+ */
+
+h1.framer-text em,
+h1.framer-text i,
+.framer-text h1 em,
+.framer-text h1 i,
+.framer-text .editorial-italic {
+  font-family: "Instrument Serif", "Georgia", serif !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
 }
