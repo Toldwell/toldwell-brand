@@ -1,92 +1,96 @@
 # Toldwell Brand System
 # Source of truth — generates DESIGN.md, tokens.css, tailwind.css, tokens.json, docs/
-# Last updated: 2026-05-06
+# Last updated: 2026-05-07
+# Reconciled against live toldwell.com + Toldwell Capabilities Deck.pdf
 
 meta:
   name: Toldwell
-  tagline: "A Video Studio Creating Films That Stick"
-  description: "We create videos for companies and individuals seeking a good story."
+  tagline: "Good stories, told well."
+  sub_tagline: "We are a video studio partnering with agencies, brands, and leaders to create films and narratives that stick."
+  description: "A video studio crafting work that holds meaning, creates impact, and stands the test of time."
   url: https://toldwell.com
   brand_site: https://brand.toldwell.com
+  capabilities_deck: https://pitch.com/v/toldwell-capabilities-deck---public-4p7pzq
+  inquiry_form: https://tally.so/r/mVz6dv
+  contact_email: hello@toldwell.com
+  location: "Chattanooga, TN"
+  founded: 2020   # update if known different
   favicon: https://framerusercontent.com/images/pdG7wnHWSIz40DFnecZAchvHusY.svg
-  og_image: https://framerusercontent.com/assets/kzLvQWEZM570OsVVa8vBvXqGCd0.gif
+  founders:
+    - name: "Jon Bouvier"
+      role: "Director, Co-Owner"
+    - name: "William Vest"
+      role: "Producer, Co-Owner"
 
 # ─── 1. Visual Theme & Atmosphere ──────────────────────────────────────────────
 
 atmosphere:
-  mood: "Warm, cinematic, story-driven"
-  density: moderate              # compact | moderate | comfortable
-  shape_language: "Rounded and approachable — heavy use of pill shapes (100px radius) for buttons and tags, softer radii (9–25px) for cards"
-  depth: "Subtle inset shadows on cards, creating a pressed/etched feel rather than elevated"
-  philosophy: "The design reflects filmmaking craft — dark warm tones for the cinema, warm gold for the story, generous space for the visually-minded audience to breathe"
-  one_liner: "Cinematic warmth on warm parchment, gold reserved for moments that matter."
+  mood: "Reverent, deliberate, story-driven"
+  density: comfortable           # compact | moderate | comfortable
+  shape_language: "Pill-rounded for actions (100px), softly rounded surfaces (40px), generous whitespace. Sharp edges only when intentional."
+  depth: "Subtle inset shadows on cards. Pressed/etched feel rather than elevated. Floating drop shadows feel synthetic — Toldwell prefers the weight of substance."
+  philosophy: "Toldwell makes work that lasts. The design should feel the same — calm where others are loud, considered where others are fast, durable where others are disposable."
+  one_liner: "Nearly achromatic. Gold held in reserve. Story before style."
 
 # ─── 2. Color Palette ──────────────────────────────────────────────────────────
-# Architecture follows refero/Anthropic pattern:
-#   brand     → the singular hero color of Toldwell (the gold)
-#   accent    → secondary chromatic colors for variety / context
-#   neutrals  → 7-step warm scale, parchment baseline (not white)
-#   semantic  → success / warning / error / info
-#   surfaces  → role-named surfaces (canvas, card, elevated, dark-stage)
+# Reality check: the live toldwell.com palette is intentionally minimal.
+# Almost monochromatic — black/white/light-gray base with a single warm gold
+# accent held in reserve. This is the Anthropic pattern, applied to film.
 
 colors:
   brand:
     toldwell-gold:
       hex: "#F3CC92"
-      role: "Primary accent, CTAs, highlight backgrounds — the warm storytelling tone. Used sparingly; reserved for moments that should warm."
+      role: "Primary accent. Reserved for moments that deserve warmth — hero punctuation, key CTAs, accent surfaces. Used sparingly; that's what gives it meaning."
 
   accent:
     toldwell-gold-soft:
       hex: "#F8E0BB"
-      role: "Tinted gold backgrounds, subtle accent fills"
+      role: "Tinted gold backgrounds, subtle accent fills, hover states on light surfaces"
     toldwell-gold-deep:
       hex: "#D9A85F"
       role: "Hover/pressed state for gold CTAs"
 
   neutrals:
-    # Warm scale — every step has a perceivable warm undertone, not pure gray
+    # The live site uses a deliberately small neutral set. We keep it tight.
     toldwell-dark:
-      hex: "#191412"
-      role: "Primary text, dark backgrounds, footer, navigation — warm near-black. Toldwell never uses pure black."
-    slate:
-      hex: "#3A3230"
-      role: "Hover state for dark surfaces, secondary dark text"
-    graphite:
-      hex: "#5C504C"
-      role: "Tertiary text, captions on light surfaces, subtle borders on dark"
-    fog:
-      hex: "#9A8E89"
-      role: "Disabled text, muted metadata, inactive icon fills"
-    driftwood:
-      hex: "#D6CFC9"
-      role: "Dividers, hairline borders, subtle structural lines"
+      hex: "#1B1B1C"
+      role: "Primary text, dark surfaces, footer, navigation. Toldwell's near-black — neutral charcoal with the faintest warm undertone. Pure black is reserved for overlays and special cases."
+    pure-black:
+      hex: "#000000"
+      role: "Hard black for overlay scrims, max-contrast situations, video letterboxing"
+    pure-black-75:
+      hex: "#000000BF"
+      role: "75% black overlay for video poster gradients and scrim effects"
+    mid-gray:
+      hex: "#6B6B6B"
+      role: "Secondary text, muted captions, dividers on dark surfaces"
     surface-light:
       hex: "#F2F2F2"
-      role: "Card backgrounds, secondary surface, content containers"
-    parchment:
-      hex: "#FAF8F4"
-      role: "Page canvas alternative — warm off-white, mood-adjacent for editorial sections"
+      role: "Section surfaces, content containers on light pages"
     bone:
       hex: "#FFFFFF"
-      role: "Page canvas (default), light text on dark backgrounds, card surfaces over parchment"
+      role: "Page canvas, light text on dark backgrounds, card surfaces"
 
   semantic:
+    # Toldwell doesn't use status colors prominently — these are utility tokens
+    # for forms / system states only. Keep them muted, not loud.
     success:
       hex: "#3D8A5F"
-      role: "Success state, positive confirmations"
+      role: "Form success state, positive confirmation"
     warning:
-      hex: "#D9A85F"   # intentionally aligns with toldwell-gold-deep
-      role: "Warning state, attention required"
+      hex: "#D9A85F"
+      role: "Warning state — intentionally aligns with toldwell-gold-deep"
     error:
       hex: "#B5453A"
-      role: "Error state, destructive actions"
+      role: "Form error state, destructive action"
     info:
       hex: "#4A6B8A"
-      role: "Informational notices, neutral status"
+      role: "Informational notice, neutral system status"
 
   selection:
     text: "#FFFFFF"
-    background: "#191412"
+    background: "#1B1B1C"
 
 # ─── 2a. Surfaces (semantic surface naming) ────────────────────────────────────
 
@@ -94,24 +98,18 @@ surfaces:
   canvas:
     value: "#FFFFFF"
     role: "Default page background"
-  canvas-warm:
-    value: "#FAF8F4"
-    role: "Warm parchment alternative for editorial sections"
   card:
     value: "#F2F2F2"
-    role: "Default card surface — slightly recessed against canvas"
-  card-elevated:
-    value: "#FFFFFF"
-    role: "Elevated cards over warm canvas (parchment)"
+    role: "Card / section surface, slightly recessed against canvas"
   dark-stage:
-    value: "#191412"
-    role: "Dark hero sections, footers, full-bleed cinematic blocks"
-  dark-stage-soft:
-    value: "#3A3230"
-    role: "Hover/secondary dark surfaces"
+    value: "#1B1B1C"
+    role: "Dark hero sections, footers, full-bleed cinematic blocks. The most common alternative canvas to white."
+  black-stage:
+    value: "#000000"
+    role: "Pure black — reserved for video letterboxing, overlay scrims, max-contrast moments"
   accent-stage:
     value: "#F3CC92"
-    role: "Gold full-bleed sections — used rarely, for moments of high warmth"
+    role: "Gold full-bleed sections. Used rarely, for moments that should feel warm and chosen."
 
 # ─── 3. Typography ─────────────────────────────────────────────────────────────
 
@@ -119,14 +117,14 @@ typography:
   fonts:
     display:
       family: "Belwe"
-      variants: ["Regular (400)", "Medium (500)", "Bold", "Italic"]
-      source: "Custom (uploaded to Framer; needs self-hosted woff2)"
-      role: "Hero headlines, large display text — gives Toldwell its distinctive warm serif character"
+      variants: ["Regular (400)", "Medium (500)", "Bold (700)", "Italic"]
+      source: "Custom (uploaded to Framer; needs self-hosted woff2 for site portability)"
+      role: "Hero headlines, display text, named brand moments. Belwe gives Toldwell its distinctive warm serif character — the editorial weight of a film title card."
     body:
       family: "Red Hat Display"
       weights: [400, 500, 600, 700, 900]
       source: "Google Fonts"
-      role: "Headings, subheadings, body text, UI elements — the workhorse font"
+      role: "Headings, subheadings, body text, UI elements. The clean sans-serif partner — modern, readable, gets out of the way."
 
   ratio:
     body: "Major Third (1.25) from 12px base"
@@ -139,7 +137,7 @@ typography:
     - { name: "display-lg",   size: 100, line_height: 1.05, weight: 400, font: "Belwe", use: "Section hero text" }
     - { name: "display-md",   size: 92,  line_height: 1.05, weight: 400, font: "Belwe", use: "Feature headlines" }
     - { name: "display-sm",   size: 70,  line_height: 1.1,  weight: 400, font: "Belwe", use: "Secondary headlines" }
-    # Heading sizes (Red Hat Display) — Major Third ratio
+    # Heading sizes (Red Hat Display)
     - { name: "h1",       size: 48, line_height: 1.15, weight: 700, font: "Red Hat Display", use: "Page titles" }
     - { name: "h2",       size: 32, line_height: 1.25, weight: 600, font: "Red Hat Display", use: "Section titles" }
     - { name: "h3",       size: 30, line_height: 1.3,  weight: 600, font: "Red Hat Display", use: "Subsection titles" }
@@ -173,7 +171,7 @@ typography:
 components:
   buttons:
     primary:
-      background: "#191412"
+      background: "#1B1B1C"
       text_color: "#FFFFFF"
       radius: "100px"
       padding: "12px 24px"
@@ -187,7 +185,7 @@ components:
 
     accent:
       background: "#F3CC92"
-      text_color: "#191412"
+      text_color: "#1B1B1C"
       radius: "100px"
       padding: "12px 24px"
       font_size: "12px"
@@ -197,23 +195,20 @@ components:
 
     ghost:
       background: "transparent"
-      text_color: "#191412"
-      border: "1px solid #191412"
+      text_color: "#1B1B1C"
+      border: "1px solid #1B1B1C"
       radius: "100px"
       padding: "12px 24px"
 
   cards:
     default:
       background: "#F2F2F2"
-      radius: "9px"
+      radius: "40px"
       shadow: "inset-card"
-      padding: "20px"
-    portfolio:
-      radius: "20px"
-      overflow: "hidden"
+      padding: "32px"
     feature:
       background: "#FFFFFF"
-      radius: "25px"
+      radius: "40px"
       padding: "32px"
 
   tags:
@@ -221,17 +216,16 @@ components:
     padding: "5px 15px"
     font_size: "12px"
     background: "#F2F2F2"
-    text_color: "#191412"
+    text_color: "#1B1B1C"
 
 # ─── 5. Layout ──────────────────────────────────────────────────────────────────
 
 layout:
   base_unit: 4
   max_width: 1200
-  density: moderate
+  density: comfortable
 
   spacing:
-    # 4px base unit, refero-style power-of-2 + curated additions
     "4":   4
     "8":   8
     "12":  12
@@ -248,15 +242,12 @@ layout:
 
   semantic_spacing:
     section_gap: 80
-    card_padding: 20
+    card_padding: 32
     element_gap: 8
 
   radii:
     none: 0
-    sm: 9
-    md: 20
-    lg: 25
-    xl: 40
+    md: 40
     pill: 100
     full: 9999
 
@@ -264,12 +255,9 @@ layout:
     buttons: 100
     tags: 100
     pill: 100
-    cards: 9
-    cards-md: 20
-    cards-lg: 25
-    portfolio: 20
-    feature: 25
-    inputs: 9
+    cards: 40
+    feature: 40
+    inputs: 40
 
 # ─── 6. Depth & Elevation ──────────────────────────────────────────────────────
 
@@ -279,30 +267,27 @@ depth:
     inset-card: "rgba(0, 0, 0, 0.18) 0.3px 0.6px 0.67px -1.25px inset, rgba(0, 0, 0, 0.16) 1.14px 2.29px 2.56px -2.5px inset, rgba(0, 0, 0, 0.063) 5px 10px 11.18px -3.75px inset"
     inset-card-deep: "rgba(0, 0, 0, 0.22) 0.5px 1px 1.5px -1.5px inset, rgba(0, 0, 0, 0.18) 2px 4px 5px -2.5px inset, rgba(0, 0, 0, 0.08) 7px 14px 16px -4px inset"
     focus-ring: "0 0 0 3px rgba(243, 204, 146, 0.4)"
-  notes: "Toldwell uses inset shadows exclusively — pressed/etched aesthetic, not floating cards. This is distinctive. Drop shadows are reserved for focus rings only."
+  notes: "Toldwell uses inset shadows for surfaces — pressed, not floating. Drop shadows reserved for focus rings only. The aesthetic is substance, not lift."
 
 # ─── 7. Do's and Don'ts ────────────────────────────────────────────────────────
 
 guidelines:
   do:
-    - "Use Belwe for hero/display text — it defines the Toldwell look"
-    - "Use Red Hat Display for everything else — headings, body, UI"
-    - "Use the warm gold (#F3CC92) for CTAs and accent backgrounds"
-    - "Use Toldwell Dark (#191412) instead of pure black — it's warmer"
-    - "Maintain generous whitespace — the design breathes"
-    - "Use pill-shaped buttons (100px radius) consistently"
+    - "Use Belwe for hero / display text — it carries the brand voice"
+    - "Use Red Hat Display for everything else"
+    - "Use Toldwell Dark (#1B1B1C) instead of pure black — pure black is reserved for video overlays"
+    - "Hold the gold (#F3CC92) in reserve — for CTAs, key punctuation, deliberate warmth"
+    - "Maintain generous whitespace — let the work breathe"
+    - "Pill-shaped buttons (100px) and softly-rounded cards (40px)"
     - "Use inset shadows on cards, not drop shadows"
-    - "Pair serif display (Belwe) with Red Hat Display for body"
-    - "Hold the gold in reserve — accent, not field. Used too often, it loses meaning."
   dont:
-    - "Don't use pure black (#000000) — use Toldwell Dark (#191412)"
-    - "Don't use drop shadows — Toldwell cards are pressed in, not floating"
+    - "Don't use pure black (#000000) for text or surfaces — that's for video letterboxing only"
+    - "Don't use drop shadows — Toldwell surfaces are pressed, not floating"
     - "Don't introduce colors outside the palette"
-    - "Don't use Belwe for body text — it's display only"
-    - "Don't use fonts other than Belwe and Red Hat Display"
-    - "Don't use sharp corners — minimum radius is 9px"
-    - "Don't make buttons rectangular — always pill-shaped"
-    - "Don't field gold across full sections without intentional reason"
+    - "Don't use Belwe for body text — display only"
+    - "Don't field gold across full sections without a reason — it loses meaning when overused"
+    - "Don't use sharp corners except when intentional"
+    - "Don't make interactive elements rectangular — always pill-shaped"
 
 # ─── 8. Responsive ─────────────────────────────────────────────────────────────
 
@@ -312,79 +297,209 @@ responsive:
     tablet: 768
     desktop: 1200
     wide: 1440
-  notes: "Framer-built — uses fluid responsive scaling. Display text scales dramatically between breakpoints."
+  notes: "Display text scales dramatically between breakpoints. Mobile gets simplified hero treatment, desktop gets full editorial weight."
 
 # ─── 9. Agent Prompt Guide ─────────────────────────────────────────────────────
 
 agent:
   quick_reference:
-    primary: "#191412"
+    primary: "#1B1B1C"
     accent: "#F3CC92"
     canvas: "#FFFFFF"
-    canvas-warm: "#FAF8F4"
     surface-card: "#F2F2F2"
     display_font: "Belwe"
     body_font: "Red Hat Display"
     button_radius: "100px"
-    card_radius: "9px"
+    card_radius: "40px"
     base_spacing: "4px"
     type_ratio: "Major Third (1.25) from 12px"
 
   prompts:
-    - "Build a landing page with Toldwell Dark (#191412) hero section, warm gold (#F3CC92) accent reserved for the primary CTA, Belwe serif headlines, Red Hat Display body text, pill-shaped buttons (100px radius), inset card shadows."
-    - "Create a portfolio card grid with light gray (#F2F2F2) cards, inset shadows, 9px radius, generous spacing (80px section gap, 20px card padding)."
-    - "Design a dark footer (#191412) with white text, Red Hat Display typography, pill-shaped CTA button in gold (#F3CC92)."
-    - "Editorial section: warm parchment canvas (#FAF8F4), Belwe display headline, Red Hat Display body. No gold unless it's earning attention."
+    - "Build a Toldwell hero section: dark canvas (#1B1B1C), Belwe display headline 'Good stories, told well.', Red Hat Display sub-tagline, single warm-gold (#F3CC92) CTA pill button. Generous whitespace. No drop shadows."
+    - "Create a portfolio grid of video case studies: light canvas, F2F2F2 card surfaces with 40px radius and inset shadows, Belwe project titles, Red Hat Display body. Pill-shaped tags for category."
+    - "Design a dark footer (#1B1B1C) with Red Hat Display, sub-100% opacity socials list (Instagram + LinkedIn + YouTube), gold pill CTA 'Let's make something meaningful', email hello@toldwell.com."
+    - "Editorial film case study layout: white canvas, Belwe display title, em-dash heavy body copy, hold gold for the closing 'Watch the film' CTA only."
 
 # ─── 10. Voice & Tone (OmD v0.1) ───────────────────────────────────────────────
 
 voice:
-  personality: ["Warm", "Confident", "Story-driven", "Crafted"]
+  personality: ["Reverent", "Considered", "Story-driven", "Earnest", "Crafted"]
   tone_spectrum:
-    formal: 6
-    playful: 4
-    technical: 3
-    emotional: 7
+    formal: 5         # Professional but not stiff
+    playful: 3        # Gentle, not punchy
+    technical: 4      # Process-fluent without jargon
+    emotional: 8      # Genuine warmth, not performative
   microcopy:
-    cta_style: "Action-oriented, concise — 'Start your story', 'See our work', 'Let's talk'"
-    error_style: "Friendly, direct — avoid technical jargon"
+    cta_style: "Direct, declarative, low-noise. 'Let's get to work.' / 'Watch our showreel.' / 'View our deck.' / 'Work with us.' Short, action-oriented, never salesy."
+    headline_style: "Two-beat declarative phrases. 'Good stories, told well.' 'Stories that inspire. Stories that matter.' 'Video that lasts.' Em-dashes for emphasis."
+    error_style: "Friendly, direct — never blame the user. Plain language."
+  signature_phrases:
+    - "Good stories, told well."
+    - "Stories that inspire. Stories that matter."
+    - "Video that lasts."
+    - "Together, we can make something meaningful."
+    - "Good stories deserve to be told."
+    - "Let's get to work."
   avoid:
-    - "Corporate buzzwords"
-    - "Overly casual/slang"
-    - "Technical filmmaking jargon in client-facing copy"
+    - "Corporate buzzwords ('synergy', 'leverage', 'best-in-class')"
+    - "Hype language ('mind-blowing', 'next-level', 'game-changing')"
+    - "Filmmaking jargon in client-facing copy"
     - "Passive voice"
+    - "Anything that prizes speed over substance"
 
 # ─── 11. Brand Narrative (OmD v0.1) ────────────────────────────────────────────
 
 narrative:
-  what_we_are: "A video studio that creates films that stick — memorable, emotional, purposeful"
-  what_we_reject: "Generic corporate videos, stock-footage-driven content, style without substance"
-  belief: "Every company and individual has a story worth telling well"
+  what_we_are: "A video studio partnering with agencies, brands, and leaders to create films and narratives that stick."
+  what_we_do: "We are storytellers and filmmakers crafting videos that go beyond the noise — work that holds meaning, creates impact, and stands the test of time."
+  what_we_reject: "Fleeting content. Fast churn. Style without substance. Work designed only for the demands of social media and fast marketing."
+  belief: "Every brand and leader has a story worth telling well. We long to create meaningful work that outlasts all those involved in its creation."
+  audience: "Agencies, brands, and leaders pursuing a greater mission."
+  promise: "Stories that inspire. Stories that matter."
+
+# ─── 11a. Services (from capabilities deck) ───────────────────────────────────
+
+services:
+  brand:
+    name: "Brand Films"
+    role: "Who we are"
+    examples: ["Nations of Coaches — The Echo", "StoneLoads — Founders Story", "National Christian Foundation — Who We Are", "Whiteboard — Agency Reel", "Keswick Christian School"]
+  commercial:
+    name: "Commercials"
+    role: "What we sell"
+    examples: ["Cosmo — You Got This", "Hyatt Grand Regency — Doing Nothing Means Everything", "Ministry Brands — Let's Get You Back", "The Florida Aquarium — This Sweet Life", "Emerson — Lifestyle Footage"]
+  campaign:
+    name: "Campaigns"
+    role: "Join in"
+    examples: ["Usher — Big Time", "Father First — Come Home", "CFGC — Eviction Prevention Initiative", "Keswick Christian School — Grand Stands", "Whiteboard — Agency"]
+  instructional:
+    name: "Instructional"
+    role: "How to"
+    examples: ["Coca-Cola — Suggestive Sell Series", "Chick-fil-A Leader Academy", "7Pillar — Coach/Athlete/Marketing", "StoneLoads — How To"]
+  testimonial:
+    name: "Testimonials"
+    role: "Who we help"
+    examples: ["YouVersion — Anny's Story", "Chattanooga Future Fund — Claim Your Dream", "Amskills — Nico's Story", "Whiteboard — Our People"]
+  collateral:
+    name: "Collateral"
+    role: "What we sell (supporting)"
+    examples: ["Cosmo Jr Track 5 Overview", "Ministry Brands — Amplify Platform", "Protect My Ministry — Integrations", "Finance Solutions — Elevate Your Financing Game"]
+
+# ─── 11b. Process (from capabilities deck, pp. 10-14) ─────────────────────────
+
+process:
+  phases:
+    - phase: 1
+      name: "Development"
+      duration: "~4 weeks"
+      summary: "Identify the right video to create before deciding how to make it. Audience, budget, and organizational needs shape direction. Output: Creative Brief that guides the entire project."
+      activities: ["Desk Research", "Reference Evaluation", "Tone & Look Qualifiers", "Scripting", "Project Brief / SOW Creation", "Pre-Visualization (potentially)"]
+      outcomes: ["Creative Brief", "Scope of Work"]
+    - phase: 2
+      name: "Pre-Production"
+      duration: "~4-8 weeks"
+      summary: "Lock down location scouting, talent, crew, and set design. Coordinated preparation that prevents production-day issues."
+      activities: ["Casting / Talent coordination", "Location Scouting", "Set Design", "Wardrobe Prep", "Crewing", "Shotlisting"]
+      outcomes: ["Scripts", "Pre-visualizations"]
+    - phase: 3
+      name: "Production"
+      duration: "~1 week"
+      summary: "Filming days with a crew of 5-25 — small by commercial standards, kept that way for talent density and on-set agility."
+      activities: ["Filming", "Crew Management", "Talent Direction", "Rental Facilitation"]
+    - phase: 4
+      name: "Post-Production"
+      duration: "~4 weeks"
+      summary: "Edit to script and pre-vis, share V1 on Frame.io for review, refine through written feedback rounds until the final captures the vision."
+      activities: ["Editing", "Animation", "Color Grading", "Audio Mastering", "3D Rendering"]
+    - phase: 5
+      name: "Distribution"
+      duration: "~2 weeks"
+      summary: "Produce variations: alternate logos, sizes/formats, platform-specific cuts, specialty encodes. Same V1 → notes → refine pattern as post."
+      activities: ["Formatting & Resizing", "File Handoff", "Specialty Encoding"]
+
+# ─── 11c. Notable Clients ──────────────────────────────────────────────────────
+
+clients:
+  enterprise:
+    - "Chick-fil-A Leader Academy"
+    - "The Coca-Cola Company"
+    - "Spotify"
+    - "Slack"
+    - "YouVersion"
+    - "Hyatt Grand Regency"
+  agencies:
+    - "Whiteboard"
+    - "ADDO"
+    - "Dynamo Studios"
+    - "Matsuno Media"
+    - "RVRB"
+    - "The Workmans"
+  mission_driven:
+    - "National Christian Foundation"
+    - "Community Foundation of Greater Chattanooga"
+    - "Father First"
+    - "Ministry Brands"
+    - "Nations of Coaches"
+    - "Keswick Christian School"
+    - "Amskills"
+  product:
+    - "StoneLoads"
+    - "Cosmo"
+    - "7Pillar"
+    - "Emerson"
+    - "Florida Aquarium"
+    - "Finance Solutions"
+    - "Intellicheck"
+    - "Protect My Ministry"
+
+# ─── 11d. Endorsements ────────────────────────────────────────────────────────
+
+endorsements:
+  - quote: "After working with Toldwell across multiple sectors and industries — their team's superpower is taking complex ideas and shaping them into narratives that are not only beautiful on camera, but move people toward action."
+    name: "Eric Brown"
+    role: "CVO & Cofounder"
+    org: "Whiteboard"
+  - quote: "Toldwell is a trusted partner. They are both a strategic advisor and world class tactician. They collaborated closely with our team and delivered a highly engaging end result. Toldwell is a joy to work with."
+    name: "Andrew Walker"
+    role: "Director of Operations"
+    org: "Addo"
+  - quote: "Toldwell over-delivered with their prompt responsiveness and demonstrated exceptional quality in their work. They delivered a final product that was not only high in quality but also richly imaginative and tailored to our specific needs."
+    name: "Adam Boeselager"
+    role: "Cofounder"
+    org: "Legacybox"
+  - quote: "Toldwell partnered with us to tell the stories of two important and complex initiatives. They worked seamlessly with our team and the end product exceeded our expectations."
+    name: "Maeghan Jones"
+    org: "Community Foundation of Greater Chattanooga"
+  - quote: "Toldwell took the time to understand us and our industry before just jumping in. Their process and expertise made me feel comfortable and that has led to strong results."
+    name: "Patrick Wells"
+    role: "CEO"
+    org: "StoneLoads"
 
 # ─── 12. Principles (OmD v0.1) ─────────────────────────────────────────────────
 
 principles:
   - name: "Story First"
-    description: "Every design decision serves the narrative. If it doesn't help tell the story, remove it."
-  - name: "Cinematic Craft"
-    description: "Treat the screen like a frame. Composition, contrast, and timing matter."
-  - name: "Warm Professionalism"
-    description: "Approachable but not casual. The gold accent warms the dark foundation."
-  - name: "Breathe"
-    description: "Generous whitespace. Let content and visuals command attention without clutter."
-  - name: "Show, Don't Tell"
-    description: "Lead with work. Portfolio pieces speak louder than copy."
+    description: "Every design and creative decision serves the narrative. If it doesn't help tell the story, remove it."
+  - name: "Make It Last"
+    description: "We craft work meant to outlive the moment that prompted it. Durability over disposability, always."
   - name: "Hold the Gold"
-    description: "The accent is reserved. A single warm note across an otherwise neutral score is what makes it sing."
+    description: "The accent is reserved. A single warm note across an otherwise neutral score is what makes it sing. Same goes for any element of style — restraint creates meaning."
+  - name: "Talent Density"
+    description: "Small, expert crews of 5-25 over large impersonal ones. Closer collaboration, faster decisions, no wasted craft."
+  - name: "Substance Before Style"
+    description: "Beautiful work that isn't true to the brief is a failure. Truth first, then polish."
+  - name: "Breathe"
+    description: "Generous whitespace. Let work and visuals command attention without clutter."
 
 # ─── Logo ───────────────────────────────────────────────────────────────────────
 
 logo:
-  primary_svg: null  # TODO: Extract from Framer
+  primary_svg: "assets/toldwell-wordmark.svg"   # actual asset committed to repo
   favicon: "https://framerusercontent.com/images/pdG7wnHWSIz40DFnecZAchvHusY.svg"
   clear_space: "1x height of logomark minimum"
   min_size: "32px"
   donts:
     - "Don't stretch or distort"
-    - "Don't place on busy backgrounds without contrast"
-    - "Don't change the logo colors outside approved palette"
+    - "Don't place on busy backgrounds without sufficient contrast"
+    - "Don't change the logo colors outside the approved palette"
+    - "Don't add effects (glow, drop shadow, outline) to the wordmark"

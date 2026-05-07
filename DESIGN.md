@@ -1,8 +1,8 @@
 # DESIGN.md — Toldwell
 
-> A Video Studio Creating Films That Stick
+> Good stories, told well.
 >
-> We create videos for companies and individuals seeking a good story.
+> A video studio crafting work that holds meaning, creates impact, and stands the test of time.
 >
 > Generated from `brand.yaml` — do not edit directly.
 
@@ -10,17 +10,17 @@
 
 ## 1. Visual Theme & Atmosphere
 
-**Mood:** Warm, cinematic, story-driven
+**Mood:** Reverent, deliberate, story-driven
 
-**Density:** moderate
+**Density:** comfortable
 
-**Shape language:** Rounded and approachable — heavy use of pill shapes (100px radius) for buttons and tags, softer radii (9–25px) for cards
+**Shape language:** Pill-rounded for actions (100px), softly rounded surfaces (40px), generous whitespace. Sharp edges only when intentional.
 
-**Depth:** Subtle inset shadows on cards, creating a pressed/etched feel rather than elevated
+**Depth:** Subtle inset shadows on cards. Pressed/etched feel rather than elevated. Floating drop shadows feel synthetic — Toldwell prefers the weight of substance.
 
-**Philosophy:** The design reflects filmmaking craft — dark warm tones for the cinema, warm gold for the story, generous space for the visually-minded audience to breathe
+**Philosophy:** Toldwell makes work that lasts. The design should feel the same — calm where others are loud, considered where others are fast, durable where others are disposable.
 
-**One-liner:** Cinematic warmth on warm parchment, gold reserved for moments that matter.
+**One-liner:** Nearly achromatic. Gold held in reserve. Story before style.
 
 ## 2. Color Palette
 
@@ -28,38 +28,36 @@
 
 | Token | Hex | Role |
 |-------|-----|------|
-| `brand.toldwell-gold` | `#F3CC92` | Primary accent, CTAs, highlight backgrounds — the warm storytelling tone. Used sparingly; reserved for moments that should warm. |
+| `brand.toldwell-gold` | `#F3CC92` | Primary accent. Reserved for moments that deserve warmth — hero punctuation, key CTAs, accent surfaces. Used sparingly; that's what gives it meaning. |
 
 ### Accent
 
 | Token | Hex | Role |
 |-------|-----|------|
-| `accent.toldwell-gold-soft` | `#F8E0BB` | Tinted gold backgrounds, subtle accent fills |
+| `accent.toldwell-gold-soft` | `#F8E0BB` | Tinted gold backgrounds, subtle accent fills, hover states on light surfaces |
 | `accent.toldwell-gold-deep` | `#D9A85F` | Hover/pressed state for gold CTAs |
 
 ### Neutrals
 
 | Token | Hex | Role |
 |-------|-----|------|
-| `neutrals.toldwell-dark` | `#191412` | Primary text, dark backgrounds, footer, navigation — warm near-black. Toldwell never uses pure black. |
-| `neutrals.slate` | `#3A3230` | Hover state for dark surfaces, secondary dark text |
-| `neutrals.graphite` | `#5C504C` | Tertiary text, captions on light surfaces, subtle borders on dark |
-| `neutrals.fog` | `#9A8E89` | Disabled text, muted metadata, inactive icon fills |
-| `neutrals.driftwood` | `#D6CFC9` | Dividers, hairline borders, subtle structural lines |
-| `neutrals.surface-light` | `#F2F2F2` | Card backgrounds, secondary surface, content containers |
-| `neutrals.parchment` | `#FAF8F4` | Page canvas alternative — warm off-white, mood-adjacent for editorial sections |
-| `neutrals.bone` | `#FFFFFF` | Page canvas (default), light text on dark backgrounds, card surfaces over parchment |
+| `neutrals.toldwell-dark` | `#1B1B1C` | Primary text, dark surfaces, footer, navigation. Toldwell's near-black — neutral charcoal with the faintest warm undertone. Pure black is reserved for overlays and special cases. |
+| `neutrals.pure-black` | `#000000` | Hard black for overlay scrims, max-contrast situations, video letterboxing |
+| `neutrals.pure-black-75` | `#000000BF` | 75% black overlay for video poster gradients and scrim effects |
+| `neutrals.mid-gray` | `#6B6B6B` | Secondary text, muted captions, dividers on dark surfaces |
+| `neutrals.surface-light` | `#F2F2F2` | Section surfaces, content containers on light pages |
+| `neutrals.bone` | `#FFFFFF` | Page canvas, light text on dark backgrounds, card surfaces |
 
 ### Semantic
 
 | Token | Hex | Role |
 |-------|-----|------|
-| `semantic.success` | `#3D8A5F` | Success state, positive confirmations |
-| `semantic.warning` | `#D9A85F` | Warning state, attention required |
-| `semantic.error` | `#B5453A` | Error state, destructive actions |
-| `semantic.info` | `#4A6B8A` | Informational notices, neutral status |
+| `semantic.success` | `#3D8A5F` | Form success state, positive confirmation |
+| `semantic.warning` | `#D9A85F` | Warning state — intentionally aligns with toldwell-gold-deep |
+| `semantic.error` | `#B5453A` | Form error state, destructive action |
+| `semantic.info` | `#4A6B8A` | Informational notice, neutral system status |
 
-**Text selection:** `#FFFFFF` on `#191412`
+**Text selection:** `#FFFFFF` on `#1B1B1C`
 
 ## 2a. Surfaces
 
@@ -68,21 +66,19 @@ Semantic surface tokens — name describes role, not appearance.
 | Token | Value | Role |
 |-------|-------|------|
 | `surface.canvas` | `#FFFFFF` | Default page background |
-| `surface.canvas-warm` | `#FAF8F4` | Warm parchment alternative for editorial sections |
-| `surface.card` | `#F2F2F2` | Default card surface — slightly recessed against canvas |
-| `surface.card-elevated` | `#FFFFFF` | Elevated cards over warm canvas (parchment) |
-| `surface.dark-stage` | `#191412` | Dark hero sections, footers, full-bleed cinematic blocks |
-| `surface.dark-stage-soft` | `#3A3230` | Hover/secondary dark surfaces |
-| `surface.accent-stage` | `#F3CC92` | Gold full-bleed sections — used rarely, for moments of high warmth |
+| `surface.card` | `#F2F2F2` | Card / section surface, slightly recessed against canvas |
+| `surface.dark-stage` | `#1B1B1C` | Dark hero sections, footers, full-bleed cinematic blocks. The most common alternative canvas to white. |
+| `surface.black-stage` | `#000000` | Pure black — reserved for video letterboxing, overlay scrims, max-contrast moments |
+| `surface.accent-stage` | `#F3CC92` | Gold full-bleed sections. Used rarely, for moments that should feel warm and chosen. |
 
 ## 3. Typography
 
 ### Font Families
 
-- **Belwe** (display) — Regular (400), Medium (500), Bold, Italic
-  Hero headlines, large display text — gives Toldwell its distinctive warm serif character
+- **Belwe** (display) — Regular (400), Medium (500), Bold (700), Italic
+  Hero headlines, display text, named brand moments. Belwe gives Toldwell its distinctive warm serif character — the editorial weight of a film title card.
 - **Red Hat Display** (body) — 400, 500, 600, 700, 900
-  Headings, subheadings, body text, UI elements — the workhorse font
+  Headings, subheadings, body text, UI elements. The clean sans-serif partner — modern, readable, gets out of the way.
 
 ### Type Scale Ratio
 
@@ -135,7 +131,7 @@ Semantic surface tokens — name describes role, not appearance.
 ### Buttons
 
 **primary:**
-- background: `#191412`
+- background: `#1B1B1C`
 - text_color: `#FFFFFF`
 - radius: `100px`
 - padding: `12px 24px`
@@ -148,7 +144,7 @@ Semantic surface tokens — name describes role, not appearance.
 
 **accent:**
 - background: `#F3CC92`
-- text_color: `#191412`
+- text_color: `#1B1B1C`
 - radius: `100px`
 - padding: `12px 24px`
 - font_size: `12px`
@@ -157,8 +153,8 @@ Semantic surface tokens — name describes role, not appearance.
 
 **ghost:**
 - background: `transparent`
-- text_color: `#191412`
-- border: `1px solid #191412`
+- text_color: `#1B1B1C`
+- border: `1px solid #1B1B1C`
 - radius: `100px`
 - padding: `12px 24px`
 
@@ -166,17 +162,13 @@ Semantic surface tokens — name describes role, not appearance.
 
 **default:**
 - background: `#F2F2F2`
-- radius: `9px`
+- radius: `40px`
 - shadow: `inset-card`
-- padding: `20px`
-
-**portfolio:**
-- radius: `20px`
-- overflow: `hidden`
+- padding: `32px`
 
 **feature:**
 - background: `#FFFFFF`
-- radius: `25px`
+- radius: `40px`
 - padding: `32px`
 
 ### Tags
@@ -185,7 +177,7 @@ Semantic surface tokens — name describes role, not appearance.
 - padding: `5px 15px`
 - font_size: `12px`
 - background: `#F2F2F2`
-- text_color: `#191412`
+- text_color: `#1B1B1C`
 
 ## 5. Layout
 
@@ -193,7 +185,7 @@ Semantic surface tokens — name describes role, not appearance.
 
 **Max width:** 1200px
 
-**Density:** moderate
+**Density:** comfortable
 
 ### Spacing Scale
 
@@ -218,7 +210,7 @@ Semantic surface tokens — name describes role, not appearance.
 | Purpose | Value |
 |---------|-------|
 | section gap | 80px |
-| card padding | 20px |
+| card padding | 32px |
 | element gap | 8px |
 
 ### Border Radii
@@ -226,10 +218,7 @@ Semantic surface tokens — name describes role, not appearance.
 | Token | Value |
 |-------|-------|
 | `radius.none` | 0px |
-| `radius.sm` | 9px |
-| `radius.md` | 20px |
-| `radius.lg` | 25px |
-| `radius.xl` | 40px |
+| `radius.md` | 40px |
 | `radius.pill` | 100px |
 | `radius.full` | 9999px |
 
@@ -240,12 +229,9 @@ Semantic surface tokens — name describes role, not appearance.
 | `radius.buttons` | 100px |
 | `radius.tags` | 100px |
 | `radius.pill` | 100px |
-| `radius.cards` | 9px |
-| `radius.cards-md` | 20px |
-| `radius.cards-lg` | 25px |
-| `radius.portfolio` | 20px |
-| `radius.feature` | 25px |
-| `radius.inputs` | 9px |
+| `radius.cards` | 40px |
+| `radius.feature` | 40px |
+| `radius.inputs` | 40px |
 
 ## 6. Depth & Elevation
 
@@ -258,32 +244,29 @@ Semantic surface tokens — name describes role, not appearance.
 | `shadow.inset-card-deep` | `rgba(0, 0, 0, 0.22) 0.5px 1px 1.5px -1.5px inset, rgba(0, 0, 0, 0.18) 2px 4px 5px -2.5px inset, rgba(0, 0, 0, 0.08) 7px 14px 16px -4px inset` |
 | `shadow.focus-ring` | `0 0 0 3px rgba(243, 204, 146, 0.4)` |
 
-> Toldwell uses inset shadows exclusively — pressed/etched aesthetic, not floating cards. This is distinctive. Drop shadows are reserved for focus rings only.
+> Toldwell uses inset shadows for surfaces — pressed, not floating. Drop shadows reserved for focus rings only. The aesthetic is substance, not lift.
 
 ## 7. Do's and Don'ts
 
 ### Do
 
-- Use Belwe for hero/display text — it defines the Toldwell look
-- Use Red Hat Display for everything else — headings, body, UI
-- Use the warm gold (#F3CC92) for CTAs and accent backgrounds
-- Use Toldwell Dark (#191412) instead of pure black — it's warmer
-- Maintain generous whitespace — the design breathes
-- Use pill-shaped buttons (100px radius) consistently
+- Use Belwe for hero / display text — it carries the brand voice
+- Use Red Hat Display for everything else
+- Use Toldwell Dark (#1B1B1C) instead of pure black — pure black is reserved for video overlays
+- Hold the gold (#F3CC92) in reserve — for CTAs, key punctuation, deliberate warmth
+- Maintain generous whitespace — let the work breathe
+- Pill-shaped buttons (100px) and softly-rounded cards (40px)
 - Use inset shadows on cards, not drop shadows
-- Pair serif display (Belwe) with Red Hat Display for body
-- Hold the gold in reserve — accent, not field. Used too often, it loses meaning.
 
 ### Don't
 
-- Don't use pure black (#000000) — use Toldwell Dark (#191412)
-- Don't use drop shadows — Toldwell cards are pressed in, not floating
+- Don't use pure black (#000000) for text or surfaces — that's for video letterboxing only
+- Don't use drop shadows — Toldwell surfaces are pressed, not floating
 - Don't introduce colors outside the palette
-- Don't use Belwe for body text — it's display only
-- Don't use fonts other than Belwe and Red Hat Display
-- Don't use sharp corners — minimum radius is 9px
-- Don't make buttons rectangular — always pill-shaped
-- Don't field gold across full sections without intentional reason
+- Don't use Belwe for body text — display only
+- Don't field gold across full sections without a reason — it loses meaning when overused
+- Don't use sharp corners except when intentional
+- Don't make interactive elements rectangular — always pill-shaped
 
 ## 8. Responsive Behavior
 
@@ -294,59 +277,58 @@ Semantic surface tokens — name describes role, not appearance.
 | desktop | 1200px |
 | wide | 1440px |
 
-> Framer-built — uses fluid responsive scaling. Display text scales dramatically between breakpoints.
+> Display text scales dramatically between breakpoints. Mobile gets simplified hero treatment, desktop gets full editorial weight.
 
 ## 9. Agent Quick Reference
 
 | Token | Value |
 |-------|-------|
-| primary | `#191412` |
+| primary | `#1B1B1C` |
 | accent | `#F3CC92` |
 | canvas | `#FFFFFF` |
-| canvas-warm | `#FAF8F4` |
 | surface-card | `#F2F2F2` |
 | display_font | `Belwe` |
 | body_font | `Red Hat Display` |
 | button_radius | `100px` |
-| card_radius | `9px` |
+| card_radius | `40px` |
 | base_spacing | `4px` |
 | type_ratio | `Major Third (1.25) from 12px` |
 
 ### Ready-to-Use Prompts
 
-- Build a landing page with Toldwell Dark (#191412) hero section, warm gold (#F3CC92) accent reserved for the primary CTA, Belwe serif headlines, Red Hat Display body text, pill-shaped buttons (100px radius), inset card shadows.
-- Create a portfolio card grid with light gray (#F2F2F2) cards, inset shadows, 9px radius, generous spacing (80px section gap, 20px card padding).
-- Design a dark footer (#191412) with white text, Red Hat Display typography, pill-shaped CTA button in gold (#F3CC92).
-- Editorial section: warm parchment canvas (#FAF8F4), Belwe display headline, Red Hat Display body. No gold unless it's earning attention.
+- Build a Toldwell hero section: dark canvas (#1B1B1C), Belwe display headline 'Good stories, told well.', Red Hat Display sub-tagline, single warm-gold (#F3CC92) CTA pill button. Generous whitespace. No drop shadows.
+- Create a portfolio grid of video case studies: light canvas, F2F2F2 card surfaces with 40px radius and inset shadows, Belwe project titles, Red Hat Display body. Pill-shaped tags for category.
+- Design a dark footer (#1B1B1C) with Red Hat Display, sub-100% opacity socials list (Instagram + LinkedIn + YouTube), gold pill CTA 'Let's make something meaningful', email hello@toldwell.com.
+- Editorial film case study layout: white canvas, Belwe display title, em-dash heavy body copy, hold gold for the closing 'Watch the film' CTA only.
 
 ## 10. Voice & Tone
 
-**Personality:** Warm, Confident, Story-driven, Crafted
+**Personality:** Reverent, Considered, Story-driven, Earnest, Crafted
 
-**Tone spectrum:** Formal 6/10 · Playful 4/10 · Technical 3/10 · Emotional 7/10
+**Tone spectrum:** Formal 5/10 · Playful 3/10 · Technical 4/10 · Emotional 8/10
 
-**CTA style:** Action-oriented, concise — 'Start your story', 'See our work', 'Let's talk'
+**CTA style:** Direct, declarative, low-noise. 'Let's get to work.' / 'Watch our showreel.' / 'View our deck.' / 'Work with us.' Short, action-oriented, never salesy.
 
-**Error style:** Friendly, direct — avoid technical jargon
+**Error style:** Friendly, direct — never blame the user. Plain language.
 
-**Avoid:** Corporate buzzwords, Overly casual/slang, Technical filmmaking jargon in client-facing copy, Passive voice
+**Avoid:** Corporate buzzwords ('synergy', 'leverage', 'best-in-class'), Hype language ('mind-blowing', 'next-level', 'game-changing'), Filmmaking jargon in client-facing copy, Passive voice, Anything that prizes speed over substance
 
 ## 11. Brand Narrative
 
-**What we are:** A video studio that creates films that stick — memorable, emotional, purposeful
+**What we are:** A video studio partnering with agencies, brands, and leaders to create films and narratives that stick.
 
-**What we reject:** Generic corporate videos, stock-footage-driven content, style without substance
+**What we reject:** Fleeting content. Fast churn. Style without substance. Work designed only for the demands of social media and fast marketing.
 
-**Core belief:** Every company and individual has a story worth telling well
+**Core belief:** Every brand and leader has a story worth telling well. We long to create meaningful work that outlasts all those involved in its creation.
 
 ## 12. Principles
 
-- **Story First:** Every design decision serves the narrative. If it doesn't help tell the story, remove it.
-- **Cinematic Craft:** Treat the screen like a frame. Composition, contrast, and timing matter.
-- **Warm Professionalism:** Approachable but not casual. The gold accent warms the dark foundation.
-- **Breathe:** Generous whitespace. Let content and visuals command attention without clutter.
-- **Show, Don't Tell:** Lead with work. Portfolio pieces speak louder than copy.
-- **Hold the Gold:** The accent is reserved. A single warm note across an otherwise neutral score is what makes it sing.
+- **Story First:** Every design and creative decision serves the narrative. If it doesn't help tell the story, remove it.
+- **Make It Last:** We craft work meant to outlive the moment that prompted it. Durability over disposability, always.
+- **Hold the Gold:** The accent is reserved. A single warm note across an otherwise neutral score is what makes it sing. Same goes for any element of style — restraint creates meaning.
+- **Talent Density:** Small, expert crews of 5-25 over large impersonal ones. Closer collaboration, faster decisions, no wasted craft.
+- **Substance Before Style:** Beautiful work that isn't true to the brief is a failure. Truth first, then polish.
+- **Breathe:** Generous whitespace. Let work and visuals command attention without clutter.
 
 ---
 

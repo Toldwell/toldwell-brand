@@ -78,9 +78,9 @@ body[data-framer-page-id] [data-framer-name="Content"] > section[id="color"],
 #tw-color-panel {
   font-family: 'Red Hat Display', system-ui, sans-serif;
   color: var(--color-neutrals-toldwell-dark, #191412);
-  background: var(--surface-canvas-warm, #FAF8F4);
+  background: var(--surface-canvas, #FFFFFF);
   padding: 80px 60px 100px;
-  border-bottom: 1px solid var(--color-neutrals-driftwood, #D6CFC9);
+  border-bottom: 1px solid var(--color-neutrals-mid-gray, #6B6B6B);
 }
 
 #tw-color-panel .tw-color-panel-head {
@@ -102,7 +102,7 @@ body[data-framer-page-id] [data-framer-name="Content"] > section[id="color"],
   font-size: 20px;
   line-height: 1.55;
   letter-spacing: -0.4px;
-  color: var(--color-neutrals-graphite, #5C504C);
+  color: var(--color-neutrals-mid-gray, #6B6B6B);
   margin: 0;
 }
 
@@ -116,10 +116,10 @@ body[data-framer-page-id] [data-framer-name="Content"] > section[id="color"],
   font-weight: 600;
   letter-spacing: 0.4px;
   text-transform: uppercase;
-  color: var(--color-neutrals-graphite, #5C504C);
+  color: var(--color-neutrals-mid-gray, #6B6B6B);
   margin: 0 0 24px;
   padding-bottom: 12px;
-  border-bottom: 1px solid var(--color-neutrals-driftwood, #D6CFC9);
+  border-bottom: 1px solid var(--color-neutrals-mid-gray, #6B6B6B);
 }
 
 #tw-color-panel .tw-color-grid {
@@ -131,7 +131,7 @@ body[data-framer-page-id] [data-framer-name="Content"] > section[id="color"],
 #tw-color-panel .tw-swatch {
   border-radius: 9px;
   overflow: hidden;
-  background: var(--surface-card-elevated, #FFFFFF);
+  background: var(--surface-canvas, #FFFFFF);
   box-shadow:
     rgba(0, 0, 0, 0.18) 0.3px 0.6px 0.67px -1.25px inset,
     rgba(0, 0, 0, 0.16) 1.14px 2.29px 2.56px -2.5px inset,
@@ -155,7 +155,7 @@ body[data-framer-page-id] [data-framer-name="Content"] > section[id="color"],
 
 #tw-color-panel .tw-swatch-meta {
   padding: 16px 18px 18px;
-  background: var(--surface-card-elevated, #FFFFFF);
+  background: var(--surface-canvas, #FFFFFF);
 }
 
 #tw-color-panel .tw-swatch-name {
@@ -172,7 +172,7 @@ body[data-framer-page-id] [data-framer-name="Content"] > section[id="color"],
   font-family: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 11px;
   background: var(--color-neutrals-surface-light, #F2F2F2);
-  color: var(--color-neutrals-graphite, #5C504C);
+  color: var(--color-neutrals-mid-gray, #6B6B6B);
   padding: 2px 8px;
   border-radius: 4px;
   margin-bottom: 10px;
@@ -182,17 +182,17 @@ body[data-framer-page-id] [data-framer-name="Content"] > section[id="color"],
   font-size: 13px;
   line-height: 1.45;
   letter-spacing: -0.13px;
-  color: var(--color-neutrals-graphite, #5C504C);
+  color: var(--color-neutrals-mid-gray, #6B6B6B);
   margin: 0;
 }
 
 #tw-color-panel .tw-color-panel-foot {
   margin-top: 32px;
   padding-top: 32px;
-  border-top: 1px solid var(--color-neutrals-driftwood, #D6CFC9);
+  border-top: 1px solid var(--color-neutrals-mid-gray, #6B6B6B);
   font-size: 14px;
   line-height: 1.55;
-  color: var(--color-neutrals-graphite, #5C504C);
+  color: var(--color-neutrals-mid-gray, #6B6B6B);
   max-width: 720px;
 }
 

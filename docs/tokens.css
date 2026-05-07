@@ -12,13 +12,11 @@
   --color-accent-toldwell-gold-soft: #F8E0BB;
   --color-accent-toldwell-gold-deep: #D9A85F;
   /* neutrals */
-  --color-neutrals-toldwell-dark: #191412;
-  --color-neutrals-slate: #3A3230;
-  --color-neutrals-graphite: #5C504C;
-  --color-neutrals-fog: #9A8E89;
-  --color-neutrals-driftwood: #D6CFC9;
+  --color-neutrals-toldwell-dark: #1B1B1C;
+  --color-neutrals-pure-black: #000000;
+  --color-neutrals-pure-black-75: #000000BF;
+  --color-neutrals-mid-gray: #6B6B6B;
   --color-neutrals-surface-light: #F2F2F2;
-  --color-neutrals-parchment: #FAF8F4;
   --color-neutrals-bone: #FFFFFF;
   /* semantic */
   --color-semantic-success: #3D8A5F;
@@ -28,11 +26,9 @@
 
   /* ─── Surfaces ─────────────────────────────────────────────────────── */
   --surface-canvas: #FFFFFF;
-  --surface-canvas-warm: #FAF8F4;
   --surface-card: #F2F2F2;
-  --surface-card-elevated: #FFFFFF;
-  --surface-dark-stage: #191412;
-  --surface-dark-stage-soft: #3A3230;
+  --surface-dark-stage: #1B1B1C;
+  --surface-black-stage: #000000;
   --surface-accent-stage: #F3CC92;
 
   /* ─── Typography ───────────────────────────────────────────────────── */
@@ -114,27 +110,21 @@
   --spacing-128: 128px;
 
   --section-gap: 80px;
-  --card-padding: 20px;
+  --card-padding: 32px;
   --element-gap: 8px;
 
   /* ─── Radii ────────────────────────────────────────────────────────── */
   --radius-none: 0;
-  --radius-sm: 9px;
-  --radius-md: 20px;
-  --radius-lg: 25px;
-  --radius-xl: 40px;
+  --radius-md: 40px;
   --radius-pill: 100px;
   --radius-full: 9999px;
 
   --radius-buttons: 100px;
   --radius-tags: 100px;
   --radius-pill: 100px;
-  --radius-cards: 9px;
-  --radius-cards-md: 20px;
-  --radius-cards-lg: 25px;
-  --radius-portfolio: 20px;
-  --radius-feature: 25px;
-  --radius-inputs: 9px;
+  --radius-cards: 40px;
+  --radius-feature: 40px;
+  --radius-inputs: 40px;
 
   /* ─── Shadows ──────────────────────────────────────────────────────── */
   --shadow-none: none;
@@ -153,4 +143,4 @@
   --base-unit: 4px;
 }
 
-::selection { color: #FFFFFF; background: #191412; }
+::selection { color: #FFFFFF; background: #1B1B1C; }
