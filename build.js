@@ -793,33 +793,6 @@ function emitTokensJson(brand) {
 const TOKENS_LINK = '<link rel="stylesheet" href="/tokens.css">';
 const OVERRIDES_LINK = '<link rel="stylesheet" href="/site-overrides.css">';
 
-// Mobile menu toggle — replaces Framer's stripped JS drawer.
-// Reuses Cipherly's existing menu markup (.framer-1sw6i8y wrapper).
-const MOBILE_MENU_HTML = `<button id="tw-mobile-toggle" aria-label="Toggle navigation menu"></button>
-<div id="tw-mobile-overlay"></div>
-<script>
-(function(){
-  var toggle = document.getElementById('tw-mobile-toggle');
-  var overlay = document.getElementById('tw-mobile-overlay');
-  var drawer = document.querySelector('.framer-1sw6i8y');
-  if (!toggle || !overlay || !drawer) return;
-  function setOpen(open){
-    toggle.classList.toggle('is-open', open);
-    overlay.classList.toggle('is-open', open);
-    drawer.classList.toggle('is-open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
-  }
-  toggle.addEventListener('click', function(){
-    setOpen(!drawer.classList.contains('is-open'));
-  });
-  overlay.addEventListener('click', function(){ setOpen(false); });
-  // Close drawer when a nav link is clicked
-  drawer.querySelectorAll('a[href]').forEach(function(a){
-    a.addEventListener('click', function(){ setOpen(false); });
-  });
-})();
-</script>`;
-
 function transformHtml(filePath, buf, brand, content) {
   let html = buf.toString();
 
@@ -850,11 +823,6 @@ function transformHtml(filePath, buf, brand, content) {
     if (html.includes('</head>')) {
       html = html.replace('</head>', `  ${OVERRIDES_LINK}\n</head>`);
     }
-  }
-
-  // Insert mobile menu toggle + drawer JS if not present
-  if (!html.includes('id="tw-mobile-toggle"') && html.includes('</body>')) {
-    html = html.replace('</body>', `${MOBILE_MENU_HTML}\n</body>`);
   }
 
   // ─── Content swaps from content.yaml ─────────────────────────────────────

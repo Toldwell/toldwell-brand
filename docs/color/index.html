@@ -1198,28 +1198,4 @@ html.lenis { height: auto; }
     <!-- End of bodyEnd -->
 
 
-<button id="tw-mobile-toggle" aria-label="Toggle navigation menu"></button>
-<div id="tw-mobile-overlay"></div>
-<script>
-(function(){
-  var toggle = document.getElementById('tw-mobile-toggle');
-  var overlay = document.getElementById('tw-mobile-overlay');
-  var drawer = document.querySelector('.framer-1sw6i8y');
-  if (!toggle || !overlay || !drawer) return;
-  function setOpen(open){
-    toggle.classList.toggle('is-open', open);
-    overlay.classList.toggle('is-open', open);
-    drawer.classList.toggle('is-open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
-  }
-  toggle.addEventListener('click', function(){
-    setOpen(!drawer.classList.contains('is-open'));
-  });
-  overlay.addEventListener('click', function(){ setOpen(false); });
-  // Close drawer when a nav link is clicked
-  drawer.querySelectorAll('a[href]').forEach(function(a){
-    a.addEventListener('click', function(){ setOpen(false); });
-  });
-})();
-</script>
 </body></html>
