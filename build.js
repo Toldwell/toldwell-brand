@@ -20,6 +20,7 @@ const yaml = require('js-yaml');
 
 const ROOT = __dirname;
 const BRAND_FILE = path.join(ROOT, 'brand.yaml');
+const CONTENT_FILE = path.join(ROOT, 'content.yaml');
 const DESIGN_MD = path.join(ROOT, 'DESIGN.md');
 const TOKENS_CSS = path.join(ROOT, 'tokens.css');
 const TAILWIND_CSS = path.join(ROOT, 'tailwind.css');
@@ -33,6 +34,26 @@ const DOCS_DIR = path.join(ROOT, 'docs');
 
 function loadBrand() {
   return yaml.load(fs.readFileSync(BRAND_FILE, 'utf8'));
+}
+
+function loadContent() {
+  if (!fs.existsSync(CONTENT_FILE)) return { global: [], pages: {}, images: { swaps: [] } };
+  return yaml.load(fs.readFileSync(CONTENT_FILE, 'utf8'));
+}
+
+// Apply find/replace swaps to an HTML string.
+// `swaps` is an array of { from, to } objects. Each `from` is a literal string
+// (NOT a regex); we escape any regex chars to be safe.
+function applySwaps(html, swaps) {
+  if (!swaps || !swaps.length) return html;
+  for (const swap of swaps) {
+    if (!swap || !swap.from) continue;
+    // Literal string replacement, all occurrences
+    const escaped = String(swap.from).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const re = new RegExp(escaped, 'g');
+    html = html.replace(re, swap.to ?? '');
+  }
+  return html;
 }
 
 function slugify(s) {
@@ -762,66 +783,7 @@ function emitTokensJson(brand) {
   return JSON.stringify(out, null, 2) + '\n';
 }
 
-// ─── Color panel HTML (injected into /color/) ────────────────────────────────
-// Generated from yaml so swatches stay in sync with brand.yaml.
-
-function generateColorPanel(brand) {
-  const groups = ['brand', 'accent', 'neutrals', 'semantic'];
-  const groupLabels = {
-    brand: 'Brand',
-    accent: 'Accent',
-    neutrals: 'Neutrals',
-    semantic: 'Semantic',
-  };
-
-  const sections = groups.map(group => {
-    if (!brand.colors[group]) return '';
-    const swatches = Object.entries(brand.colors[group]).map(([name, def]) => {
-      const isLight = (() => {
-        const r = parseInt(def.hex.slice(1, 3), 16);
-        const g = parseInt(def.hex.slice(3, 5), 16);
-        const b = parseInt(def.hex.slice(5, 7), 16);
-        return (r * 299 + g * 587 + b * 114) / 1000 > 140;
-      })();
-      const textColor = isLight ? '#191412' : '#FFFFFF';
-      const displayName = name.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-      return `      <div class="tw-swatch">
-        <div class="tw-swatch-color" style="background:${def.hex};color:${textColor}">
-          <span class="tw-swatch-hex">${def.hex.toUpperCase()}</span>
-        </div>
-        <div class="tw-swatch-meta">
-          <strong class="tw-swatch-name">${displayName}</strong>
-          <code class="tw-swatch-token">--color-${group}-${name}</code>
-          <p class="tw-swatch-role">${def.role}</p>
-        </div>
-      </div>`;
-    }).join('\n');
-
-    return `  <section class="tw-color-group">
-    <h3 class="tw-color-group-label">${groupLabels[group]}</h3>
-    <div class="tw-color-grid">
-${swatches}
-    </div>
-  </section>`;
-  }).filter(Boolean).join('\n\n');
-
-  return `<!-- Toldwell color panel — generated from brand.yaml -->
-<aside id="tw-color-panel">
-  <header class="tw-color-panel-head">
-    <h2>Color Palette</h2>
-    <p>The Toldwell palette is intentionally restrained. Warm dark tones anchored by a distinctive gold accent, structured into four roles: brand, accent, neutrals, and semantic. Every color reads to its purpose.</p>
-  </header>
-
-${sections}
-
-  <footer class="tw-color-panel-foot">
-    <p>All colors are exposed as CSS variables in <a href="/tokens.css"><code>tokens.css</code></a>, Tailwind v4 theme in <a href="/tailwind.css"><code>tailwind.css</code></a>, and W3C Design Tokens spec in <a href="/tokens.json"><code>tokens.json</code></a>.</p>
-  </footer>
-</aside>
-`;
-}
-
-// ─── Site build: copy site/template/* → site/docs/* with token injection ──────
+// ─── Site build: copy site/template/* → docs/* with content swaps ────────────
 //
 // We don't blow away the docs folder entirely (must preserve CNAME + generated
 // design files dropped there). We copy the template tree, and inject a tokens
@@ -831,7 +793,7 @@ ${sections}
 const TOKENS_LINK = '<link rel="stylesheet" href="/tokens.css">';
 const OVERRIDES_LINK = '<link rel="stylesheet" href="/site-overrides.css">';
 
-function transformHtml(filePath, buf, brand) {
+function transformHtml(filePath, buf, brand, content) {
   let html = buf.toString();
 
   // Strip Framer's hydration JS bundles + module preloads. These scripts
@@ -862,17 +824,42 @@ function transformHtml(filePath, buf, brand) {
       html = html.replace('</head>', `  ${OVERRIDES_LINK}\n</head>`);
     }
   }
-  // Page-specific injections
-  if (filePath.endsWith('/color/index.html') || filePath.endsWith('\\color\\index.html')) {
-    if (!html.includes('id="tw-color-panel"')) {
-      const panel = generateColorPanel(brand);
-      html = html.replace('</body>', `${panel}\n</body>`);
+
+  // ─── Content swaps from content.yaml ─────────────────────────────────────
+  // Apply global swaps to every page, then page-specific swaps based on which
+  // directory the file is in.
+  if (content) {
+    // Global swaps
+    if (Array.isArray(content.global)) {
+      html = applySwaps(html, content.global);
+    }
+
+    // Determine which page section applies based on parent directory
+    const normalized = filePath.replace(/\\/g, '/');
+    const tplPrefix = TEMPLATE_DIR.replace(/\\/g, '/');
+    const rel = normalized.startsWith(tplPrefix)
+      ? normalized.slice(tplPrefix.length).replace(/^\/+/, '')
+      : normalized;
+    const parts = rel.split('/');
+    const pageKey = parts.length > 1 ? parts[0] : 'index';
+
+    if (content.pages && content.pages[pageKey]) {
+      const pageContent = content.pages[pageKey];
+      if (Array.isArray(pageContent.text)) {
+        html = applySwaps(html, pageContent.text);
+      }
+    }
+
+    // Image swaps (URL-level, applied globally)
+    if (content.images && Array.isArray(content.images.swaps)) {
+      html = applySwaps(html, content.images.swaps);
     }
   }
+
   return html;
 }
 
-function buildSite(brand) {
+function buildSite(brand, content) {
   if (!fs.existsSync(TEMPLATE_DIR)) {
     console.log('  (no site/template/ — skipping site build)');
     return;
@@ -891,7 +878,7 @@ function buildSite(brand) {
 
   // Copy template → docs with HTML transform
   copyDir(TEMPLATE_DIR, DOCS_DIR, (filePath, buf) => {
-    if (filePath.endsWith('.html')) return transformHtml(filePath, buf, brand);
+    if (filePath.endsWith('.html')) return transformHtml(filePath, buf, brand, content);
     return buf;
   });
 
@@ -919,6 +906,13 @@ function main() {
   console.log('Loading brand.yaml...');
   const brand = loadBrand();
 
+  console.log('Loading content.yaml...');
+  const content = loadContent();
+  const swapCount = (content.global || []).length
+    + Object.values(content.pages || {}).reduce((sum, p) => sum + (p.text || []).length, 0)
+    + (content.images?.swaps || []).length;
+  console.log(`  (${swapCount} swap rules)`);
+
   console.log('Emitting design files at repo root:');
 
   fs.writeFileSync(DESIGN_MD, emitDesignMd(brand));
@@ -934,7 +928,7 @@ function main() {
   console.log('  ✓ tokens.json');
 
   console.log('Building site (site/template → docs/)...');
-  buildSite(brand);
+  buildSite(brand, content);
   copyDesignFilesToSite();
   console.log('  ✓ docs/');
 
