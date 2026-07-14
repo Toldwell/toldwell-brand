@@ -1,0 +1,140 @@
+- generic [ref=f8e3]:
+  - generic [ref=f8e5]:
+    - generic [ref=f8e6]:
+      - main [ref=f8e9]:
+        - generic [ref=f8e11]:
+          - heading "03" [level=1] [ref=f8e13]
+          - heading "Logo" [level=1] [ref=f8e15]
+      - generic [ref=f8e20]:
+        - heading "Cipherly logo embodies trust, quality, and serves as a vital identifier for our clients. To maintain its integrity across diverse platforms, we provide clear guidelines for consistent and precise usage, reinforcing our commitment to clarity and coherence." [level=2] [ref=f8e22]
+        - link [ref=f8e24] [cursor=pointer]:
+          - /url: ./logo#assets
+          - paragraph [ref=f8e26]: DOWNLOAD ASSETS
+      - generic [ref=f8e29]:
+        - generic [ref=f8e30]:
+          - heading "Lookup" [level=3] [ref=f8e32]
+          - paragraph [ref=f8e34]: The Cipherly logo encapsulates our brand essence, acting as a succinct and memorable symbol that resonates across diverse scales and mediums.
+        - generic [ref=f8e38]:
+          - paragraph [ref=f8e42]: Logo
+          - paragraph [ref=f8e54]: Wordmark
+      - generic [ref=f8e57]:
+        - generic [ref=f8e58]:
+          - heading "Safe Zones" [level=3] [ref=f8e60]
+          - paragraph [ref=f8e62]: The exclusion zone safeguards the legibility and impact of the logo by isolating it from other visual elements like text, graphics, and imagery.
+        - generic [ref=f8e63]:
+          - paragraph [ref=f8e75]: The safe zone for the logo equals the width of the small circle within the logo.
+          - paragraph [ref=f8e87]: The safe zone for the wordmark equals the width of the small circle within the logo.
+      - generic [ref=f8e91]:
+        - heading "Color" [level=3] [ref=f8e93]
+        - paragraph [ref=f8e95]: Understanding these color choices empowers you to effectively represent Cipherly across various mediums while staying true to our brand's identity.
+      - generic [ref=f8e123]:
+        - heading "Download Assets" [level=3] [ref=f8e125]
+        - generic [ref=f8e128]:
+          - paragraph [ref=f8e130]: Cipherly logo suite
+          - generic "Publish to Download" [ref=f8e134] [cursor=pointer]: DOWNLOAD ASSETS
+    - generic [ref=f8e135]:
+      - generic [ref=f8e138]:
+        - link "02 Strategy" [ref=f8e141] [cursor=pointer]:
+          - /url: ./strategy
+          - generic [ref=f8e142]:
+            - paragraph [ref=f8e144]: "02"
+            - paragraph [ref=f8e146]: Strategy
+        - link "04 Typography" [ref=f8e151] [cursor=pointer]:
+          - /url: ./typography
+          - generic [ref=f8e152]:
+            - paragraph [ref=f8e154]: "04"
+            - paragraph [ref=f8e156]: Typography
+      - contentinfo [ref=f8e161]:
+        - generic [ref=f8e162]:
+          - generic [ref=f8e163]:
+            - generic [ref=f8e164]:
+              - paragraph [ref=f8e166]: Visual Identity Guidelines
+              - paragraph [ref=f8e168]: Version 1.0
+            - generic [ref=f8e169]:
+              - generic [ref=f8e170]:
+                - paragraph [ref=f8e172]: Get in Touch
+                - link [ref=f8e174] [cursor=pointer]:
+                  - /url: mailto:brand@cipherly.dev
+                  - paragraph [ref=f8e176]: brand@cipherly.dev
+              - generic [ref=f8e177]:
+                - link [ref=f8e179] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/
+                  - paragraph [ref=f8e181]: LinkedIn
+                - link [ref=f8e183] [cursor=pointer]:
+                  - /url: https://www.instagram.com/
+                  - paragraph [ref=f8e185]: Instagram
+          - generic [ref=f8e186]:
+            - link [ref=f8e187] [cursor=pointer]:
+              - /url: ./
+            - generic [ref=f8e191]:
+              - paragraph [ref=f8e193]: © 2024 Cipherly
+              - link [ref=f8e195] [cursor=pointer]:
+                - /url: ./logo#hero
+                - paragraph [ref=f8e197]: Back to top
+  - navigation [ref=f8e200]:
+    - generic [ref=f8e201]:
+      - link [ref=f8e203] [cursor=pointer]:
+        - /url: ./
+      - generic [ref=f8e204]:
+        - generic [ref=f8e206]:
+          - generic [ref=f8e207]:
+            - paragraph [ref=f8e209]: VISUAL IDENTITY GUIDELINES
+            - paragraph [ref=f8e211]: "UPDATED: May 6, 2024"
+          - link [ref=f8e216] [cursor=pointer]:
+            - /url: ./introduction
+            - generic [ref=f8e217]:
+              - paragraph [ref=f8e219]: "01"
+              - paragraph [ref=f8e221]: Introduction
+          - generic [ref=f8e222]:
+            - link "02 Strategy" [ref=f8e226] [cursor=pointer]:
+              - /url: ./strategy
+              - generic [ref=f8e227]:
+                - paragraph [ref=f8e229]: "02"
+                - paragraph [ref=f8e231]: Strategy
+            - generic [ref=f8e235] [cursor=pointer]:
+              - link "03 Logo" [ref=f8e237]:
+                - /url: ./logo
+                - generic [ref=f8e238]:
+                  - paragraph [ref=f8e240]: "03"
+                  - paragraph [ref=f8e242]: Logo
+              - generic [ref=f8e245]:
+                - link [ref=f8e247]:
+                  - /url: ./logo#lookup
+                  - paragraph [ref=f8e249]: Lookup
+                - link [ref=f8e251]:
+                  - /url: ./logo#safe-zones
+                  - paragraph [ref=f8e253]: Safe Zones
+                - link [ref=f8e255]:
+                  - /url: ./logo#color
+                  - paragraph [ref=f8e257]: Color
+                - link [ref=f8e259]:
+                  - /url: ./logo#assets
+                  - paragraph [ref=f8e261]: Download Assets
+            - link "04 Typography" [ref=f8e265] [cursor=pointer]:
+              - /url: ./typography
+              - generic [ref=f8e266]:
+                - paragraph [ref=f8e268]: "04"
+                - paragraph [ref=f8e270]: Typography
+            - link "05 Color" [ref=f8e276] [cursor=pointer]:
+              - /url: ./color
+              - generic [ref=f8e277]:
+                - paragraph [ref=f8e279]: "05"
+                - paragraph [ref=f8e281]: Color
+            - link "06 Images" [ref=f8e287] [cursor=pointer]:
+              - /url: ./images
+              - generic [ref=f8e288]:
+                - paragraph [ref=f8e290]: "06"
+                - paragraph [ref=f8e292]: Images
+            - link "07 Icons" [ref=f8e298] [cursor=pointer]:
+              - /url: ./icons
+              - generic [ref=f8e299]:
+                - paragraph [ref=f8e301]: "07"
+                - paragraph [ref=f8e303]: Icons
+          - link [ref=f8e310] [cursor=pointer]:
+            - /url: ./resources
+            - generic [ref=f8e311]:
+              - paragraph [ref=f8e313]: "08"
+              - paragraph [ref=f8e315]: Resources
+        - link "Go to Website" [ref=f8e318] [cursor=pointer]:
+          - /url: https://www.google.com
+          - paragraph [ref=f8e320]: Go to Website

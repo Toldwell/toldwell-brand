@@ -1,0 +1,109 @@
+- generic [ref=f5e3]:
+  - generic [ref=f5e5]:
+    - generic [ref=f5e6]:
+      - main [ref=f5e9]:
+        - generic [ref=f5e11]:
+          - heading "08" [level=1] [ref=f5e13]
+          - heading "Resources" [level=1] [ref=f5e15]
+      - heading "Explore our repository of current resources, templates, guides, and insights from all corners of Cipherly. Updated regularly, be sure to revisit for valuable support in kickstarting your projects." [level=2] [ref=f5e22]
+      - generic [ref=f5e25]:
+        - heading "Cipherly Resources" [level=3] [ref=f5e27]
+        - generic [ref=f5e28]:
+          - generic [ref=f5e31]:
+            - paragraph [ref=f5e33]: Cipherly logo suite
+            - generic "Publish to Download" [ref=f5e37] [cursor=pointer]: DOWNLOAD ASSETS
+          - generic [ref=f5e40]:
+            - paragraph [ref=f5e42]: Cipherly typefaces
+            - generic "Publish to Download" [ref=f5e46] [cursor=pointer]: DOWNLOAD FONT
+          - generic [ref=f5e49]:
+            - paragraph [ref=f5e51]: Cipherly images set
+            - generic "Publish to Download" [ref=f5e55] [cursor=pointer]: DOWNLOAD ASSETS
+          - generic [ref=f5e58]:
+            - paragraph [ref=f5e60]: Cipherly icon library
+            - generic "Publish to Download" [ref=f5e64] [cursor=pointer]: DOWNLOAD ICONS
+    - generic [ref=f5e65]:
+      - link "07 Icons" [ref=f5e71] [cursor=pointer]:
+        - /url: ./icons
+        - generic [ref=f5e72]:
+          - paragraph [ref=f5e74]: "07"
+          - paragraph [ref=f5e76]: Icons
+      - contentinfo [ref=f5e84]:
+        - generic [ref=f5e85]:
+          - generic [ref=f5e86]:
+            - generic [ref=f5e87]:
+              - paragraph [ref=f5e89]: Visual Identity Guidelines
+              - paragraph [ref=f5e91]: Version 1.0
+            - generic [ref=f5e92]:
+              - generic [ref=f5e93]:
+                - paragraph [ref=f5e95]: Get in Touch
+                - link [ref=f5e97] [cursor=pointer]:
+                  - /url: mailto:brand@cipherly.dev
+                  - paragraph [ref=f5e99]: brand@cipherly.dev
+              - generic [ref=f5e100]:
+                - link [ref=f5e102] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/
+                  - paragraph [ref=f5e104]: LinkedIn
+                - link [ref=f5e106] [cursor=pointer]:
+                  - /url: https://www.instagram.com/
+                  - paragraph [ref=f5e108]: Instagram
+          - generic [ref=f5e109]:
+            - link [ref=f5e110] [cursor=pointer]:
+              - /url: ./
+            - generic [ref=f5e114]:
+              - paragraph [ref=f5e116]: © 2024 Cipherly
+              - link [ref=f5e118] [cursor=pointer]:
+                - /url: ./resources#hero
+                - paragraph [ref=f5e120]: Back to top
+  - navigation [ref=f5e123]:
+    - generic [ref=f5e124]:
+      - link [ref=f5e126] [cursor=pointer]:
+        - /url: ./
+      - generic [ref=f5e127]:
+        - generic [ref=f5e129]:
+          - generic [ref=f5e130]:
+            - paragraph [ref=f5e132]: VISUAL IDENTITY GUIDELINES
+            - paragraph [ref=f5e134]: "UPDATED: May 6, 2024"
+          - link [ref=f5e139] [cursor=pointer]:
+            - /url: ./introduction
+            - generic [ref=f5e140]:
+              - paragraph [ref=f5e142]: "01"
+              - paragraph [ref=f5e144]: Introduction
+          - generic [ref=f5e145]:
+            - link "02 Strategy" [ref=f5e149] [cursor=pointer]:
+              - /url: ./strategy
+              - generic [ref=f5e150]:
+                - paragraph [ref=f5e152]: "02"
+                - paragraph [ref=f5e154]: Strategy
+            - link "03 Logo" [ref=f5e160] [cursor=pointer]:
+              - /url: ./logo
+              - generic [ref=f5e161]:
+                - paragraph [ref=f5e163]: "03"
+                - paragraph [ref=f5e165]: Logo
+            - link "04 Typography" [ref=f5e171] [cursor=pointer]:
+              - /url: ./typography
+              - generic [ref=f5e172]:
+                - paragraph [ref=f5e174]: "04"
+                - paragraph [ref=f5e176]: Typography
+            - link "05 Color" [ref=f5e182] [cursor=pointer]:
+              - /url: ./color
+              - generic [ref=f5e183]:
+                - paragraph [ref=f5e185]: "05"
+                - paragraph [ref=f5e187]: Color
+            - link "06 Images" [ref=f5e193] [cursor=pointer]:
+              - /url: ./images
+              - generic [ref=f5e194]:
+                - paragraph [ref=f5e196]: "06"
+                - paragraph [ref=f5e198]: Images
+            - link "07 Icons" [ref=f5e204] [cursor=pointer]:
+              - /url: ./icons
+              - generic [ref=f5e205]:
+                - paragraph [ref=f5e207]: "07"
+                - paragraph [ref=f5e209]: Icons
+          - link [ref=f5e216] [cursor=pointer]:
+            - /url: ./resources
+            - generic [ref=f5e217]:
+              - paragraph [ref=f5e219]: "08"
+              - paragraph [ref=f5e221]: Resources
+        - link "Go to Website" [ref=f5e224] [cursor=pointer]:
+          - /url: https://www.google.com
+          - paragraph [ref=f5e226]: Go to Website

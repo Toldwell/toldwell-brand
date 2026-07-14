@@ -132,12 +132,59 @@
   }
 
   let scanTimer = null;
+  // ─── Download-link repair ─────────────────────────────────────────────────
+  // Framer hydration re-renders <a download> buttons WITHOUT an href
+  // (title="Publish to Download" draft state) because the rip has no Framer
+  // asset backend. The static HTML for each page contains the correct
+  // (already-swapped) hrefs, so we fetch the current page's own static HTML
+  // once, extract the download hrefs in document order, and re-apply them
+  // by position whenever hydration clears them.
+  const staticDownloadHrefs = {}; // pageKey -> array of hrefs | 'pending'
+  function fixDownloadLinks() {
+    const anchors = Array.from(document.querySelectorAll('a[download]'));
+    if (!anchors.length) return;
+    if (!anchors.some((a) => !a.getAttribute('href'))) return; // all good
+    const key = pageKey();
+    const cached = staticDownloadHrefs[key];
+    if (cached === 'pending') return;
+    if (Array.isArray(cached)) {
+      if (cached.length === anchors.length) {
+        anchors.forEach((a, i) => {
+          if (!a.getAttribute('href') && cached[i]) {
+            a.setAttribute('href', cached[i]);
+            a.setAttribute('title', 'Download');
+          }
+        });
+      }
+      return;
+    }
+    staticDownloadHrefs[key] = 'pending';
+    const pagePath = key === 'index' ? '/' : '/' + key + '/';
+    fetch(pagePath)
+      .then((res) => (res.ok ? res.text() : Promise.reject(res.status)))
+      .then((html) => {
+        const hrefs = [];
+        const tagRe = /<a\b[^>]*\bdownload=(?:""|''|)[\s>][^>]*>|<a\b[^>]*\bdownload\b[^>]*>/g;
+        let m;
+        while ((m = tagRe.exec(html))) {
+          const h = /href="([^"]+)"/.exec(m[0]);
+          hrefs.push(h ? h[1] : null);
+        }
+        staticDownloadHrefs[key] = hrefs;
+        fixDownloadLinks();
+      })
+      .catch(() => {
+        staticDownloadHrefs[key] = [];
+      });
+  }
+
   function scheduleScan(rules) {
     if (scanTimer) clearTimeout(scanTimer);
     scanTimer = setTimeout(() => {
       walkAndSwap(document.body, rules);
       swapAttributes(document.body, rules);
       swapHead(rules);
+      fixDownloadLinks();
     }, SCAN_DEBOUNCE_MS);
   }
 
@@ -176,6 +223,38 @@
     window.addEventListener('load', () => scheduleScan(rules));
     setTimeout(() => scheduleScan(rules), 2000);
   }
+
+  // ─── URL normalization after SPA navigation ──────────────────────────────
+  // Framer's router resolves its route table relative to the CURRENT path
+  // (a side effect of the static rip — on Framer hosting the router had a
+  // proper basename). Clicking "Typography" from /color/ renders the right
+  // page but pushes /color/typography, which 404s on refresh/share. The
+  // content is correct, so we just rewrite the address bar to the canonical
+  // path after each router push. No router state is touched.
+  const PAGES = [
+    'introduction', 'strategy', 'logo', 'typography',
+    'color', 'images', 'icons', 'resources',
+  ];
+  function canonicalPath(pathname) {
+    const parts = pathname.split('/').filter(Boolean);
+    if (parts.length < 2) return null; // '/', '/color/' etc are already fine
+    const last = parts[parts.length - 1];
+    if (PAGES.indexOf(last) !== -1) return '/' + last + '/';
+    return null;
+  }
+  function normalizeUrl() {
+    const canon = canonicalPath(location.pathname);
+    if (canon && canon !== location.pathname) {
+      history.replaceState(history.state, '', canon + location.hash);
+    }
+  }
+  const origPushState = history.pushState.bind(history);
+  history.pushState = function () {
+    const result = origPushState.apply(null, arguments);
+    setTimeout(normalizeUrl, 0);
+    return result;
+  };
+  window.addEventListener('popstate', () => setTimeout(normalizeUrl, 0));
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

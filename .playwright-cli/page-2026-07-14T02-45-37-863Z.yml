@@ -1,0 +1,252 @@
+- generic [ref=f1e1169]:
+  - generic [ref=f1e1171]:
+    - generic [ref=f1e1172]:
+      - main [ref=f1e1174]:
+        - generic [ref=f1e1176]:
+          - heading "04" [level=1] [ref=f1e1178]
+          - heading "Typography" [level=1] [ref=f1e1180]
+      - generic [ref=f1e1184]:
+        - heading "Typography is a cornerstone of the Toldwell identity system. We employ the versatile and precise Plus Jakarta Sans font family to create emotional connections and communicate effectively with our diverse audience." [level=2] [ref=f1e1186]
+        - link [ref=f1e1188] [cursor=pointer]:
+          - /url: ./typography#assets
+          - paragraph [ref=f1e1190]: DOWNLOAD ASSETS
+      - generic [ref=f1e1193]:
+        - generic [ref=f1e1194]:
+          - heading "Font" [level=3] [ref=f1e1196]
+          - paragraph [ref=f1e1198]: We use Plus Jakarta Sans in our brand identity. This versatile font family allows us to maintain consistency across all our communications while ensuring clarity and readability.
+        - img [ref=f1e1200]:
+          - paragraph [ref=f1e1202]: Plus Jakarta Sans
+      - generic [ref=f1e1205]:
+        - generic [ref=f1e1206]:
+          - heading "Weights & Styles" [level=3] [ref=f1e1208]
+          - paragraph [ref=f1e1210]: To ensure coherence, we adhere to a restrained approach in selecting font weights and styles. Within the Plus Jakarta Sans family, we primarily utilize Semibold and Medium variants for our brand identity.
+        - generic [ref=f1e1212]:
+          - paragraph [ref=f1e1215]: Plus Jakarta Sans
+          - generic [ref=f1e1216]:
+            - paragraph [ref=f1e1218]: SemiBold
+            - paragraph [ref=f1e1220]: Medium
+      - generic [ref=f1e1223]:
+        - generic [ref=f1e1224]:
+          - heading "Typeface Settings" [level=3] [ref=f1e1226]
+          - paragraph [ref=f1e1228]: Explore the nuances of kerning and tracking. Discover how adjusting these settings can enhance readability and visual appeal in your typography.
+        - generic [ref=f1e1229]:
+          - generic [ref=f1e1230]:
+            - generic [ref=f1e1233]:
+              - paragraph [ref=f1e1236]: Tr
+              - paragraph [ref=f1e1239]: ansf
+              - paragraph [ref=f1e1242]: or
+              - paragraph [ref=f1e1245]: ming
+            - paragraph [ref=f1e1247]: "Kerning: the space between individual letters."
+          - generic [ref=f1e1248]:
+            - generic [ref=f1e1251]:
+              - paragraph [ref=f1e1254]: T
+              - paragraph [ref=f1e1257]: r
+              - paragraph [ref=f1e1260]: a
+              - paragraph [ref=f1e1263]: "n"
+              - paragraph [ref=f1e1266]: s
+              - paragraph [ref=f1e1269]: f
+              - paragraph [ref=f1e1272]: o
+              - paragraph [ref=f1e1275]: r
+              - paragraph [ref=f1e1278]: m
+              - paragraph [ref=f1e1281]: i
+              - paragraph [ref=f1e1284]: "n"
+              - paragraph [ref=f1e1287]: g
+            - paragraph [ref=f1e1289]: "Tracking: the space between all letters."
+      - generic [ref=f1e1290]:
+        - generic [ref=f1e1293]:
+          - heading "Usage Chart" [level=3] [ref=f1e1295]
+          - paragraph [ref=f1e1297]: The usage chart provides guidelines for legible type setting across different contexts. However, adaptability is key, and designers should exercise discretion based on various factors such as mediums, scales, screen resolutions, materials, and production techniques.
+        - generic [ref=f1e1300]:
+          - paragraph [ref=f1e1302]: Screen
+          - generic [ref=f1e1304]:
+            - generic [ref=f1e1305]:
+              - paragraph [ref=f1e1307]: Size
+              - paragraph [ref=f1e1309]: Line-height
+              - paragraph [ref=f1e1311]: Kerning
+              - paragraph [ref=f1e1313]: Tracking
+              - paragraph [ref=f1e1315]: Word-spacing
+            - generic [ref=f1e1316]:
+              - generic [ref=f1e1317]:
+                - paragraph [ref=f1e1319]: 00-16 px
+                - paragraph [ref=f1e1321]: 128%
+                - paragraph [ref=f1e1323]: Metrics
+                - paragraph [ref=f1e1325]: "-1%"
+                - paragraph [ref=f1e1327]: —
+              - generic [ref=f1e1328]:
+                - paragraph [ref=f1e1330]: 16-28 px
+                - paragraph [ref=f1e1332]: 120%
+                - paragraph [ref=f1e1334]: Metrics
+                - paragraph [ref=f1e1336]: "-2%"
+                - paragraph [ref=f1e1338]: —
+              - generic [ref=f1e1339]:
+                - paragraph [ref=f1e1341]: 28-42 px
+                - paragraph [ref=f1e1343]: 104%
+                - paragraph [ref=f1e1345]: Metrics
+                - paragraph [ref=f1e1347]: "-2%"
+                - paragraph [ref=f1e1349]: —
+              - generic [ref=f1e1350]:
+                - paragraph [ref=f1e1352]: 42-76 px
+                - paragraph [ref=f1e1354]: 98%
+                - paragraph [ref=f1e1356]: Metrics
+                - paragraph [ref=f1e1358]: "-3%"
+                - paragraph [ref=f1e1360]: —
+              - generic [ref=f1e1361]:
+                - paragraph [ref=f1e1363]: 76 px+
+                - paragraph [ref=f1e1365]: 96%
+                - paragraph [ref=f1e1367]: Metrics
+                - paragraph [ref=f1e1369]: "-4%"
+                - paragraph [ref=f1e1371]: —
+        - generic [ref=f1e1374]:
+          - paragraph [ref=f1e1376]: Print
+          - generic [ref=f1e1378]:
+            - generic [ref=f1e1379]:
+              - paragraph [ref=f1e1381]: Size
+              - paragraph [ref=f1e1383]: Line-height
+              - paragraph [ref=f1e1385]: Kerning
+              - paragraph [ref=f1e1387]: Tracking
+              - paragraph [ref=f1e1389]: Word-spacing
+            - generic [ref=f1e1390]:
+              - generic [ref=f1e1391]:
+                - paragraph [ref=f1e1393]: 00-8 pt
+                - paragraph [ref=f1e1395]: 120%
+                - paragraph [ref=f1e1397]: Metrics
+                - paragraph [ref=f1e1399]: "-1%"
+                - paragraph [ref=f1e1401]: 100%
+              - generic [ref=f1e1402]:
+                - paragraph [ref=f1e1404]: 8-18 pt
+                - paragraph [ref=f1e1406]: 116%
+                - paragraph [ref=f1e1408]: Metrics
+                - paragraph [ref=f1e1410]: "-1%"
+                - paragraph [ref=f1e1412]: 100%
+              - generic [ref=f1e1413]:
+                - paragraph [ref=f1e1415]: 18-32 pt
+                - paragraph [ref=f1e1417]: 108%
+                - paragraph [ref=f1e1419]: Metrics
+                - paragraph [ref=f1e1421]: "-2%"
+                - paragraph [ref=f1e1423]: 100%
+              - generic [ref=f1e1424]:
+                - paragraph [ref=f1e1426]: 32-56 pt
+                - paragraph [ref=f1e1428]: 98%
+                - paragraph [ref=f1e1430]: Metrics
+                - paragraph [ref=f1e1432]: "-2%"
+                - paragraph [ref=f1e1434]: 98%
+              - generic [ref=f1e1435]:
+                - paragraph [ref=f1e1437]: 56 pt+
+                - paragraph [ref=f1e1439]: 98%
+                - paragraph [ref=f1e1441]: Metrics
+                - paragraph [ref=f1e1443]: "-3%"
+                - paragraph [ref=f1e1445]: 96%
+      - generic [ref=f1e1448]:
+        - heading "Download Assets" [level=3] [ref=f1e1450]
+        - generic [ref=f1e1452]:
+          - paragraph [ref=f1e1454]: Toldwell typefaces
+          - generic "Publish to Download" [ref=f1e1458] [cursor=pointer]: DOWNLOAD ASSETS
+    - generic [ref=f1e1459]:
+      - generic [ref=f1e1462]:
+        - link "03 Logo" [ref=f1e1464] [cursor=pointer]:
+          - /url: ./logo
+          - generic [ref=f1e1465]:
+            - paragraph [ref=f1e1467]: "03"
+            - paragraph [ref=f1e1469]: Logo
+        - link "05 Color" [ref=f1e1473] [cursor=pointer]:
+          - /url: ./color
+          - generic [ref=f1e1474]:
+            - paragraph [ref=f1e1476]: "05"
+            - paragraph [ref=f1e1478]: Color
+      - contentinfo [ref=f1e1482]:
+        - generic [ref=f1e1483]:
+          - generic [ref=f1e1484]:
+            - generic [ref=f1e1485]:
+              - paragraph [ref=f1e1487]: Brand Guidelines
+              - paragraph [ref=f1e1489]: Version 1.0
+            - generic [ref=f1e1490]:
+              - generic [ref=f1e1491]:
+                - paragraph [ref=f1e1493]: Get in Touch
+                - link [ref=f1e1495] [cursor=pointer]:
+                  - /url: mailto:hello@toldwell.com
+                  - paragraph [ref=f1e1497]: hello@toldwell.com
+              - generic [ref=f1e1498]:
+                - link [ref=f1e1500] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/
+                  - paragraph [ref=f1e1502]: LinkedIn
+                - link [ref=f1e1504] [cursor=pointer]:
+                  - /url: https://www.instagram.com/
+                  - paragraph [ref=f1e1506]: Instagram
+          - generic [ref=f1e1507]:
+            - link [ref=f1e1508] [cursor=pointer]:
+              - /url: ./
+            - generic [ref=f1e1512]:
+              - paragraph [ref=f1e1514]: © 2025 Toldwell
+              - link [ref=f1e1516] [cursor=pointer]:
+                - /url: ./typography#hero
+                - paragraph [ref=f1e1518]: Back to top
+  - navigation [ref=f1e1520]:
+    - generic [ref=f1e1521]:
+      - link [ref=f1e1523] [cursor=pointer]:
+        - /url: ./
+      - generic [ref=f1e1524]:
+        - generic [ref=f1e1526]:
+          - generic [ref=f1e1527]:
+            - paragraph [ref=f1e1529]: BRAND GUIDELINES
+            - paragraph [ref=f1e1531]: "UPDATED: May 7, 2026"
+          - link [ref=f1e1536] [cursor=pointer]:
+            - /url: ./introduction
+            - generic [ref=f1e1537]:
+              - paragraph [ref=f1e1539]: "01"
+              - paragraph [ref=f1e1541]: Introduction
+          - generic [ref=f1e1542]:
+            - link "02 Strategy" [ref=f1e1546] [cursor=pointer]:
+              - /url: ./strategy
+              - generic [ref=f1e1547]:
+                - paragraph [ref=f1e1549]: "02"
+                - paragraph [ref=f1e1551]: Strategy
+            - link "03 Logo" [ref=f1e1557] [cursor=pointer]:
+              - /url: ./logo
+              - generic [ref=f1e1558]:
+                - paragraph [ref=f1e1560]: "03"
+                - paragraph [ref=f1e1562]: Logo
+            - generic [ref=f1e1566] [cursor=pointer]:
+              - link "04 Typography" [ref=f1e1568]:
+                - /url: ./typography
+                - generic [ref=f1e1569]:
+                  - paragraph [ref=f1e1571]: "04"
+                  - paragraph [ref=f1e1573]: Typography
+              - generic [ref=f1e1576]:
+                - link [ref=f1e1578]:
+                  - /url: ./typography#font
+                  - paragraph [ref=f1e1580]: Font
+                - link [ref=f1e1582]:
+                  - /url: ./typography#weights-and-styles
+                  - paragraph [ref=f1e1584]: Weights & Styles
+                - link [ref=f1e1586]:
+                  - /url: ./typography#typeface-settings
+                  - paragraph [ref=f1e1588]: Typeface Settings
+                - link [ref=f1e1590]:
+                  - /url: ./typography#usage-chart
+                  - paragraph [ref=f1e1592]: Usage Chart
+                - link [ref=f1e1594]:
+                  - /url: ./typography#assets
+                  - paragraph [ref=f1e1596]: Download Font
+            - link "05 Color" [ref=f1e1600] [cursor=pointer]:
+              - /url: ./color
+              - generic [ref=f1e1601]:
+                - paragraph [ref=f1e1603]: "05"
+                - paragraph [ref=f1e1605]: Color
+            - link "06 Images" [ref=f1e1611] [cursor=pointer]:
+              - /url: ./images
+              - generic [ref=f1e1612]:
+                - paragraph [ref=f1e1614]: "06"
+                - paragraph [ref=f1e1616]: Images
+            - link "07 Icons" [ref=f1e1622] [cursor=pointer]:
+              - /url: ./icons
+              - generic [ref=f1e1623]:
+                - paragraph [ref=f1e1625]: "07"
+                - paragraph [ref=f1e1627]: Icons
+          - link [ref=f1e1634] [cursor=pointer]:
+            - /url: ./resources
+            - generic [ref=f1e1635]:
+              - paragraph [ref=f1e1637]: "08"
+              - paragraph [ref=f1e1639]: Resources
+        - link "Go to Website" [ref=f1e1642] [cursor=pointer]:
+          - /url: https://www.google.com
+          - paragraph [ref=f1e1644]: Go to Website

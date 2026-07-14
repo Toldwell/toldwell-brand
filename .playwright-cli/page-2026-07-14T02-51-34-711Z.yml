@@ -1,0 +1,113 @@
+- generic [ref=f6e601]:
+  - generic [ref=f6e603]:
+    - generic [ref=f6e604]:
+      - main [ref=f6e606]:
+        - generic [ref=f6e608]:
+          - heading "08" [level=1] [ref=f6e610]
+          - heading "Resources" [level=1] [ref=f6e612]
+      - heading "Explore our repository of current resources, templates, guides, and insights from all corners of Toldwell. Updated regularly, be sure to revisit for valuable support in kickstarting your projects." [level=2] [ref=f6e618]
+      - generic [ref=f6e621]:
+        - heading "Toldwell Resources" [level=3] [ref=f6e623]
+        - generic [ref=f6e624]:
+          - generic [ref=f6e626]:
+            - paragraph [ref=f6e628]: Toldwell logo suite
+            - link "DOWNLOAD ASSETS" [ref=f6e632] [cursor=pointer]:
+              - /url: /toldwell-logo.zip
+          - generic [ref=f6e634]:
+            - paragraph [ref=f6e636]: Toldwell typefaces
+            - link "DOWNLOAD FONT" [ref=f6e640] [cursor=pointer]:
+              - /url: /toldwell-fonts.zip
+          - generic [ref=f6e642]:
+            - paragraph [ref=f6e644]: Toldwell photography set
+            - link "DOWNLOAD ASSETS" [ref=f6e648] [cursor=pointer]:
+              - /url: /toldwell-photos.zip
+          - generic [ref=f6e650]:
+            - paragraph [ref=f6e652]: Toldwell icon library
+            - link "DOWNLOAD ICONS" [ref=f6e656] [cursor=pointer]:
+              - /url: /tokens.json
+    - generic [ref=f6e657]:
+      - link "07 Icons" [ref=f6e662] [cursor=pointer]:
+        - /url: /icons/
+        - generic [ref=f6e663]:
+          - paragraph [ref=f6e665]: "07"
+          - paragraph [ref=f6e667]: Icons
+      - contentinfo [ref=f6e673]:
+        - generic [ref=f6e674]:
+          - generic [ref=f6e675]:
+            - generic [ref=f6e676]:
+              - paragraph [ref=f6e678]: Brand Guidelines
+              - paragraph [ref=f6e680]: Version 1.0
+            - generic [ref=f6e681]:
+              - generic [ref=f6e682]:
+                - paragraph [ref=f6e684]: Get in Touch
+                - link [ref=f6e686] [cursor=pointer]:
+                  - /url: mailto:hello@toldwell.com
+                  - paragraph [ref=f6e688]: hello@toldwell.com
+              - generic [ref=f6e689]:
+                - link [ref=f6e691] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/
+                  - paragraph [ref=f6e693]: LinkedIn
+                - link [ref=f6e695] [cursor=pointer]:
+                  - /url: https://www.instagram.com/
+                  - paragraph [ref=f6e697]: Instagram
+          - generic [ref=f6e698]:
+            - link [ref=f6e699] [cursor=pointer]:
+              - /url: ./
+            - generic [ref=f6e703]:
+              - paragraph [ref=f6e705]: © 2025 Toldwell
+              - link [ref=f6e707] [cursor=pointer]:
+                - /url: /resources/#hero
+                - paragraph [ref=f6e709]: Back to top
+  - navigation [ref=f6e711]:
+    - generic [ref=f6e712]:
+      - link [ref=f6e714] [cursor=pointer]:
+        - /url: ./
+      - generic [ref=f6e715]:
+        - generic [ref=f6e717]:
+          - generic [ref=f6e718]:
+            - paragraph [ref=f6e720]: BRAND GUIDELINES
+            - paragraph [ref=f6e722]: "UPDATED: May 7, 2026"
+          - link [ref=f6e727] [cursor=pointer]:
+            - /url: /introduction/
+            - generic [ref=f6e728]:
+              - paragraph [ref=f6e730]: "01"
+              - paragraph [ref=f6e732]: Introduction
+          - generic [ref=f6e733]:
+            - link "02 Strategy" [ref=f6e737] [cursor=pointer]:
+              - /url: /strategy/
+              - generic [ref=f6e738]:
+                - paragraph [ref=f6e740]: "02"
+                - paragraph [ref=f6e742]: Strategy
+            - link "03 Logo" [ref=f6e748] [cursor=pointer]:
+              - /url: /logo/
+              - generic [ref=f6e749]:
+                - paragraph [ref=f6e751]: "03"
+                - paragraph [ref=f6e753]: Logo
+            - link "04 Typography" [ref=f6e759] [cursor=pointer]:
+              - /url: /typography/
+              - generic [ref=f6e760]:
+                - paragraph [ref=f6e762]: "04"
+                - paragraph [ref=f6e764]: Typography
+            - link "05 Color" [ref=f6e770] [cursor=pointer]:
+              - /url: /color/
+              - generic [ref=f6e771]:
+                - paragraph [ref=f6e773]: "05"
+                - paragraph [ref=f6e775]: Color
+            - link "06 Images" [ref=f6e781] [cursor=pointer]:
+              - /url: /images/
+              - generic [ref=f6e782]:
+                - paragraph [ref=f6e784]: "06"
+                - paragraph [ref=f6e786]: Images
+            - link "07 Icons" [ref=f6e792] [cursor=pointer]:
+              - /url: /icons/
+              - generic [ref=f6e793]:
+                - paragraph [ref=f6e795]: "07"
+                - paragraph [ref=f6e797]: Icons
+          - link [ref=f6e804] [cursor=pointer]:
+            - /url: /resources/
+            - generic [ref=f6e805]:
+              - paragraph [ref=f6e807]: "08"
+              - paragraph [ref=f6e809]: Resources
+        - link "Go to Website" [ref=f6e812] [cursor=pointer]:
+          - /url: https://www.google.com
+          - paragraph [ref=f6e814]: Go to Website

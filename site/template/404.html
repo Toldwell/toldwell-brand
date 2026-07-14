@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Toldwell — Brand Guidelines</title>
+  <meta name="robots" content="noindex">
+  <script>
+    // GitHub Pages SPA fallback. The Framer router can produce nested paths
+    // like /color/typography (see swap-runtime.js). If someone refreshes or
+    // shares such a URL, redirect to the canonical page — the last path
+    // segment that matches a real page — else to the homepage.
+    (function () {
+      var pages = ['introduction', 'strategy', 'logo', 'typography',
+                   'color', 'images', 'icons', 'resources'];
+      var parts = location.pathname.split('/').filter(Boolean);
+      for (var i = parts.length - 1; i >= 0; i--) {
+        if (pages.indexOf(parts[i]) !== -1) {
+          location.replace('/' + parts[i] + '/' + location.hash);
+          return;
+        }
+      }
+      location.replace('/');
+    })();
+  </script>
+</head>
+<body></body>
+</html>

@@ -71,7 +71,10 @@ pages:
 
   index:
     text:
-      - from: "Welcome to the Toldwell Development Studio Visual Identity Guidelines. Here, you'll find everything you need to know about our logo, colors, fonts, and more. Mastering these guidelines is crucial for crafting a memorable Toldwell brand encounter."
+      # NOTE: page swaps run AFTER global swaps, so this `from` must be the
+      # post-global-swap form ("Visual Identity Guidelines" has already
+      # become "Brand Guidelines" by the time this rule runs).
+      - from: "Welcome to the Toldwell Development Studio Brand Guidelines. Here, you'll find everything you need to know about our logo, colors, fonts, and more. Mastering these guidelines is crucial for crafting a memorable Toldwell brand encounter."
         to: "Welcome to the Toldwell Brand Guidelines. Inside, you'll find everything that shapes how Toldwell looks, sounds, and feels — our logo, our palette, our type, and the principles behind every choice. Use these to keep the work consistent, the story clear, and every touchpoint true to the brand."
 
       - from: "If you have any questions regarding the content of this guide or need assistance ensuring your communication aligns with the Toldwell brand, please reach out to our brand team."
@@ -420,6 +423,29 @@ images:
     - from: "strategy/index.html"
       to: "/strategy/"
     - from: "typography/index.html"
+      to: "/typography/"
+
+    # ─── Nav hrefs, hydrated form ──────────────────────────────────────────
+    # Framer's hydration re-renders anchors as "./typography"-style hrefs,
+    # which resolve wrong from subpages and make the SPA router push URLs
+    # like /color/typography (404 on refresh). These strings do NOT appear
+    # in the static HTML (verified) — the rules are build-inert and exist
+    # for swap-runtime's post-hydration attribute pass only.
+    - from: "./color"
+      to: "/color/"
+    - from: "./icons"
+      to: "/icons/"
+    - from: "./images"
+      to: "/images/"
+    - from: "./introduction"
+      to: "/introduction/"
+    - from: "./logo"
+      to: "/logo/"
+    - from: "./resources"
+      to: "/resources/"
+    - from: "./strategy"
+      to: "/strategy/"
+    - from: "./typography"
       to: "/typography/"
 
     # ─── Favicon: Cipherly's icon → Toldwell gold-t tile ──────────────────

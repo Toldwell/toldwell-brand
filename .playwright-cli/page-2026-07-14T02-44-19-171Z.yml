@@ -1,0 +1,174 @@
+- generic [ref=e3]:
+  - navigation [ref=e6]:
+    - generic [ref=e7]:
+      - link [ref=e9] [cursor=pointer]:
+        - /url: ./
+      - generic [ref=e10]:
+        - generic [ref=e12]:
+          - generic [ref=e13]:
+            - paragraph [ref=e15]: BRAND GUIDELINES
+            - paragraph [ref=e17]: "UPDATED: May 7, 2026"
+          - link [ref=e22] [cursor=pointer]:
+            - /url: ./introduction
+            - generic [ref=e23]:
+              - paragraph [ref=e25]: "01"
+              - paragraph [ref=e27]: Introduction
+          - generic [ref=e28]:
+            - link "02 Strategy" [ref=e32] [cursor=pointer]:
+              - /url: ./strategy
+              - generic [ref=e33]:
+                - paragraph [ref=e35]: "02"
+                - paragraph [ref=e37]: Strategy
+            - link "03 Logo" [ref=e43] [cursor=pointer]:
+              - /url: ./logo
+              - generic [ref=e44]:
+                - paragraph [ref=e46]: "03"
+                - paragraph [ref=e48]: Logo
+            - link "04 Typography" [ref=e54] [cursor=pointer]:
+              - /url: ./typography
+              - generic [ref=e55]:
+                - paragraph [ref=e57]: "04"
+                - paragraph [ref=e59]: Typography
+            - link "05 Color" [ref=e65] [cursor=pointer]:
+              - /url: ./color
+              - generic [ref=e66]:
+                - paragraph [ref=e68]: "05"
+                - paragraph [ref=e70]: Color
+            - link "06 Images" [ref=e76] [cursor=pointer]:
+              - /url: ./images
+              - generic [ref=e77]:
+                - paragraph [ref=e79]: "06"
+                - paragraph [ref=e81]: Images
+            - link "07 Icons" [ref=e87] [cursor=pointer]:
+              - /url: ./icons
+              - generic [ref=e88]:
+                - paragraph [ref=e90]: "07"
+                - paragraph [ref=e92]: Icons
+          - link [ref=e99] [cursor=pointer]:
+            - /url: ./resources
+            - generic [ref=e100]:
+              - paragraph [ref=e102]: "08"
+              - paragraph [ref=e104]: Resources
+        - link "Go to Website" [ref=e107] [cursor=pointer]:
+          - /url: https://www.google.com
+          - paragraph [ref=e109]: Go to Website
+  - generic [ref=e113]:
+    - generic [ref=e114]:
+      - main [ref=e115]:
+        - generic [ref=e117]:
+          - heading "Brand Guidelines" [level=1] [ref=e119]
+          - heading "Version 1.0" [level=1] [ref=e121]
+      - heading "Welcome to the Toldwell Development Studio Brand Guidelines. Here, you'll find everything you need to know about our logo, colors, fonts, and more. Mastering these guidelines is crucial for crafting a memorable Toldwell brand encounter." [level=2] [ref=e130]
+      - generic [ref=e133]:
+        - link [ref=e136] [cursor=pointer]:
+          - /url: ./strategy
+          - img [ref=e138]:
+            - paragraph [ref=e140]: Transformingideas into reality
+          - paragraph [ref=e142]: Strategy
+        - link [ref=e145] [cursor=pointer]:
+          - /url: ./logo
+          - paragraph [ref=e147]: Logo
+        - link [ref=e156] [cursor=pointer]:
+          - /url: ./typography
+          - paragraph [ref=e158]: Typography
+          - generic [ref=e159]:
+            - img:
+              - generic:
+                - paragraph: AaBbCc
+            - img:
+              - generic:
+                - paragraph: AaBbCc
+        - link [ref=e162] [cursor=pointer]:
+          - /url: ./color
+          - paragraph [ref=e164]: Color
+          - img [ref=e171]:
+            - heading "#F3CC92" [level=2] [ref=e173]
+        - link [ref=e176] [cursor=pointer]:
+          - /url: ./images
+          - paragraph [ref=e178]: Images
+          - img "Man working on a laptop" [ref=e181]
+        - link [ref=e184] [cursor=pointer]:
+          - /url: ./icons
+          - paragraph [ref=e190]: Icons
+        - link [ref=e193] [cursor=pointer]:
+          - /url: ./resources
+          - paragraph [ref=e195]: Resources
+          - generic [ref=e196]:
+            - generic:
+              - generic:
+                - img "Laptop"
+      - generic [ref=e199]:
+        - heading "Have any Questions?" [level=3] [ref=e201]
+        - generic [ref=e202]:
+          - paragraph [ref=e204]: Questions, edge cases, or need a one-off asset? Reach out to the brand team using the contact below. We'd rather help you get it right than see the brand misused.
+          - link [ref=e206] [cursor=pointer]:
+            - /url: mailto:hello@toldwell.com
+            - paragraph [ref=e208]: Work With Us
+      - generic [ref=e211]:
+        - heading "Contents" [level=3] [ref=e213]
+        - generic [ref=e214]:
+          - link [ref=e216] [cursor=pointer]:
+            - /url: ./introduction
+            - paragraph [ref=e218]: "01"
+            - paragraph [ref=e220]: Introduction
+          - link [ref=e222] [cursor=pointer]:
+            - /url: ./strategy
+            - paragraph [ref=e224]: "02"
+            - paragraph [ref=e226]: Strategy
+          - link [ref=e228] [cursor=pointer]:
+            - /url: ./logo
+            - paragraph [ref=e230]: "03"
+            - paragraph [ref=e232]: Logo
+          - link [ref=e234] [cursor=pointer]:
+            - /url: ./typography
+            - paragraph [ref=e236]: "04"
+            - paragraph [ref=e238]: Typography
+          - link [ref=e240] [cursor=pointer]:
+            - /url: ./color
+            - paragraph [ref=e242]: "05"
+            - paragraph [ref=e244]: Color
+          - link [ref=e246] [cursor=pointer]:
+            - /url: ./images
+            - paragraph [ref=e248]: "06"
+            - paragraph [ref=e250]: Images
+          - link [ref=e252] [cursor=pointer]:
+            - /url: ./icons
+            - paragraph [ref=e254]: "07"
+            - paragraph [ref=e256]: Icons
+          - link [ref=e258] [cursor=pointer]:
+            - /url: ./resources
+            - paragraph [ref=e260]: "08"
+            - paragraph [ref=e262]: Resources
+    - generic [ref=e263]:
+      - link "01 Introduction" [ref=e272] [cursor=pointer]:
+        - /url: ./introduction
+        - generic [ref=e273]:
+          - paragraph [ref=e275]: "01"
+          - paragraph [ref=e277]: Introduction
+      - contentinfo [ref=e282]:
+        - generic [ref=e283]:
+          - generic [ref=e284]:
+            - generic [ref=e285]:
+              - paragraph [ref=e287]: Brand Guidelines
+              - paragraph [ref=e289]: Version 1.0
+            - generic [ref=e290]:
+              - generic [ref=e291]:
+                - paragraph [ref=e293]: Get in Touch
+                - link [ref=e295] [cursor=pointer]:
+                  - /url: mailto:hello@toldwell.com
+                  - paragraph [ref=e297]: hello@toldwell.com
+              - generic [ref=e298]:
+                - link [ref=e300] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/
+                  - paragraph [ref=e302]: LinkedIn
+                - link [ref=e304] [cursor=pointer]:
+                  - /url: https://www.instagram.com/
+                  - paragraph [ref=e306]: Instagram
+          - generic [ref=e307]:
+            - link [ref=e308] [cursor=pointer]:
+              - /url: ./
+            - generic [ref=e312]:
+              - paragraph [ref=e314]: © 2025 Toldwell
+              - link [ref=e316] [cursor=pointer]:
+                - /url: ./#hero
+                - paragraph [ref=e318]: Back to top

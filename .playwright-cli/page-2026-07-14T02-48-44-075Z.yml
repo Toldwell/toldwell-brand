@@ -1,0 +1,309 @@
+- generic [ref=f3e3]:
+  - generic [ref=f3e5]:
+    - generic [ref=f3e6]:
+      - main [ref=f3e9]:
+        - generic [ref=f3e11]:
+          - heading "05" [level=1] [ref=f3e13]
+          - heading "Color" [level=1] [ref=f3e15]
+      - heading "Color adds impact, excitement, and delight to any identity system. We leverage color to set ourselves apart in the market, enhance our content, and guide our users effectively through our communications." [level=2] [ref=f3e22]
+      - generic [ref=f3e25]:
+        - heading "The Basics" [level=3] [ref=f3e27]
+        - generic [ref=f3e28]:
+          - paragraph [ref=f3e30]: Our color palette features vibrant, digitally-native hues complemented by a refined selection of greys and neutrals.
+          - paragraph [ref=f3e32]: Color values
+          - generic [ref=f3e33]:
+            - generic [ref=f3e37]:
+              - heading "HEX" [level=4] [ref=f3e39]
+              - paragraph [ref=f3e41]: A hexadecimal way of representing the red, green and blue of screen colors.
+            - generic [ref=f3e45]:
+              - heading "RGB" [level=4] [ref=f3e47]
+              - paragraph [ref=f3e49]: Red, green and blue, the component colors which create all screen colors.
+            - generic [ref=f3e53]:
+              - heading "CMYK" [level=4] [ref=f3e55]
+              - paragraph [ref=f3e57]: Cyan, magenta, yellow and black. The four colors used in offset and digital printing.
+            - generic [ref=f3e61]:
+              - heading "PMS" [level=4] [ref=f3e63]
+              - paragraph [ref=f3e65]: "Pantone Matching System: Global color numbering for precise color selection and matching."
+          - generic [ref=f3e68]:
+            - paragraph [ref=f3e70]: "Please note:"
+            - paragraph [ref=f3e72]: Various factors can affect color reproduction. Prior to large-scale print runs, it's advisable to conduct testing.
+      - generic [ref=f3e75]:
+        - heading "Accent & Tones" [level=3] [ref=f3e77]
+        - generic [ref=f3e78]:
+          - generic [ref=f3e81] [cursor=pointer]:
+            - button "Copy to Clipboard" [ref=f3e83]
+            - generic [ref=f3e84]:
+              - generic [ref=f3e85]:
+                - paragraph [ref=f3e87]: "Name:"
+                - paragraph [ref=f3e89]: Blue 700
+              - generic [ref=f3e90]:
+                - paragraph [ref=f3e92]: "Hex:"
+                - paragraph [ref=f3e94]: "#0040FF"
+              - generic [ref=f3e95]:
+                - paragraph [ref=f3e97]: "RGB:"
+                - paragraph [ref=f3e99]: 0/64/255
+              - generic [ref=f3e100]:
+                - paragraph [ref=f3e102]: "CMYK:"
+                - paragraph [ref=f3e104]: 84/62/0/0
+              - generic [ref=f3e105]:
+                - paragraph [ref=f3e107]: "Pms:"
+                - paragraph [ref=f3e109]: 2935 C
+            - paragraph [ref=f3e113]: Copy HEX
+          - generic [ref=f3e116] [cursor=pointer]:
+            - button "Copy to Clipboard" [ref=f3e118]
+            - generic [ref=f3e119]:
+              - generic [ref=f3e120]:
+                - paragraph [ref=f3e122]: "Name:"
+                - paragraph [ref=f3e124]: Blue 600
+              - generic [ref=f3e125]:
+                - paragraph [ref=f3e127]: "Hex:"
+                - paragraph [ref=f3e129]: "#5982FF"
+              - generic [ref=f3e130]:
+                - paragraph [ref=f3e132]: "RGB:"
+                - paragraph [ref=f3e134]: 89/130/255
+              - generic [ref=f3e135]:
+                - paragraph [ref=f3e137]: "CMYK:"
+                - paragraph [ref=f3e139]: 64/38/0/0
+              - generic [ref=f3e140]:
+                - paragraph [ref=f3e142]: "Pms:"
+                - paragraph [ref=f3e144]: 660 C
+            - paragraph [ref=f3e148]: Copy HEX
+          - generic [ref=f3e151] [cursor=pointer]:
+            - button "Copy to Clipboard" [ref=f3e153]
+            - generic [ref=f3e154]:
+              - generic [ref=f3e155]:
+                - paragraph [ref=f3e157]: "Name:"
+                - paragraph [ref=f3e159]: Blue 500
+              - generic [ref=f3e160]:
+                - paragraph [ref=f3e162]: "Hex:"
+                - paragraph [ref=f3e164]: "#99B2FF"
+              - generic [ref=f3e165]:
+                - paragraph [ref=f3e167]: "RGB:"
+                - paragraph [ref=f3e169]: 153/178/255
+              - generic [ref=f3e170]:
+                - paragraph [ref=f3e172]: "CMYK:"
+                - paragraph [ref=f3e174]: 29/11/0/0
+              - generic [ref=f3e175]:
+                - paragraph [ref=f3e177]: "Pms:"
+                - paragraph [ref=f3e179]: 659 C
+            - paragraph [ref=f3e183]: Copy HEX
+          - generic [ref=f3e186] [cursor=pointer]:
+            - button "Copy to Clipboard" [ref=f3e188]
+            - generic [ref=f3e189]:
+              - generic [ref=f3e190]:
+                - paragraph [ref=f3e192]: "Name:"
+                - paragraph [ref=f3e194]: Blue 350
+              - generic [ref=f3e195]:
+                - paragraph [ref=f3e197]: "Hex:"
+                - paragraph [ref=f3e199]: "#BFCFFF"
+              - generic [ref=f3e200]:
+                - paragraph [ref=f3e202]: "RGB:"
+                - paragraph [ref=f3e204]: 191/207/255
+              - generic [ref=f3e205]:
+                - paragraph [ref=f3e207]: "CMYK:"
+                - paragraph [ref=f3e209]: 19/8/1/0
+              - generic [ref=f3e210]:
+                - paragraph [ref=f3e212]: "Pms:"
+                - paragraph [ref=f3e214]: 658 C
+            - paragraph [ref=f3e218]: Copy HEX
+      - generic [ref=f3e221]:
+        - heading "Black & White" [level=3] [ref=f3e223]
+        - generic [ref=f3e224]:
+          - generic [ref=f3e227] [cursor=pointer]:
+            - button "Copy to Clipboard" [ref=f3e229]
+            - generic [ref=f3e230]:
+              - generic [ref=f3e231]:
+                - paragraph [ref=f3e233]: "Name:"
+                - paragraph [ref=f3e235]: Black
+              - generic [ref=f3e236]:
+                - paragraph [ref=f3e238]: "Hex:"
+                - paragraph [ref=f3e240]: "#000000"
+              - generic [ref=f3e241]:
+                - paragraph [ref=f3e243]: "RGB:"
+                - paragraph [ref=f3e245]: 0/0/0
+              - generic [ref=f3e246]:
+                - paragraph [ref=f3e248]: "CMYK:"
+                - paragraph [ref=f3e250]: 100/61/32/96
+              - generic [ref=f3e251]:
+                - paragraph [ref=f3e253]: "Pms:"
+                - paragraph [ref=f3e255]: Black 6 C
+            - paragraph [ref=f3e259]: Copy HEX
+          - generic [ref=f3e262] [cursor=pointer]:
+            - button "Copy to Clipboard" [ref=f3e264]
+            - generic [ref=f3e265]:
+              - generic [ref=f3e266]:
+                - paragraph [ref=f3e268]: "Name:"
+                - paragraph [ref=f3e270]: White
+              - generic [ref=f3e271]:
+                - paragraph [ref=f3e273]: "Hex:"
+                - paragraph [ref=f3e275]: "#FFFFFF"
+              - generic [ref=f3e276]:
+                - paragraph [ref=f3e278]: "RGB:"
+                - paragraph [ref=f3e280]: 255/255/255
+              - generic [ref=f3e281]:
+                - paragraph [ref=f3e283]: "CMYK:"
+                - paragraph [ref=f3e285]: 0/0/0/0
+              - generic [ref=f3e286]:
+                - paragraph [ref=f3e288]: "Pms:"
+                - paragraph [ref=f3e290]: Bright White
+            - paragraph [ref=f3e294]: Copy HEX
+          - generic [ref=f3e297] [cursor=pointer]:
+            - button "Copy to Clipboard" [ref=f3e299]
+            - generic [ref=f3e300]:
+              - generic [ref=f3e301]:
+                - paragraph [ref=f3e303]: "Name:"
+                - paragraph [ref=f3e305]: Grey 800
+              - generic [ref=f3e306]:
+                - paragraph [ref=f3e308]: "Hex:"
+                - paragraph [ref=f3e310]: "#333333"
+              - generic [ref=f3e311]:
+                - paragraph [ref=f3e313]: "RGB:"
+                - paragraph [ref=f3e315]: 51/51/51
+              - generic [ref=f3e316]:
+                - paragraph [ref=f3e318]: "CMYK:"
+                - paragraph [ref=f3e320]: 0/0/0/90
+              - generic [ref=f3e321]:
+                - paragraph [ref=f3e323]: "Pms:"
+                - paragraph [ref=f3e325]: 446 C
+            - paragraph [ref=f3e329]: Copy HEX
+          - generic [ref=f3e332] [cursor=pointer]:
+            - button "Copy to Clipboard" [ref=f3e334]
+            - generic [ref=f3e335]:
+              - generic [ref=f3e336]:
+                - paragraph [ref=f3e338]: "Name:"
+                - paragraph [ref=f3e340]: Grey 600
+              - generic [ref=f3e341]:
+                - paragraph [ref=f3e343]: "Hex:"
+                - paragraph [ref=f3e345]: "#666666"
+              - generic [ref=f3e346]:
+                - paragraph [ref=f3e348]: "RGB:"
+                - paragraph [ref=f3e350]: 102/102/102
+              - generic [ref=f3e351]:
+                - paragraph [ref=f3e353]: "CMYK:"
+                - paragraph [ref=f3e355]: 0/0/0/70
+              - generic [ref=f3e356]:
+                - paragraph [ref=f3e358]: "Pms:"
+                - paragraph [ref=f3e360]: 424 C
+            - paragraph [ref=f3e364]: Copy HEX
+          - generic [ref=f3e367] [cursor=pointer]:
+            - button "Copy to Clipboard" [ref=f3e369]
+            - generic [ref=f3e370]:
+              - generic [ref=f3e371]:
+                - paragraph [ref=f3e373]: "Name:"
+                - paragraph [ref=f3e375]: Grey 100
+              - generic [ref=f3e376]:
+                - paragraph [ref=f3e378]: "Hex:"
+                - paragraph [ref=f3e380]: "#E6E6E6"
+              - generic [ref=f3e381]:
+                - paragraph [ref=f3e383]: "RGB:"
+                - paragraph [ref=f3e385]: 230/230/230
+              - generic [ref=f3e386]:
+                - paragraph [ref=f3e388]: "CMYK:"
+                - paragraph [ref=f3e390]: 0/0/0/20
+              - generic [ref=f3e391]:
+                - paragraph [ref=f3e393]: "Pms:"
+                - paragraph [ref=f3e395]: 420 C
+            - paragraph [ref=f3e399]: Copy HEX
+    - generic [ref=f3e400]:
+      - generic [ref=f3e403]:
+        - link "04 Typography" [ref=f3e406] [cursor=pointer]:
+          - /url: ./typography
+          - generic [ref=f3e407]:
+            - paragraph [ref=f3e409]: "04"
+            - paragraph [ref=f3e411]: Typography
+        - link "06 Images" [ref=f3e416] [cursor=pointer]:
+          - /url: ./images
+          - generic [ref=f3e417]:
+            - paragraph [ref=f3e419]: "06"
+            - paragraph [ref=f3e421]: Images
+      - contentinfo [ref=f3e426]:
+        - generic [ref=f3e427]:
+          - generic [ref=f3e428]:
+            - generic [ref=f3e429]:
+              - paragraph [ref=f3e431]: Visual Identity Guidelines
+              - paragraph [ref=f3e433]: Version 1.0
+            - generic [ref=f3e434]:
+              - generic [ref=f3e435]:
+                - paragraph [ref=f3e437]: Get in Touch
+                - link [ref=f3e439] [cursor=pointer]:
+                  - /url: mailto:brand@cipherly.dev
+                  - paragraph [ref=f3e441]: brand@cipherly.dev
+              - generic [ref=f3e442]:
+                - link [ref=f3e444] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/
+                  - paragraph [ref=f3e446]: LinkedIn
+                - link [ref=f3e448] [cursor=pointer]:
+                  - /url: https://www.instagram.com/
+                  - paragraph [ref=f3e450]: Instagram
+          - generic [ref=f3e451]:
+            - link [ref=f3e452] [cursor=pointer]:
+              - /url: ./
+            - generic [ref=f3e456]:
+              - paragraph [ref=f3e458]: © 2024 Cipherly
+              - link [ref=f3e460] [cursor=pointer]:
+                - /url: ./color#hero
+                - paragraph [ref=f3e462]: Back to top
+  - navigation [ref=f3e465]:
+    - generic [ref=f3e466]:
+      - link [ref=f3e468] [cursor=pointer]:
+        - /url: ./
+      - generic [ref=f3e469]:
+        - generic [ref=f3e471]:
+          - generic [ref=f3e472]:
+            - paragraph [ref=f3e474]: VISUAL IDENTITY GUIDELINES
+            - paragraph [ref=f3e476]: "UPDATED: May 6, 2024"
+          - link [ref=f3e481] [cursor=pointer]:
+            - /url: ./introduction
+            - generic [ref=f3e482]:
+              - paragraph [ref=f3e484]: "01"
+              - paragraph [ref=f3e486]: Introduction
+          - generic [ref=f3e487]:
+            - link "02 Strategy" [ref=f3e491] [cursor=pointer]:
+              - /url: ./strategy
+              - generic [ref=f3e492]:
+                - paragraph [ref=f3e494]: "02"
+                - paragraph [ref=f3e496]: Strategy
+            - link "03 Logo" [ref=f3e502] [cursor=pointer]:
+              - /url: ./logo
+              - generic [ref=f3e503]:
+                - paragraph [ref=f3e505]: "03"
+                - paragraph [ref=f3e507]: Logo
+            - link "04 Typography" [ref=f3e513] [cursor=pointer]:
+              - /url: ./typography
+              - generic [ref=f3e514]:
+                - paragraph [ref=f3e516]: "04"
+                - paragraph [ref=f3e518]: Typography
+            - generic [ref=f3e522] [cursor=pointer]:
+              - link "05 Color" [ref=f3e524]:
+                - /url: ./color
+                - generic [ref=f3e525]:
+                  - paragraph [ref=f3e527]: "05"
+                  - paragraph [ref=f3e529]: Color
+              - generic [ref=f3e532]:
+                - link [ref=f3e534]:
+                  - /url: ./color#the-basics
+                  - paragraph [ref=f3e536]: The Basics
+                - link [ref=f3e538]:
+                  - /url: ./color#accent-and-tones
+                  - paragraph [ref=f3e540]: Accent & Tones
+                - link [ref=f3e542]:
+                  - /url: ./color#black-and-white
+                  - paragraph [ref=f3e544]: Black & White
+            - link "06 Images" [ref=f3e548] [cursor=pointer]:
+              - /url: ./images
+              - generic [ref=f3e549]:
+                - paragraph [ref=f3e551]: "06"
+                - paragraph [ref=f3e553]: Images
+            - link "07 Icons" [ref=f3e559] [cursor=pointer]:
+              - /url: ./icons
+              - generic [ref=f3e560]:
+                - paragraph [ref=f3e562]: "07"
+                - paragraph [ref=f3e564]: Icons
+          - link [ref=f3e571] [cursor=pointer]:
+            - /url: ./resources
+            - generic [ref=f3e572]:
+              - paragraph [ref=f3e574]: "08"
+              - paragraph [ref=f3e576]: Resources
+        - link "Go to Website" [ref=f3e579] [cursor=pointer]:
+          - /url: https://www.google.com
+          - paragraph [ref=f3e581]: Go to Website

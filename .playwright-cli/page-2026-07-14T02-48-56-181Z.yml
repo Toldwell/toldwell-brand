@@ -1,0 +1,309 @@
+- generic [ref=f3e1070]:
+  - generic [ref=f3e1072]:
+    - generic [ref=f3e1073]:
+      - main [ref=f3e1075]:
+        - generic [ref=f3e1077]:
+          - heading "05" [level=1] [ref=f3e1079]
+          - heading "Color" [level=1] [ref=f3e1081]
+      - heading "Color does the most work when there's the least of it. Toldwell's palette is intentionally restrained — nearly achromatic, anchored by a single warm gold held in reserve. The gold sings because it's rare." [level=2] [ref=f3e1087]
+      - generic [ref=f3e1090]:
+        - heading "Toldwell Palette" [level=3] [ref=f3e1092]
+        - generic [ref=f3e1093]:
+          - paragraph [ref=f3e1095]: "Our palette is built around five values: Toldwell Dark, pure black, mid-gray, surface light, and white — with Toldwell Gold reserved for moments that earn it."
+          - paragraph [ref=f3e1097]: Token reference
+          - generic [ref=f3e1098]:
+            - generic [ref=f3e1101]:
+              - heading "HEX" [level=4] [ref=f3e1103]
+              - paragraph [ref=f3e1105]: A hexadecimal way of representing the red, green and blue of screen colors.
+            - generic [ref=f3e1108]:
+              - heading "RGB" [level=4] [ref=f3e1110]
+              - paragraph [ref=f3e1112]: Red, green and blue, the component colors which create all screen colors.
+            - generic [ref=f3e1115]:
+              - heading "CMYK" [level=4] [ref=f3e1117]
+              - paragraph [ref=f3e1119]: Cyan, magenta, yellow and black. The four colors used in offset and digital printing.
+            - generic [ref=f3e1122]:
+              - heading "PMS" [level=4] [ref=f3e1124]
+              - paragraph [ref=f3e1126]: "Pantone Matching System: Global color numbering for precise color selection and matching."
+          - generic [ref=f3e1128]:
+            - paragraph [ref=f3e1130]: "Please note:"
+            - paragraph [ref=f3e1132]: Various factors can affect color reproduction. Prior to large-scale print runs, it's advisable to conduct testing.
+      - generic [ref=f3e1135]:
+        - heading "Accent & Tones" [level=3] [ref=f3e1137]
+        - generic [ref=f3e1138]:
+          - generic [ref=f3e1140] [cursor=pointer]:
+            - button "Copy to Clipboard" [ref=f3e1142]
+            - generic [ref=f3e1143]:
+              - generic [ref=f3e1144]:
+                - paragraph [ref=f3e1146]: "Name:"
+                - paragraph [ref=f3e1148]: Toldwell Gold
+              - generic [ref=f3e1149]:
+                - paragraph [ref=f3e1151]: "Hex:"
+                - paragraph [ref=f3e1153]: "#F3CC92"
+              - generic [ref=f3e1154]:
+                - paragraph [ref=f3e1156]: "RGB:"
+                - paragraph [ref=f3e1158]: 243/204/146
+              - generic [ref=f3e1159]:
+                - paragraph [ref=f3e1161]: "CMYK:"
+                - paragraph [ref=f3e1163]: 0/16/40/5
+              - generic [ref=f3e1164]:
+                - paragraph [ref=f3e1166]: "Pms:"
+                - paragraph [ref=f3e1168]: PMS 7507 C
+            - paragraph [ref=f3e1172]: Copy HEX
+          - generic [ref=f3e1174] [cursor=pointer]:
+            - button "Copy to Clipboard" [ref=f3e1176]
+            - generic [ref=f3e1177]:
+              - generic [ref=f3e1178]:
+                - paragraph [ref=f3e1180]: "Name:"
+                - paragraph [ref=f3e1182]: Toldwell Dark
+              - generic [ref=f3e1183]:
+                - paragraph [ref=f3e1185]: "Hex:"
+                - paragraph [ref=f3e1187]: "#1B1B1C"
+              - generic [ref=f3e1188]:
+                - paragraph [ref=f3e1190]: "RGB:"
+                - paragraph [ref=f3e1192]: 27/27/28
+              - generic [ref=f3e1193]:
+                - paragraph [ref=f3e1195]: "CMYK:"
+                - paragraph [ref=f3e1197]: 0/0/0/89
+              - generic [ref=f3e1198]:
+                - paragraph [ref=f3e1200]: "Pms:"
+                - paragraph [ref=f3e1202]: PMS Black 6 C
+            - paragraph [ref=f3e1206]: Copy HEX
+          - generic [ref=f3e1208] [cursor=pointer]:
+            - button "Copy to Clipboard" [ref=f3e1210]
+            - generic [ref=f3e1211]:
+              - generic [ref=f3e1212]:
+                - paragraph [ref=f3e1214]: "Name:"
+                - paragraph [ref=f3e1216]: Pure Black
+              - generic [ref=f3e1217]:
+                - paragraph [ref=f3e1219]: "Hex:"
+                - paragraph [ref=f3e1221]: "#99B2FF"
+              - generic [ref=f3e1222]:
+                - paragraph [ref=f3e1224]: "RGB:"
+                - paragraph [ref=f3e1226]: 0/0/0
+              - generic [ref=f3e1227]:
+                - paragraph [ref=f3e1229]: "CMYK:"
+                - paragraph [ref=f3e1231]: 0/0/0/100
+              - generic [ref=f3e1232]:
+                - paragraph [ref=f3e1234]: "Pms:"
+                - paragraph [ref=f3e1236]: PMS Black C
+            - paragraph [ref=f3e1240]: Copy HEX
+          - generic [ref=f3e1242] [cursor=pointer]:
+            - button "Copy to Clipboard" [ref=f3e1244]
+            - generic [ref=f3e1245]:
+              - generic [ref=f3e1246]:
+                - paragraph [ref=f3e1248]: "Name:"
+                - paragraph [ref=f3e1250]: Mid-Gray
+              - generic [ref=f3e1251]:
+                - paragraph [ref=f3e1253]: "Hex:"
+                - paragraph [ref=f3e1255]: "#6B6B6B"
+              - generic [ref=f3e1256]:
+                - paragraph [ref=f3e1258]: "RGB:"
+                - paragraph [ref=f3e1260]: 107/107/107
+              - generic [ref=f3e1261]:
+                - paragraph [ref=f3e1263]: "CMYK:"
+                - paragraph [ref=f3e1265]: 0/0/0/58
+              - generic [ref=f3e1266]:
+                - paragraph [ref=f3e1268]: "Pms:"
+                - paragraph [ref=f3e1270]: PMS Cool Gray 9 C
+            - paragraph [ref=f3e1274]: Copy HEX
+      - generic [ref=f3e1277]:
+        - heading "Black & White" [level=3] [ref=f3e1279]
+        - generic [ref=f3e1280]:
+          - generic [ref=f3e1282] [cursor=pointer]:
+            - button "Copy to Clipboard" [ref=f3e1284]
+            - generic [ref=f3e1285]:
+              - generic [ref=f3e1286]:
+                - paragraph [ref=f3e1288]: "Name:"
+                - paragraph [ref=f3e1290]: Black
+              - generic [ref=f3e1291]:
+                - paragraph [ref=f3e1293]: "Hex:"
+                - paragraph [ref=f3e1295]: "#000000"
+              - generic [ref=f3e1296]:
+                - paragraph [ref=f3e1298]: "RGB:"
+                - paragraph [ref=f3e1300]: 0/0/0
+              - generic [ref=f3e1301]:
+                - paragraph [ref=f3e1303]: "CMYK:"
+                - paragraph [ref=f3e1305]: 100/61/32/96
+              - generic [ref=f3e1306]:
+                - paragraph [ref=f3e1308]: "Pms:"
+                - paragraph [ref=f3e1310]: Black 6 C
+            - paragraph [ref=f3e1314]: Copy HEX
+          - generic [ref=f3e1316] [cursor=pointer]:
+            - button "Copy to Clipboard" [ref=f3e1318]
+            - generic [ref=f3e1319]:
+              - generic [ref=f3e1320]:
+                - paragraph [ref=f3e1322]: "Name:"
+                - paragraph [ref=f3e1324]: White
+              - generic [ref=f3e1325]:
+                - paragraph [ref=f3e1327]: "Hex:"
+                - paragraph [ref=f3e1329]: "#FFFFFF"
+              - generic [ref=f3e1330]:
+                - paragraph [ref=f3e1332]: "RGB:"
+                - paragraph [ref=f3e1334]: 255/255/255
+              - generic [ref=f3e1335]:
+                - paragraph [ref=f3e1337]: "CMYK:"
+                - paragraph [ref=f3e1339]: 0/0/0/0
+              - generic [ref=f3e1340]:
+                - paragraph [ref=f3e1342]: "Pms:"
+                - paragraph [ref=f3e1344]: Bright White
+            - paragraph [ref=f3e1348]: Copy HEX
+          - generic [ref=f3e1350] [cursor=pointer]:
+            - button "Copy to Clipboard" [ref=f3e1352]
+            - generic [ref=f3e1353]:
+              - generic [ref=f3e1354]:
+                - paragraph [ref=f3e1356]: "Name:"
+                - paragraph [ref=f3e1358]: Surface Dark
+              - generic [ref=f3e1359]:
+                - paragraph [ref=f3e1361]: "Hex:"
+                - paragraph [ref=f3e1363]: "#1B1B1C"
+              - generic [ref=f3e1364]:
+                - paragraph [ref=f3e1366]: "RGB:"
+                - paragraph [ref=f3e1368]: 27/27/28
+              - generic [ref=f3e1369]:
+                - paragraph [ref=f3e1371]: "CMYK:"
+                - paragraph [ref=f3e1373]: 0/0/0/89
+              - generic [ref=f3e1374]:
+                - paragraph [ref=f3e1376]: "Pms:"
+                - paragraph [ref=f3e1378]: PMS Black 6 C
+            - paragraph [ref=f3e1382]: Copy HEX
+          - generic [ref=f3e1384] [cursor=pointer]:
+            - button "Copy to Clipboard" [ref=f3e1386]
+            - generic [ref=f3e1387]:
+              - generic [ref=f3e1388]:
+                - paragraph [ref=f3e1390]: "Name:"
+                - paragraph [ref=f3e1392]: Mid-Gray Tone
+              - generic [ref=f3e1393]:
+                - paragraph [ref=f3e1395]: "Hex:"
+                - paragraph [ref=f3e1397]: "#6B6B6B"
+              - generic [ref=f3e1398]:
+                - paragraph [ref=f3e1400]: "RGB:"
+                - paragraph [ref=f3e1402]: 107/107/107
+              - generic [ref=f3e1403]:
+                - paragraph [ref=f3e1405]: "CMYK:"
+                - paragraph [ref=f3e1407]: 0/0/0/58
+              - generic [ref=f3e1408]:
+                - paragraph [ref=f3e1410]: "Pms:"
+                - paragraph [ref=f3e1412]: PMS Cool Gray 9 C
+            - paragraph [ref=f3e1416]: Copy HEX
+          - generic [ref=f3e1418] [cursor=pointer]:
+            - button "Copy to Clipboard" [ref=f3e1420]
+            - generic [ref=f3e1421]:
+              - generic [ref=f3e1422]:
+                - paragraph [ref=f3e1424]: "Name:"
+                - paragraph [ref=f3e1426]: Surface Light
+              - generic [ref=f3e1427]:
+                - paragraph [ref=f3e1429]: "Hex:"
+                - paragraph [ref=f3e1431]: "#F2F2F2"
+              - generic [ref=f3e1432]:
+                - paragraph [ref=f3e1434]: "RGB:"
+                - paragraph [ref=f3e1436]: 242/242/242
+              - generic [ref=f3e1437]:
+                - paragraph [ref=f3e1439]: "CMYK:"
+                - paragraph [ref=f3e1441]: 0/0/0/5
+              - generic [ref=f3e1442]:
+                - paragraph [ref=f3e1444]: "Pms:"
+                - paragraph [ref=f3e1446]: PMS Cool Gray 1 C
+            - paragraph [ref=f3e1450]: Copy HEX
+    - generic [ref=f3e1451]:
+      - generic [ref=f3e1454]:
+        - link "04 Typography" [ref=f3e1456] [cursor=pointer]:
+          - /url: /typography/
+          - generic [ref=f3e1457]:
+            - paragraph [ref=f3e1459]: "04"
+            - paragraph [ref=f3e1461]: Typography
+        - link "06 Images" [ref=f3e1465] [cursor=pointer]:
+          - /url: /images/
+          - generic [ref=f3e1466]:
+            - paragraph [ref=f3e1468]: "06"
+            - paragraph [ref=f3e1470]: Images
+      - contentinfo [ref=f3e1474]:
+        - generic [ref=f3e1475]:
+          - generic [ref=f3e1476]:
+            - generic [ref=f3e1477]:
+              - paragraph [ref=f3e1479]: Brand Guidelines
+              - paragraph [ref=f3e1481]: Version 1.0
+            - generic [ref=f3e1482]:
+              - generic [ref=f3e1483]:
+                - paragraph [ref=f3e1485]: Get in Touch
+                - link [ref=f3e1487] [cursor=pointer]:
+                  - /url: mailto:hello@toldwell.com
+                  - paragraph [ref=f3e1489]: hello@toldwell.com
+              - generic [ref=f3e1490]:
+                - link [ref=f3e1492] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/
+                  - paragraph [ref=f3e1494]: LinkedIn
+                - link [ref=f3e1496] [cursor=pointer]:
+                  - /url: https://www.instagram.com/
+                  - paragraph [ref=f3e1498]: Instagram
+          - generic [ref=f3e1499]:
+            - link [ref=f3e1500] [cursor=pointer]:
+              - /url: ./
+            - generic [ref=f3e1504]:
+              - paragraph [ref=f3e1506]: © 2025 Toldwell
+              - link [ref=f3e1508] [cursor=pointer]:
+                - /url: /color/#hero
+                - paragraph [ref=f3e1510]: Back to top
+  - navigation [ref=f3e1512]:
+    - generic [ref=f3e1513]:
+      - link [ref=f3e1515] [cursor=pointer]:
+        - /url: ./
+      - generic [ref=f3e1516]:
+        - generic [ref=f3e1518]:
+          - generic [ref=f3e1519]:
+            - paragraph [ref=f3e1521]: BRAND GUIDELINES
+            - paragraph [ref=f3e1523]: "UPDATED: May 7, 2026"
+          - link [ref=f3e1528] [cursor=pointer]:
+            - /url: /introduction/
+            - generic [ref=f3e1529]:
+              - paragraph [ref=f3e1531]: "01"
+              - paragraph [ref=f3e1533]: Introduction
+          - generic [ref=f3e1534]:
+            - link "02 Strategy" [ref=f3e1538] [cursor=pointer]:
+              - /url: /strategy/
+              - generic [ref=f3e1539]:
+                - paragraph [ref=f3e1541]: "02"
+                - paragraph [ref=f3e1543]: Strategy
+            - link "03 Logo" [ref=f3e1549] [cursor=pointer]:
+              - /url: /logo/
+              - generic [ref=f3e1550]:
+                - paragraph [ref=f3e1552]: "03"
+                - paragraph [ref=f3e1554]: Logo
+            - link "04 Typography" [ref=f3e1560] [cursor=pointer]:
+              - /url: /typography/
+              - generic [ref=f3e1561]:
+                - paragraph [ref=f3e1563]: "04"
+                - paragraph [ref=f3e1565]: Typography
+            - generic [ref=f3e1569] [cursor=pointer]:
+              - link "05 Color" [ref=f3e1571]:
+                - /url: /color/
+                - generic [ref=f3e1572]:
+                  - paragraph [ref=f3e1574]: "05"
+                  - paragraph [ref=f3e1576]: Color
+              - generic [ref=f3e1579]:
+                - link [ref=f3e1581]:
+                  - /url: /color/#the-basics
+                  - paragraph [ref=f3e1583]: Toldwell Palette
+                - link [ref=f3e1585]:
+                  - /url: /color/#accent-and-tones
+                  - paragraph [ref=f3e1587]: Accent & Tones
+                - link [ref=f3e1589]:
+                  - /url: /color/#black-and-white
+                  - paragraph [ref=f3e1591]: Black & White
+            - link "06 Images" [ref=f3e1595] [cursor=pointer]:
+              - /url: /images/
+              - generic [ref=f3e1596]:
+                - paragraph [ref=f3e1598]: "06"
+                - paragraph [ref=f3e1600]: Images
+            - link "07 Icons" [ref=f3e1606] [cursor=pointer]:
+              - /url: /icons/
+              - generic [ref=f3e1607]:
+                - paragraph [ref=f3e1609]: "07"
+                - paragraph [ref=f3e1611]: Icons
+          - link [ref=f3e1618] [cursor=pointer]:
+            - /url: /resources/
+            - generic [ref=f3e1619]:
+              - paragraph [ref=f3e1621]: "08"
+              - paragraph [ref=f3e1623]: Resources
+        - link "Go to Website" [ref=f3e1626] [cursor=pointer]:
+          - /url: https://www.google.com
+          - paragraph [ref=f3e1628]: Go to Website
