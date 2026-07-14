@@ -77,179 +77,179 @@
   "font": {
     "display": {
       "$value": "Belwe",
-      "$type": "fontFamily",
+      "$type": "fontFamilies",
       "$description": "Hero headlines, display text, named brand moments. Belwe gives Toldwell its distinctive warm serif character — the editorial weight of a film title card."
     },
     "editorial": {
       "$value": "Instrument Serif",
-      "$type": "fontFamily",
+      "$type": "fontFamilies",
       "$description": "Editorial accent. Used sparingly for emphasis, pull quotes, and italic display moments where the curl of the italic does the work — e.g. 'Stories worth telling, told well.' Belwe carries the brand weight; Instrument Serif carries the brand grace."
     },
     "body": {
       "$value": "Red Hat Display",
-      "$type": "fontFamily",
+      "$type": "fontFamilies",
       "$description": "Headings, subheadings, body text, UI elements. The clean sans-serif partner — modern, readable, gets out of the way."
     }
   },
   "text": {
     "display-xxl": {
       "$value": "215px",
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$description": "Hero splash text"
     },
     "display-xl": {
       "$value": "120px",
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$description": "Large hero headlines"
     },
     "display-lg": {
       "$value": "100px",
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$description": "Section hero text"
     },
     "display-md": {
       "$value": "92px",
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$description": "Feature headlines"
     },
     "display-sm": {
       "$value": "70px",
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$description": "Secondary headlines"
     },
     "h1": {
       "$value": "48px",
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$description": "Page titles"
     },
     "h2": {
       "$value": "32px",
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$description": "Section titles"
     },
     "h3": {
       "$value": "30px",
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$description": "Subsection titles"
     },
     "h4": {
       "$value": "26px",
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$description": "Card titles, feature headers"
     },
     "h5": {
       "$value": "24px",
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$description": "Small section headers"
     },
     "body-lg": {
       "$value": "22px",
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$description": "Lead paragraphs"
     },
     "body-md": {
       "$value": "20px",
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$description": "Standard body text"
     },
     "body-sm": {
       "$value": "18px",
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$description": "Compact body text"
     },
     "caption": {
       "$value": "12px",
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$description": "Captions, labels, tags, buttons"
     },
     "micro": {
       "$value": "11px",
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$description": "Fine print, metadata"
     }
   },
   "leading": {
     "display-xxl": {
       "$value": "100%",
-      "$type": "lineHeight"
+      "$type": "lineHeights"
     },
     "display-xl": {
       "$value": "100%",
-      "$type": "lineHeight"
+      "$type": "lineHeights"
     },
     "display-lg": {
       "$value": "105%",
-      "$type": "lineHeight"
+      "$type": "lineHeights"
     },
     "display-md": {
       "$value": "105%",
-      "$type": "lineHeight"
+      "$type": "lineHeights"
     },
     "display-sm": {
       "$value": "110%",
-      "$type": "lineHeight"
+      "$type": "lineHeights"
     },
     "h1": {
       "$value": "115%",
-      "$type": "lineHeight"
+      "$type": "lineHeights"
     },
     "h2": {
       "$value": "125%",
-      "$type": "lineHeight"
+      "$type": "lineHeights"
     },
     "h3": {
       "$value": "130%",
-      "$type": "lineHeight"
+      "$type": "lineHeights"
     },
     "h4": {
       "$value": "135%",
-      "$type": "lineHeight"
+      "$type": "lineHeights"
     },
     "h5": {
       "$value": "140%",
-      "$type": "lineHeight"
+      "$type": "lineHeights"
     },
     "body-lg": {
       "$value": "150%",
-      "$type": "lineHeight"
+      "$type": "lineHeights"
     },
     "body-md": {
       "$value": "155%",
-      "$type": "lineHeight"
+      "$type": "lineHeights"
     },
     "body-sm": {
       "$value": "160%",
-      "$type": "lineHeight"
+      "$type": "lineHeights"
     },
     "caption": {
       "$value": "140%",
-      "$type": "lineHeight"
+      "$type": "lineHeights"
     },
     "micro": {
       "$value": "140%",
-      "$type": "lineHeight"
+      "$type": "lineHeights"
     }
   },
   "weight": {
     "regular": {
       "$value": "400",
-      "$type": "fontWeight"
+      "$type": "fontWeights"
     },
     "medium": {
       "$value": "500",
-      "$type": "fontWeight"
+      "$type": "fontWeights"
     },
     "semibold": {
       "$value": "600",
-      "$type": "fontWeight"
+      "$type": "fontWeights"
     },
     "bold": {
       "$value": "700",
-      "$type": "fontWeight"
+      "$type": "fontWeights"
     },
     "black": {
       "$value": "900",
-      "$type": "fontWeight"
+      "$type": "fontWeights"
     }
   },
   "tracking": {

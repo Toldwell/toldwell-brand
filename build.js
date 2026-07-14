@@ -874,16 +874,16 @@ function emitFigmaTokens(brand) {
     }
   }
   for (const [role, f] of Object.entries(brand.typography.fonts)) {
-    core.font[role] = { $value: f.family, $type: 'fontFamily', $description: f.role };
+    core.font[role] = { $value: f.family, $type: 'fontFamilies', $description: f.role };
   }
   const weightToName = {};
   for (const [k, v] of Object.entries(brand.typography.weights || {})) {
-    core.weight[k] = { $value: String(v), $type: 'fontWeight' };
+    core.weight[k] = { $value: String(v), $type: 'fontWeights' };
     if (!(v in weightToName)) weightToName[v] = k;
   }
   for (const s of brand.typography.scale) {
-    core.text[s.name] = { $value: `${s.size}px`, $type: 'fontSize', $description: s.use };
-    core.leading[s.name] = { $value: `${Math.round(s.line_height * 100)}%`, $type: 'lineHeight' };
+    core.text[s.name] = { $value: `${s.size}px`, $type: 'fontSizes', $description: s.use };
+    core.leading[s.name] = { $value: `${Math.round(s.line_height * 100)}%`, $type: 'lineHeights' };
   }
   for (const [k, v] of Object.entries(brand.typography.letter_spacing || {})) {
     core.tracking[k] = { $value: v, $type: 'letterSpacing' };
