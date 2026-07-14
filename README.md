@@ -18,17 +18,47 @@ All four are generated from [`brand.yaml`](./brand.yaml) — the only file you e
 ## Pipeline
 
 ```
-brand.yaml ──┬──>  DESIGN.md            (root)
-             ├──>  tokens.css            (root)
-             ├──>  tailwind.css          (root)
-             ├──>  tokens.json           (root)
-             └──>  site/template/*  →  docs/*       (Cipherly-styled brand site)
+brand.yaml ───┬──>  DESIGN.md            (root)
+              ├──>  tokens.css            (root)
+              ├──>  tailwind.css          (root)
+              ├──>  tokens.json           (root)
+content.yaml ─┴──>  site/template/*  →  docs/*      (Cipherly-styled brand site)
 ```
 
 ```bash
 npm run build      # Regenerate all design files + site
 npm run preview    # Build and open the site locally
 ```
+
+- `brand.yaml` — design tokens (the system). Drives the four design files.
+- `content.yaml` — the swap map for the brand site: per-page and global
+  `from` → `to` text/image/URL substitutions applied to the Cipherly
+  template at build time. **Page rules run after global rules**, so a page
+  rule's `from` must be the post-global-swap form of the string.
+
+### Runtime swap layer
+
+The site still loads Cipherly's Framer hydration bundle from
+`framerusercontent.com` (their published site — a known dependency risk:
+if Cipherly unpublishes, hydration breaks and the site falls back to the
+static, fully-swapped HTML). Hydration re-renders pages with Cipherly's
+data, so [`swap-runtime.js`](./swap-runtime.js) re-applies all swaps after
+every re-render. It also:
+
+- normalizes SPA-pushed URLs to canonical paths (`/color/typography` →
+  `/typography/`)
+- restores download-button `href`s that hydration strips
+- re-applies `og:image` / favicon / head metadata
+
+`docs/404.html` is a GitHub Pages fallback that redirects any stale
+nested path to its canonical page.
+
+### Downloadable assets
+
+`site/template/toldwell-{logo,fonts,photos}.zip` back the Resources page
+download buttons (plus `/tokens.json` for the tokens card). The fonts zip
+includes a license note — Belwe is commercially licensed, not for
+redistribution. Regenerate zips from `assets/` if the sources change.
 
 ## What's in `brand.yaml`
 
