@@ -1,0 +1,169 @@
+{
+  "text-style": {
+    "display-xxl": {
+      "$value": {
+        "fontFamily": "{font.display}",
+        "fontWeight": "{weight.regular}",
+        "fontSize": "{text.display-xxl}",
+        "lineHeight": "{leading.display-xxl}",
+        "letterSpacing": "{tracking.display-xxl}"
+      },
+      "$type": "typography",
+      "$description": "Hero splash text"
+    },
+    "display-xl": {
+      "$value": {
+        "fontFamily": "{font.display}",
+        "fontWeight": "{weight.regular}",
+        "fontSize": "{text.display-xl}",
+        "lineHeight": "{leading.display-xl}",
+        "letterSpacing": "{tracking.display}"
+      },
+      "$type": "typography",
+      "$description": "Large hero headlines"
+    },
+    "display-lg": {
+      "$value": {
+        "fontFamily": "{font.display}",
+        "fontWeight": "{weight.regular}",
+        "fontSize": "{text.display-lg}",
+        "lineHeight": "{leading.display-lg}",
+        "letterSpacing": "{tracking.display}"
+      },
+      "$type": "typography",
+      "$description": "Section hero text"
+    },
+    "display-md": {
+      "$value": {
+        "fontFamily": "{font.display}",
+        "fontWeight": "{weight.regular}",
+        "fontSize": "{text.display-md}",
+        "lineHeight": "{leading.display-md}",
+        "letterSpacing": "{tracking.display}"
+      },
+      "$type": "typography",
+      "$description": "Feature headlines"
+    },
+    "display-sm": {
+      "$value": {
+        "fontFamily": "{font.display}",
+        "fontWeight": "{weight.regular}",
+        "fontSize": "{text.display-sm}",
+        "lineHeight": "{leading.display-sm}",
+        "letterSpacing": "{tracking.display}"
+      },
+      "$type": "typography",
+      "$description": "Secondary headlines"
+    },
+    "h1": {
+      "$value": {
+        "fontFamily": "{font.body}",
+        "fontWeight": "{weight.bold}",
+        "fontSize": "{text.h1}",
+        "lineHeight": "{leading.h1}",
+        "letterSpacing": "{tracking.heading}"
+      },
+      "$type": "typography",
+      "$description": "Page titles"
+    },
+    "h2": {
+      "$value": {
+        "fontFamily": "{font.body}",
+        "fontWeight": "{weight.semibold}",
+        "fontSize": "{text.h2}",
+        "lineHeight": "{leading.h2}",
+        "letterSpacing": "{tracking.heading}"
+      },
+      "$type": "typography",
+      "$description": "Section titles"
+    },
+    "h3": {
+      "$value": {
+        "fontFamily": "{font.body}",
+        "fontWeight": "{weight.semibold}",
+        "fontSize": "{text.h3}",
+        "lineHeight": "{leading.h3}",
+        "letterSpacing": "{tracking.heading}"
+      },
+      "$type": "typography",
+      "$description": "Subsection titles"
+    },
+    "h4": {
+      "$value": {
+        "fontFamily": "{font.body}",
+        "fontWeight": "{weight.medium}",
+        "fontSize": "{text.h4}",
+        "lineHeight": "{leading.h4}",
+        "letterSpacing": "{tracking.heading}"
+      },
+      "$type": "typography",
+      "$description": "Card titles, feature headers"
+    },
+    "h5": {
+      "$value": {
+        "fontFamily": "{font.body}",
+        "fontWeight": "{weight.medium}",
+        "fontSize": "{text.h5}",
+        "lineHeight": "{leading.h5}",
+        "letterSpacing": "{tracking.heading}"
+      },
+      "$type": "typography",
+      "$description": "Small section headers"
+    },
+    "body-lg": {
+      "$value": {
+        "fontFamily": "{font.body}",
+        "fontWeight": "{weight.regular}",
+        "fontSize": "{text.body-lg}",
+        "lineHeight": "{leading.body-lg}",
+        "letterSpacing": "{tracking.body}"
+      },
+      "$type": "typography",
+      "$description": "Lead paragraphs"
+    },
+    "body-md": {
+      "$value": {
+        "fontFamily": "{font.body}",
+        "fontWeight": "{weight.regular}",
+        "fontSize": "{text.body-md}",
+        "lineHeight": "{leading.body-md}",
+        "letterSpacing": "{tracking.body}"
+      },
+      "$type": "typography",
+      "$description": "Standard body text"
+    },
+    "body-sm": {
+      "$value": {
+        "fontFamily": "{font.body}",
+        "fontWeight": "{weight.regular}",
+        "fontSize": "{text.body-sm}",
+        "lineHeight": "{leading.body-sm}",
+        "letterSpacing": "{tracking.body}"
+      },
+      "$type": "typography",
+      "$description": "Compact body text"
+    },
+    "caption": {
+      "$value": {
+        "fontFamily": "{font.body}",
+        "fontWeight": "{weight.medium}",
+        "fontSize": "{text.caption}",
+        "lineHeight": "{leading.caption}",
+        "letterSpacing": "{tracking.label}"
+      },
+      "$type": "typography",
+      "$description": "Captions, labels, tags, buttons"
+    },
+    "micro": {
+      "$value": {
+        "fontFamily": "{font.body}",
+        "fontWeight": "{weight.regular}",
+        "fontSize": "{text.micro}",
+        "lineHeight": "{leading.micro}",
+        "letterSpacing": "{tracking.default}"
+      },
+      "$type": "typography",
+      "$description": "Fine print, metadata"
+    }
+  }
+}

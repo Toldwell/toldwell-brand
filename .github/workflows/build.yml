@@ -34,6 +34,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add DESIGN.md tokens.css tailwind.css tokens.json docs/
+          git add DESIGN.md tokens.css tailwind.css tokens.json tokens/ docs/
           git diff --cached --quiet || git commit -m "chore: regenerate design files and docs from brand.yaml"
           git push

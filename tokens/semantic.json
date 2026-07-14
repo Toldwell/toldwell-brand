@@ -1,0 +1,39 @@
+{
+  "surface": {
+    "canvas": {
+      "$value": "{color.neutrals.bone}",
+      "$type": "color",
+      "$description": "Default page background"
+    },
+    "card": {
+      "$value": "{color.neutrals.surface-light}",
+      "$type": "color",
+      "$description": "Card / section surface, slightly recessed against canvas"
+    },
+    "dark-stage": {
+      "$value": "{color.neutrals.toldwell-dark}",
+      "$type": "color",
+      "$description": "Dark hero sections, footers, full-bleed cinematic blocks. The most common alternative canvas to white."
+    },
+    "black-stage": {
+      "$value": "{color.neutrals.pure-black}",
+      "$type": "color",
+      "$description": "Pure black — reserved for video letterboxing, overlay scrims, max-contrast moments"
+    },
+    "accent-stage": {
+      "$value": "{color.brand.toldwell-gold}",
+      "$type": "color",
+      "$description": "Gold full-bleed sections. Used rarely, for moments that should feel warm and chosen."
+    }
+  },
+  "selection": {
+    "text": {
+      "$value": "{color.neutrals.bone}",
+      "$type": "color"
+    },
+    "background": {
+      "$value": "{color.neutrals.toldwell-dark}",
+      "$type": "color"
+    }
+  }
+}

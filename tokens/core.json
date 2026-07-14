@@ -1,6 +1,4 @@
 {
-  "$schema": "https://schemas.dtcg.org/tokens/v1.0/",
-  "$description": "Toldwell design tokens — generated from brand.yaml",
   "color": {
     "brand": {
       "toldwell-gold": {
@@ -74,45 +72,6 @@
         "$type": "color",
         "$description": "Informational notice, neutral system status"
       }
-    },
-    "selection": {
-      "text": {
-        "$value": "#FFFFFF",
-        "$type": "color",
-        "$description": "Text selection foreground"
-      },
-      "background": {
-        "$value": "#1B1B1C",
-        "$type": "color",
-        "$description": "Text selection background"
-      }
-    }
-  },
-  "surface": {
-    "canvas": {
-      "$value": "#FFFFFF",
-      "$type": "color",
-      "$description": "Default page background"
-    },
-    "card": {
-      "$value": "#F2F2F2",
-      "$type": "color",
-      "$description": "Card / section surface, slightly recessed against canvas"
-    },
-    "dark-stage": {
-      "$value": "#1B1B1C",
-      "$type": "color",
-      "$description": "Dark hero sections, footers, full-bleed cinematic blocks. The most common alternative canvas to white."
-    },
-    "black-stage": {
-      "$value": "#000000",
-      "$type": "color",
-      "$description": "Pure black — reserved for video letterboxing, overlay scrims, max-contrast moments"
-    },
-    "accent-stage": {
-      "$value": "#F3CC92",
-      "$type": "color",
-      "$description": "Gold full-bleed sections. Used rarely, for moments that should feel warm and chosen."
     }
   },
   "font": {
@@ -135,363 +94,363 @@
   "text": {
     "display-xxl": {
       "$value": "215px",
-      "$type": "dimension",
+      "$type": "fontSize",
       "$description": "Hero splash text"
     },
     "display-xl": {
       "$value": "120px",
-      "$type": "dimension",
+      "$type": "fontSize",
       "$description": "Large hero headlines"
     },
     "display-lg": {
       "$value": "100px",
-      "$type": "dimension",
+      "$type": "fontSize",
       "$description": "Section hero text"
     },
     "display-md": {
       "$value": "92px",
-      "$type": "dimension",
+      "$type": "fontSize",
       "$description": "Feature headlines"
     },
     "display-sm": {
       "$value": "70px",
-      "$type": "dimension",
+      "$type": "fontSize",
       "$description": "Secondary headlines"
     },
     "h1": {
       "$value": "48px",
-      "$type": "dimension",
+      "$type": "fontSize",
       "$description": "Page titles"
     },
     "h2": {
       "$value": "32px",
-      "$type": "dimension",
+      "$type": "fontSize",
       "$description": "Section titles"
     },
     "h3": {
       "$value": "30px",
-      "$type": "dimension",
+      "$type": "fontSize",
       "$description": "Subsection titles"
     },
     "h4": {
       "$value": "26px",
-      "$type": "dimension",
+      "$type": "fontSize",
       "$description": "Card titles, feature headers"
     },
     "h5": {
       "$value": "24px",
-      "$type": "dimension",
+      "$type": "fontSize",
       "$description": "Small section headers"
     },
     "body-lg": {
       "$value": "22px",
-      "$type": "dimension",
+      "$type": "fontSize",
       "$description": "Lead paragraphs"
     },
     "body-md": {
       "$value": "20px",
-      "$type": "dimension",
+      "$type": "fontSize",
       "$description": "Standard body text"
     },
     "body-sm": {
       "$value": "18px",
-      "$type": "dimension",
+      "$type": "fontSize",
       "$description": "Compact body text"
     },
     "caption": {
       "$value": "12px",
-      "$type": "dimension",
+      "$type": "fontSize",
       "$description": "Captions, labels, tags, buttons"
     },
     "micro": {
       "$value": "11px",
-      "$type": "dimension",
+      "$type": "fontSize",
       "$description": "Fine print, metadata"
     }
   },
   "leading": {
     "display-xxl": {
-      "$value": 1,
-      "$type": "number"
+      "$value": "100%",
+      "$type": "lineHeight"
     },
     "display-xl": {
-      "$value": 1,
-      "$type": "number"
+      "$value": "100%",
+      "$type": "lineHeight"
     },
     "display-lg": {
-      "$value": 1.05,
-      "$type": "number"
+      "$value": "105%",
+      "$type": "lineHeight"
     },
     "display-md": {
-      "$value": 1.05,
-      "$type": "number"
+      "$value": "105%",
+      "$type": "lineHeight"
     },
     "display-sm": {
-      "$value": 1.1,
-      "$type": "number"
+      "$value": "110%",
+      "$type": "lineHeight"
     },
     "h1": {
-      "$value": 1.15,
-      "$type": "number"
+      "$value": "115%",
+      "$type": "lineHeight"
     },
     "h2": {
-      "$value": 1.25,
-      "$type": "number"
+      "$value": "125%",
+      "$type": "lineHeight"
     },
     "h3": {
-      "$value": 1.3,
-      "$type": "number"
+      "$value": "130%",
+      "$type": "lineHeight"
     },
     "h4": {
-      "$value": 1.35,
-      "$type": "number"
+      "$value": "135%",
+      "$type": "lineHeight"
     },
     "h5": {
-      "$value": 1.4,
-      "$type": "number"
+      "$value": "140%",
+      "$type": "lineHeight"
     },
     "body-lg": {
-      "$value": 1.5,
-      "$type": "number"
+      "$value": "150%",
+      "$type": "lineHeight"
     },
     "body-md": {
-      "$value": 1.55,
-      "$type": "number"
+      "$value": "155%",
+      "$type": "lineHeight"
     },
     "body-sm": {
-      "$value": 1.6,
-      "$type": "number"
+      "$value": "160%",
+      "$type": "lineHeight"
     },
     "caption": {
-      "$value": 1.4,
-      "$type": "number"
+      "$value": "140%",
+      "$type": "lineHeight"
     },
     "micro": {
-      "$value": 1.4,
-      "$type": "number"
+      "$value": "140%",
+      "$type": "lineHeight"
     }
   },
   "weight": {
     "regular": {
-      "$value": 400,
+      "$value": "400",
       "$type": "fontWeight"
     },
     "medium": {
-      "$value": 500,
+      "$value": "500",
       "$type": "fontWeight"
     },
     "semibold": {
-      "$value": 600,
+      "$value": "600",
       "$type": "fontWeight"
     },
     "bold": {
-      "$value": 700,
+      "$value": "700",
       "$type": "fontWeight"
     },
     "black": {
-      "$value": 900,
+      "$value": "900",
       "$type": "fontWeight"
     }
   },
   "tracking": {
     "display-xxl": {
       "$value": "-1.5px",
-      "$type": "dimension"
+      "$type": "letterSpacing"
     },
     "display": {
       "$value": "-1px",
-      "$type": "dimension"
+      "$type": "letterSpacing"
     },
     "heading": {
       "$value": "-0.8px",
-      "$type": "dimension"
+      "$type": "letterSpacing"
     },
     "body": {
       "$value": "-0.4px",
-      "$type": "dimension"
+      "$type": "letterSpacing"
     },
     "default": {
       "$value": "-0.5px",
-      "$type": "dimension"
+      "$type": "letterSpacing"
     },
     "label": {
       "$value": "0.4px",
-      "$type": "dimension"
+      "$type": "letterSpacing"
     }
   },
   "spacing": {
     "4": {
       "$value": "4px",
-      "$type": "dimension"
+      "$type": "spacing"
     },
     "8": {
       "$value": "8px",
-      "$type": "dimension"
+      "$type": "spacing"
     },
     "12": {
       "$value": "12px",
-      "$type": "dimension"
+      "$type": "spacing"
     },
     "16": {
       "$value": "16px",
-      "$type": "dimension"
+      "$type": "spacing"
     },
     "20": {
       "$value": "20px",
-      "$type": "dimension"
+      "$type": "spacing"
     },
     "24": {
       "$value": "24px",
-      "$type": "dimension"
+      "$type": "spacing"
     },
     "32": {
       "$value": "32px",
-      "$type": "dimension"
+      "$type": "spacing"
     },
     "40": {
       "$value": "40px",
-      "$type": "dimension"
+      "$type": "spacing"
     },
     "48": {
       "$value": "48px",
-      "$type": "dimension"
+      "$type": "spacing"
     },
     "64": {
       "$value": "64px",
-      "$type": "dimension"
+      "$type": "spacing"
     },
     "80": {
       "$value": "80px",
-      "$type": "dimension"
+      "$type": "spacing"
     },
     "96": {
       "$value": "96px",
-      "$type": "dimension"
+      "$type": "spacing"
     },
     "128": {
       "$value": "128px",
-      "$type": "dimension"
+      "$type": "spacing"
     },
     "section_gap": {
       "$value": "80px",
-      "$type": "dimension"
+      "$type": "spacing"
     },
     "card_padding": {
       "$value": "32px",
-      "$type": "dimension"
+      "$type": "spacing"
     },
     "element_gap": {
       "$value": "8px",
-      "$type": "dimension"
+      "$type": "spacing"
     }
   },
   "radius": {
     "none": {
-      "$value": "0",
-      "$type": "dimension"
+      "$value": "0px",
+      "$type": "borderRadius"
     },
     "md": {
       "$value": "40px",
-      "$type": "dimension"
+      "$type": "borderRadius"
     },
     "pill": {
       "$value": "100px",
-      "$type": "dimension"
+      "$type": "borderRadius"
     },
     "full": {
       "$value": "9999px",
-      "$type": "dimension"
+      "$type": "borderRadius"
     },
     "buttons": {
       "$value": "100px",
-      "$type": "dimension"
+      "$type": "borderRadius"
     },
     "tags": {
       "$value": "100px",
-      "$type": "dimension"
+      "$type": "borderRadius"
     },
     "cards": {
       "$value": "40px",
-      "$type": "dimension"
+      "$type": "borderRadius"
     },
     "feature": {
       "$value": "40px",
-      "$type": "dimension"
+      "$type": "borderRadius"
     },
     "inputs": {
       "$value": "40px",
-      "$type": "dimension"
+      "$type": "borderRadius"
     }
   },
   "shadow": {
     "inset-card": {
       "$value": [
         {
-          "color": "rgba(0, 0, 0, 0.18)",
-          "offsetX": "0.3px",
-          "offsetY": "0.6px",
+          "x": "0.3px",
+          "y": "0.6px",
           "blur": "0.67px",
           "spread": "-1.25px",
-          "inset": true
+          "color": "rgba(0, 0, 0, 0.18)",
+          "type": "innerShadow"
         },
         {
-          "color": "rgba(0, 0, 0, 0.16)",
-          "offsetX": "1.14px",
-          "offsetY": "2.29px",
+          "x": "1.14px",
+          "y": "2.29px",
           "blur": "2.56px",
           "spread": "-2.5px",
-          "inset": true
+          "color": "rgba(0, 0, 0, 0.16)",
+          "type": "innerShadow"
         },
         {
-          "color": "rgba(0, 0, 0, 0.063)",
-          "offsetX": "5px",
-          "offsetY": "10px",
+          "x": "5px",
+          "y": "10px",
           "blur": "11.18px",
           "spread": "-3.75px",
-          "inset": true
+          "color": "rgba(0, 0, 0, 0.063)",
+          "type": "innerShadow"
         }
       ],
-      "$type": "shadow"
+      "$type": "boxShadow"
     },
     "inset-card-deep": {
       "$value": [
         {
-          "color": "rgba(0, 0, 0, 0.22)",
-          "offsetX": "0.5px",
-          "offsetY": "1px",
+          "x": "0.5px",
+          "y": "1px",
           "blur": "1.5px",
           "spread": "-1.5px",
-          "inset": true
+          "color": "rgba(0, 0, 0, 0.22)",
+          "type": "innerShadow"
         },
         {
-          "color": "rgba(0, 0, 0, 0.18)",
-          "offsetX": "2px",
-          "offsetY": "4px",
+          "x": "2px",
+          "y": "4px",
           "blur": "5px",
           "spread": "-2.5px",
-          "inset": true
+          "color": "rgba(0, 0, 0, 0.18)",
+          "type": "innerShadow"
         },
         {
-          "color": "rgba(0, 0, 0, 0.08)",
-          "offsetX": "7px",
-          "offsetY": "14px",
+          "x": "7px",
+          "y": "14px",
           "blur": "16px",
           "spread": "-4px",
-          "inset": true
+          "color": "rgba(0, 0, 0, 0.08)",
+          "type": "innerShadow"
         }
       ],
-      "$type": "shadow"
+      "$type": "boxShadow"
     },
     "focus-ring": {
       "$value": {
-        "color": "rgba(243, 204, 146, 0.4)",
-        "offsetX": "0px",
-        "offsetY": "0px",
+        "x": "0px",
+        "y": "0px",
         "blur": "0px",
         "spread": "3px",
-        "inset": false
+        "color": "rgba(243, 204, 146, 0.4)",
+        "type": "dropShadow"
       },
-      "$type": "shadow"
+      "$type": "boxShadow"
     }
   },
   "breakpoint": {

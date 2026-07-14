@@ -11,9 +11,32 @@ These are the canonical, machine-readable outputs. Drop them into any project th
 | [`DESIGN.md`](./DESIGN.md) | Markdown (Stitch + OmD v0.1) | AI agents (Claude, Cursor, etc.) |
 | [`tokens.css`](./tokens.css) | CSS custom properties | Vanilla CSS, any framework |
 | [`tailwind.css`](./tailwind.css) | Tailwind v4 `@theme` block | Tailwind v4 projects |
-| [`tokens.json`](./tokens.json) | W3C Design Tokens spec | Figma, Style Dictionary, Tokens Studio |
+| [`tokens.json`](./tokens.json) | W3C DTCG design tokens | Style Dictionary, generic token tooling |
+| [`tokens/`](./tokens/) | Tokens Studio sync folder | Figma (via Tokens Studio plugin) |
 
-All four are generated from [`brand.yaml`](./brand.yaml) — the only file you edit by hand.
+All are generated from [`brand.yaml`](./brand.yaml) — the only file you edit by hand.
+
+### Figma setup (Tokens Studio)
+
+The [`tokens/`](./tokens/) folder is a ready-made [Tokens Studio](https://tokens.studio)
+GitHub sync target — three token sets plus theme/metadata files:
+
+- `core` — primitives: colors, fonts, sizes, weights, tracking, spacing, radii, shadows, breakpoints
+- `semantic` — surfaces + selection colors, aliased to core (`{color.brand.toldwell-gold}`)
+- `typography` — composite text styles for the full type scale → Figma text styles
+
+Wire it up once: Tokens Studio plugin → Settings → Sync → **GitHub** →
+repo `Toldwell/toldwell-brand`, branch `main`, token storage location
+`tokens` (folder, W3C DTCG format). Pull in the plugin, apply the
+**Toldwell** theme, and export to Figma styles/variables. Because CI
+rebuilds `tokens/` on every `brand.yaml` change, a pull in the plugin is
+all it takes to stay current.
+
+Dialect note: `tokens/` uses Tokens Studio's shapes where the plugin
+diverges from the W3C spec (`boxShadow` with `x/y/blur/spread`, `%`
+line-heights); root `tokens.json` stays spec-pure DTCG. Shadow strings in
+`brand.yaml` are parsed at build time — a malformed shadow fails the build
+rather than emitting a broken import.
 
 ## Pipeline
 

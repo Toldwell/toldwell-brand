@@ -775,9 +775,25 @@ function emitTokensJson(brand) {
     out.radius[k] = { $value: `${v}px`, $type: 'dimension' };
   }
 
-  // Shadows
+  // Shadows — structured per the W3C DTCG shadow type (CSS strings don't
+  // import into token tooling). Multi-layer shadows emit an array value.
+  // The 'none' shadow is a CSS-ism with no DTCG representation — omitted
+  // here, still present in tokens.css / DESIGN.md.
   for (const [k, v] of Object.entries(brand.depth.shadows || {})) {
-    out.shadow[k] = { $value: v, $type: 'shadow' };
+    const layers = parseShadow(v, k);
+    if (!layers) continue;
+    const dtcg = layers.map((l) => ({
+      color: l.color,
+      offsetX: l.offsetX,
+      offsetY: l.offsetY,
+      blur: l.blur,
+      spread: l.spread,
+      inset: l.inset,
+    }));
+    out.shadow[k] = {
+      $value: dtcg.length === 1 ? dtcg[0] : dtcg,
+      $type: 'shadow',
+    };
   }
 
   // Breakpoints
@@ -786,6 +802,171 @@ function emitTokensJson(brand) {
   }
 
   return JSON.stringify(out, null, 2) + '\n';
+}
+
+// ─── Figma token system (Tokens Studio) ──────────────────────────────────────
+//
+// Emits tokens/ as a Tokens Studio GitHub-sync folder:
+//   tokens/core.json        — primitives (colors, fonts, sizes, spacing, …)
+//   tokens/semantic.json    — surfaces + selection, aliased to core colors
+//   tokens/typography.json  — composite text styles (→ Figma text styles)
+//   tokens/$metadata.json   — token set order
+//   tokens/$themes.json     — one "Toldwell" theme enabling all sets
+//
+// Dialect notes (deliberate divergences from root tokens.json):
+//   - shadows use Tokens Studio's boxShadow shape {x,y,blur,spread,color,type}
+//     (the plugin predates the DTCG `shadow` type and still expects its own)
+//   - composite line-height uses "115%"-style strings (plugin canonical form)
+//   - aliases use {token.path} references
+
+// Parse a CSS box-shadow string into layer objects. Throws on anything it
+// can't parse — a silent bad emit would corrupt the Figma import.
+function parseShadow(css, name) {
+  if (!css || css === 'none') return null;
+  const layers = String(css).split(/,(?![^(]*\))/).map((s) => s.trim()).filter(Boolean);
+  return layers.map((layer) => {
+    const inset = /\binset\b/.test(layer);
+    let rest = layer.replace(/\binset\b/g, ' ');
+    const colorMatch = rest.match(/rgba?\([^)]*\)|#[0-9a-fA-F]{3,8}/);
+    if (!colorMatch) throw new Error(`shadow "${name}": no color in layer "${layer}"`);
+    const color = colorMatch[0];
+    rest = rest.replace(color, ' ').trim();
+    const lengths = rest.split(/\s+/).filter(Boolean);
+    if (lengths.length < 2 || lengths.length > 4) {
+      throw new Error(`shadow "${name}": expected 2-4 lengths in layer "${layer}", got ${lengths.length}`);
+    }
+    const px = (n) => (n === undefined || n === '0' ? '0px' : /px$/.test(n) ? n : `${n}px`);
+    const [x, y, blur, spread] = lengths;
+    return { color, offsetX: px(x), offsetY: px(y), blur: px(blur), spread: px(spread), inset };
+  });
+}
+
+const FIGMA_TOKENS_DIR = path.join(ROOT, 'tokens');
+
+// Map a type-scale step name to its tracking token (documented mapping —
+// mirror any change here in the README's Figma section).
+function trackingForStep(name, tracking) {
+  const pick = (k) => (tracking[k] !== undefined ? `{tracking.${k}}` : undefined);
+  if (tracking[name] !== undefined) return pick(name);          // exact (display-xxl)
+  if (name.startsWith('display')) return pick('display');
+  if (/^h[1-5]$/.test(name)) return pick('heading');
+  if (name.startsWith('body')) return pick('body');
+  if (name === 'caption') return pick('label');
+  return pick('default');
+}
+
+function emitFigmaTokens(brand) {
+  // — core.json: primitives (mirrors root tokens.json minus surfaces) —
+  const core = {
+    color: {}, font: {}, text: {}, leading: {}, weight: {},
+    tracking: {}, spacing: {}, radius: {}, shadow: {}, breakpoint: {},
+  };
+  const hexToCorePath = {};
+
+  for (const group of ['brand', 'accent', 'neutrals', 'semantic']) {
+    if (!brand.colors[group]) continue;
+    core.color[group] = {};
+    for (const [name, def] of Object.entries(brand.colors[group])) {
+      core.color[group][name] = { $value: def.hex, $type: 'color', $description: def.role };
+      if (!(def.hex.toLowerCase() in hexToCorePath)) {
+        hexToCorePath[def.hex.toLowerCase()] = `color.${group}.${name}`;
+      }
+    }
+  }
+  for (const [role, f] of Object.entries(brand.typography.fonts)) {
+    core.font[role] = { $value: f.family, $type: 'fontFamily', $description: f.role };
+  }
+  const weightToName = {};
+  for (const [k, v] of Object.entries(brand.typography.weights || {})) {
+    core.weight[k] = { $value: String(v), $type: 'fontWeight' };
+    if (!(v in weightToName)) weightToName[v] = k;
+  }
+  for (const s of brand.typography.scale) {
+    core.text[s.name] = { $value: `${s.size}px`, $type: 'fontSize', $description: s.use };
+    core.leading[s.name] = { $value: `${Math.round(s.line_height * 100)}%`, $type: 'lineHeight' };
+  }
+  for (const [k, v] of Object.entries(brand.typography.letter_spacing || {})) {
+    core.tracking[k] = { $value: v, $type: 'letterSpacing' };
+  }
+  for (const [k, v] of Object.entries({ ...(brand.layout.spacing || {}), ...(brand.layout.semantic_spacing || {}) })) {
+    core.spacing[k] = { $value: `${v}px`, $type: 'spacing' };
+  }
+  for (const [k, v] of Object.entries({ ...(brand.layout.radii || {}), ...(brand.layout.named_radii || {}) })) {
+    core.radius[k] = { $value: `${v}px`, $type: 'borderRadius' };
+  }
+  for (const [k, v] of Object.entries(brand.depth.shadows || {})) {
+    const layers = parseShadow(v, k);
+    if (!layers) continue;
+    const ts = layers.map((l) => ({
+      x: l.offsetX, y: l.offsetY, blur: l.blur, spread: l.spread,
+      color: l.color, type: l.inset ? 'innerShadow' : 'dropShadow',
+    }));
+    core.shadow[k] = { $value: ts.length === 1 ? ts[0] : ts, $type: 'boxShadow' };
+  }
+  for (const [k, v] of Object.entries(brand.responsive.breakpoints || {})) {
+    core.breakpoint[k] = { $value: `${v}px`, $type: 'dimension' };
+  }
+
+  // — semantic.json: surfaces + selection, aliased into core where possible —
+  const semantic = { surface: {}, selection: {} };
+  const aliasOrRaw = (hex) => {
+    const p = hexToCorePath[String(hex).toLowerCase()];
+    return p ? `{${p}}` : hex;
+  };
+  for (const [name, def] of Object.entries(brand.surfaces || {})) {
+    semantic.surface[name] = { $value: aliasOrRaw(def.value), $type: 'color', $description: def.role };
+  }
+  if (brand.colors.selection) {
+    semantic.selection.text = { $value: aliasOrRaw(brand.colors.selection.text), $type: 'color' };
+    semantic.selection.background = { $value: aliasOrRaw(brand.colors.selection.background), $type: 'color' };
+  }
+
+  // — typography.json: composite text styles → Figma text styles —
+  const typography = { 'text-style': {} };
+  for (const s of brand.typography.scale) {
+    const fontRole = s.font === brand.typography.fonts.display?.family ? 'display'
+      : s.font === brand.typography.fonts.editorial?.family ? 'editorial' : 'body';
+    const weightName = weightToName[s.weight];
+    const value = {
+      fontFamily: `{font.${fontRole}}`,
+      fontWeight: weightName ? `{weight.${weightName}}` : String(s.weight),
+      fontSize: `{text.${s.name}}`,
+      lineHeight: `{leading.${s.name}}`,
+    };
+    const trackingRef = trackingForStep(s.name, brand.typography.letter_spacing || {});
+    if (trackingRef) value.letterSpacing = trackingRef;
+    typography['text-style'][s.name] = { $value: value, $type: 'typography', $description: s.use };
+  }
+
+  // — self-check: every {ref} must resolve across the merged sets —
+  const merged = { ...core, ...semantic, ...typography };
+  const resolve = (ref) => ref.slice(1, -1).split('.').reduce((o, k) => (o ? o[k] : undefined), merged);
+  const scan = (node, where) => {
+    if (typeof node === 'string') {
+      for (const m of node.match(/\{[^}]+\}/g) || []) {
+        if (resolve(m) === undefined) throw new Error(`unresolved token reference ${m} at ${where}`);
+      }
+    } else if (node && typeof node === 'object') {
+      for (const [k, v] of Object.entries(node)) scan(v, `${where}.${k}`);
+    }
+  };
+  scan(merged, '$');
+
+  // — write the folder —
+  ensureDir(FIGMA_TOKENS_DIR);
+  const write = (file, obj) =>
+    fs.writeFileSync(path.join(FIGMA_TOKENS_DIR, file), JSON.stringify(obj, null, 2) + '\n');
+  write('core.json', core);
+  write('semantic.json', semantic);
+  write('typography.json', typography);
+  write('$metadata.json', { tokenSetOrder: ['core', 'semantic', 'typography'] });
+  write('$themes.json', [
+    {
+      id: 'toldwell',
+      name: 'Toldwell',
+      selectedTokenSets: { core: 'enabled', semantic: 'enabled', typography: 'enabled' },
+    },
+  ]);
 }
 
 // ─── Site build: copy site/template/* → docs/* with content swaps ────────────
@@ -959,6 +1140,9 @@ function main() {
 
   fs.writeFileSync(TOKENS_JSON, emitTokensJson(brand));
   console.log('  ✓ tokens.json');
+
+  emitFigmaTokens(brand);
+  console.log('  ✓ tokens/ (Tokens Studio sets: core, semantic, typography)');
 
   console.log('Building site (site/template → docs/)...');
   buildSite(brand, content);
