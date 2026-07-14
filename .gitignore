@@ -5,3 +5,4 @@ template-cipherly/
 .logs/
 logs/
 cache/
+.playwright-cli/
