@@ -5,7 +5,11 @@ on:
     branches: [main]
     paths:
       - 'brand.yaml'
+      - 'content.yaml'
       - 'build.js'
+      - 'site-overrides.css'
+      - 'swap-runtime.js'
+      - 'site/template/**'
 
 permissions:
   contents: write
@@ -30,6 +34,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add DESIGN.md docs/
-          git diff --cached --quiet || git commit -m "chore: regenerate DESIGN.md and docs from brand.yaml"
+          git add DESIGN.md tokens.css tailwind.css tokens.json docs/
+          git diff --cached --quiet || git commit -m "chore: regenerate design files and docs from brand.yaml"
           git push
