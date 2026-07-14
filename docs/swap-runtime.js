@@ -107,7 +107,7 @@
       if (swapped !== document.title) document.title = swapped;
     }
     const metas = document.querySelectorAll(
-      'meta[name="description"], meta[property="og:title"], meta[property="og:description"], meta[name="twitter:title"], meta[name="twitter:description"]'
+      'meta[name="description"], meta[property="og:title"], meta[property="og:description"], meta[property="og:image"], meta[name="twitter:title"], meta[name="twitter:description"], meta[name="twitter:image"]'
     );
     for (const m of metas) {
       const c = m.getAttribute('content');

@@ -483,6 +483,10 @@
         {
           "from": "DOWNLOAD ICONS",
           "to": "VIEW WORK"
+        },
+        {
+          "from": "https://framerusercontent.com/assets/SMmh0YRWWzWW7SwlQOxumbM6NOE.zip",
+          "to": "https://toldwell.com"
         }
       ]
     },
@@ -547,6 +551,14 @@
         {
           "from": "Toldwell Resources",
           "to": "Brand Resources"
+        },
+        {
+          "from": "https://framerusercontent.com/assets/SMmh0YRWWzWW7SwlQOxumbM6NOE.zip",
+          "to": "/tokens.json"
+        },
+        {
+          "from": "DOWNLOAD ICONS",
+          "to": "DOWNLOAD TOKENS"
         }
       ]
     }
@@ -584,6 +596,74 @@
       {
         "from": "typography/index.html",
         "to": "/typography/"
+      },
+      {
+        "from": "https://framerusercontent.com/images/UYMagulWPpFj34IvtUP5uUZqYvM.png",
+        "to": "/favicon.svg"
+      },
+      {
+        "from": "https://framerusercontent.com/assets/9qF3QN8qXBkYxldikJQkNkps5E.zip",
+        "to": "/toldwell-logo.zip"
+      },
+      {
+        "from": "https://framerusercontent.com/assets/cxJIKWDTHTC3wLLano8XmO5OA.zip",
+        "to": "/toldwell-fonts.zip"
+      },
+      {
+        "from": "https://framerusercontent.com/assets/T74Ipsfm3hP4Za5eJUAWhWdmP4.zip",
+        "to": "/toldwell-photos.zip"
+      },
+      {
+        "from": "https://framerusercontent.com/images/yZQ1wBOUSNcKT2bE6lHMGQhLgc4.svg",
+        "to": "/toldwell-wordmark-dark.svg"
+      },
+      {
+        "from": "https://framerusercontent.com/images/foD4YVsoWEBx1QiAXs64Gelhwjo.svg",
+        "to": "/toldwell-wordmark-dark.svg"
+      },
+      {
+        "from": "https://framerusercontent.com/images/hSwzPyUeq6kcP15flL8vb7Skw7g.svg",
+        "to": "/toldwell-wordmark-dark.svg"
+      },
+      {
+        "from": "https://framerusercontent.com/images/PlAqPHBR1hJmmAqeyJEuEOhqPqY.svg",
+        "to": "/pattern-hatch.svg"
+      },
+      {
+        "from": "https://framerusercontent.com/assets/DeeGtUlwNLMQpjN0t8ElN3i8QWg.jpg",
+        "to": "https://brand.toldwell.com/photo-01-camera-crew.jpg"
+      },
+      {
+        "from": "https://framerusercontent.com/assets/mjrOz2WJuwT95xL3gMPxGIVg.jpg",
+        "to": "https://brand.toldwell.com/photo-06-studio-crew.jpg"
+      },
+      {
+        "from": "https://framerusercontent.com/assets/se5SWiT4V6wembxxX0eTXG1HNwY.jpg",
+        "to": "https://brand.toldwell.com/photo-05-team-stadium.jpg"
+      },
+      {
+        "from": "https://framerusercontent.com/assets/XeJaEzp3Vowv5sUL6aRTQuBuY.jpg",
+        "to": "https://brand.toldwell.com/photo-02-jib-gym-bw.jpg"
+      },
+      {
+        "from": "https://framerusercontent.com/assets/WIl0MbnKU20tnnHiKdbEMpVC1g.jpg",
+        "to": "https://brand.toldwell.com/photo-03-godrays-boxing.jpg"
+      },
+      {
+        "from": "https://framerusercontent.com/assets/lcnwEFIuADaMWhyVCEGPpiAY6d8.jpg",
+        "to": "https://brand.toldwell.com/photo-04-court-jib.jpg"
+      },
+      {
+        "from": "https://framerusercontent.com/assets/IaPUoLD3RzQPkztQ8QSbahElCsA.jpg",
+        "to": "https://brand.toldwell.com/photo-07-dolly-lights.jpg"
+      },
+      {
+        "from": "https://framerusercontent.com/assets/wUlbJ035oEqbBMm0ATvLYPOFzQ.jpg",
+        "to": "https://brand.toldwell.com/photo-01-camera-crew.jpg"
+      },
+      {
+        "from": "https://framerusercontent.com/assets/gtiRtfL6iqOMg3FnNYyAQYaCI.jpg",
+        "to": "https://brand.toldwell.com/photo-06-studio-crew.jpg"
       },
       {
         "from": "https://framerusercontent.com/images/Pqe2xl85kUFpoCbDKOMJdklVM.jpg",

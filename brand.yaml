@@ -118,7 +118,7 @@ typography:
     display:
       family: "Belwe"
       variants: ["Regular (400)", "Medium (500)", "Bold (700)", "Italic"]
-      source: "Custom (uploaded to Framer; needs self-hosted woff2 for site portability)"
+      source: "Custom licensed — self-hosted woff2 (site/template/fonts/belwe/, served at /fonts/belwe/)"
       role: "Hero headlines, display text, named brand moments. Belwe gives Toldwell its distinctive warm serif character — the editorial weight of a film title card."
     editorial:
       family: "Instrument Serif"

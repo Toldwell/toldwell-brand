@@ -332,6 +332,11 @@ pages:
       - from: "DOWNLOAD ICONS"
         to: "VIEW WORK"
 
+      # VIEW WORK button: was Cipherly's icon-library zip download.
+      # Page-scoped (same URL on resources page maps to /tokens.json).
+      - from: "https://framerusercontent.com/assets/SMmh0YRWWzWW7SwlQOxumbM6NOE.zip"
+        to: "https://toldwell.com"
+
   images:
     text:
       - from: "Photography serves as a vital component within the Toldwell visual identity system. When utilized effectively, it enables us to craft communications that deeply resonate with our audience, both on a personal and professional level."
@@ -378,6 +383,14 @@ pages:
       - from: "Toldwell Resources"
         to: "Brand Resources"
 
+      # 4th download card (was Cipherly's icon library zip) → design tokens.
+      # Page-scoped because the same zip URL on the icons page maps to
+      # https://toldwell.com instead (see pages.icons).
+      - from: "https://framerusercontent.com/assets/SMmh0YRWWzWW7SwlQOxumbM6NOE.zip"
+        to: "/tokens.json"
+      - from: "DOWNLOAD ICONS"
+        to: "DOWNLOAD TOKENS"
+
 # ─── Image swaps (Cipherly CDN URLs → Toldwell local assets) ──────────────────
 # Reuses Toldwell BTS photos previously pulled from Emmett's tw photos folder
 # (kept in assets/photos/web/) and client logo SVGs from toldwell.com (kept in
@@ -408,6 +421,60 @@ images:
       to: "/strategy/"
     - from: "typography/index.html"
       to: "/typography/"
+
+    # ─── Favicon: Cipherly's icon → Toldwell gold-t tile ──────────────────
+    # One URL serves both light/dark <link rel="icon"> variants.
+    - from: "https://framerusercontent.com/images/UYMagulWPpFj34IvtUP5uUZqYvM.png"
+      to: "/favicon.svg"
+
+    # ─── Resources download bundles: Cipherly zips → Toldwell zips ────────
+    # These URLs also appear as the download button on their topic pages
+    # (logo/, typography/, images/) — global swap covers all of them.
+    # (Cipherly's 4th zip, the icon library, is page-scoped: see
+    # pages.resources and pages.icons.)
+    - from: "https://framerusercontent.com/assets/9qF3QN8qXBkYxldikJQkNkps5E.zip"
+      to: "/toldwell-logo.zip"
+    - from: "https://framerusercontent.com/assets/cxJIKWDTHTC3wLLano8XmO5OA.zip"
+      to: "/toldwell-fonts.zip"
+    - from: "https://framerusercontent.com/assets/T74Ipsfm3hP4Za5eJUAWhWdmP4.zip"
+      to: "/toldwell-photos.zip"
+
+    # ─── Logo page: Cipherly mark specimens → Toldwell wordmark ───────────
+    # All three are black-on-light marks → dark wordmark variant.
+    - from: "https://framerusercontent.com/images/yZQ1wBOUSNcKT2bE6lHMGQhLgc4.svg"
+      to: "/toldwell-wordmark-dark.svg"
+    - from: "https://framerusercontent.com/images/foD4YVsoWEBx1QiAXs64Gelhwjo.svg"
+      to: "/toldwell-wordmark-dark.svg"
+    - from: "https://framerusercontent.com/images/hSwzPyUeq6kcP15flL8vb7Skw7g.svg"
+      to: "/toldwell-wordmark-dark.svg"
+
+    # ─── Logo page: clear-space hatch pattern (CSS background tile) ───────
+    # Same geometry as Cipherly's, recolored #0040FF → gold. Lives at
+    # site/template/pattern-hatch.svg.
+    - from: "https://framerusercontent.com/images/PlAqPHBR1hJmmAqeyJEuEOhqPqY.svg"
+      to: "/pattern-hatch.svg"
+
+    # ─── Social share images: Cipherly stills → Toldwell BTS photos ───────
+    # og:image/twitter:image need absolute URLs for crawlers. Same URL
+    # string appears in both meta tags, one swap covers both.
+    - from: "https://framerusercontent.com/assets/DeeGtUlwNLMQpjN0t8ElN3i8QWg.jpg"
+      to: "https://brand.toldwell.com/photo-01-camera-crew.jpg"
+    - from: "https://framerusercontent.com/assets/mjrOz2WJuwT95xL3gMPxGIVg.jpg"
+      to: "https://brand.toldwell.com/photo-06-studio-crew.jpg"
+    - from: "https://framerusercontent.com/assets/se5SWiT4V6wembxxX0eTXG1HNwY.jpg"
+      to: "https://brand.toldwell.com/photo-05-team-stadium.jpg"
+    - from: "https://framerusercontent.com/assets/XeJaEzp3Vowv5sUL6aRTQuBuY.jpg"
+      to: "https://brand.toldwell.com/photo-02-jib-gym-bw.jpg"
+    - from: "https://framerusercontent.com/assets/WIl0MbnKU20tnnHiKdbEMpVC1g.jpg"
+      to: "https://brand.toldwell.com/photo-03-godrays-boxing.jpg"
+    - from: "https://framerusercontent.com/assets/lcnwEFIuADaMWhyVCEGPpiAY6d8.jpg"
+      to: "https://brand.toldwell.com/photo-04-court-jib.jpg"
+    - from: "https://framerusercontent.com/assets/IaPUoLD3RzQPkztQ8QSbahElCsA.jpg"
+      to: "https://brand.toldwell.com/photo-07-dolly-lights.jpg"
+    - from: "https://framerusercontent.com/assets/wUlbJ035oEqbBMm0ATvLYPOFzQ.jpg"
+      to: "https://brand.toldwell.com/photo-01-camera-crew.jpg"
+    - from: "https://framerusercontent.com/assets/gtiRtfL6iqOMg3FnNYyAQYaCI.jpg"
+      to: "https://brand.toldwell.com/photo-06-studio-crew.jpg"
 
     # ─── Hero / decoration photos (random Toldwell BTS) ───────────────────
     - from: "https://framerusercontent.com/images/Pqe2xl85kUFpoCbDKOMJdklVM.jpg"
