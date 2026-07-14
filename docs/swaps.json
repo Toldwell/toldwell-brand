@@ -65,6 +65,14 @@
       "to": "#F3CC92"
     },
     {
+      "from": "rgb(0, 64, 255)",
+      "to": "rgb(243, 204, 146)"
+    },
+    {
+      "from": "rgb(0,64,255)",
+      "to": "rgb(243,204,146)"
+    },
+    {
       "from": "Connect With Us",
       "to": "Work With Us"
     }
@@ -545,6 +553,38 @@
   },
   "images": {
     "swaps": [
+      {
+        "from": "color/index.html",
+        "to": "/color/"
+      },
+      {
+        "from": "icons/index.html",
+        "to": "/icons/"
+      },
+      {
+        "from": "images/index.html",
+        "to": "/images/"
+      },
+      {
+        "from": "introduction/index.html",
+        "to": "/introduction/"
+      },
+      {
+        "from": "logo/index.html",
+        "to": "/logo/"
+      },
+      {
+        "from": "resources/index.html",
+        "to": "/resources/"
+      },
+      {
+        "from": "strategy/index.html",
+        "to": "/strategy/"
+      },
+      {
+        "from": "typography/index.html",
+        "to": "/typography/"
+      },
       {
         "from": "https://framerusercontent.com/images/Pqe2xl85kUFpoCbDKOMJdklVM.jpg",
         "to": "/photo-04-court-jib.jpg"

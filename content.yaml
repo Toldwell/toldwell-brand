@@ -55,6 +55,11 @@ global:
     to: "#F3CC92"
   - from: "#0048ff"
     to: "#F3CC92"
+  # Same Cipherly blue in rgb() form (inline style fallbacks, e.g. hero bg)
+  - from: "rgb(0, 64, 255)"
+    to: "rgb(243, 204, 146)"
+  - from: "rgb(0,64,255)"
+    to: "rgb(243,204,146)"
 
   # CTA used in sidebar / footer
   - from: "Connect With Us"
@@ -381,6 +386,29 @@ pages:
 
 images:
   swaps:
+    # ─── Nav/pagination hrefs: document-relative → root-absolute ──────────
+    # The Cipherly rip uses hrefs like "typography/index.html" which resolve
+    # correctly from / but 404 from any subpage (/color/ + typography/… =
+    # /color/typography/ → 404). Bare-URL form so swap-runtime's attribute
+    # pass re-applies them after Framer hydration. Idempotent: the swapped
+    # value no longer contains the `from` substring.
+    - from: "color/index.html"
+      to: "/color/"
+    - from: "icons/index.html"
+      to: "/icons/"
+    - from: "images/index.html"
+      to: "/images/"
+    - from: "introduction/index.html"
+      to: "/introduction/"
+    - from: "logo/index.html"
+      to: "/logo/"
+    - from: "resources/index.html"
+      to: "/resources/"
+    - from: "strategy/index.html"
+      to: "/strategy/"
+    - from: "typography/index.html"
+      to: "/typography/"
+
     # ─── Hero / decoration photos (random Toldwell BTS) ───────────────────
     - from: "https://framerusercontent.com/images/Pqe2xl85kUFpoCbDKOMJdklVM.jpg"
       to: "/photo-04-court-jib.jpg"
